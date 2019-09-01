@@ -8,6 +8,7 @@ export class LoginView extends React.Component {
     render() {
         return (
             <Grid
+                className={"container"}
                 container
                 direction="column"
                 alignItems="center"
