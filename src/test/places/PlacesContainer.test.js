@@ -2,6 +2,7 @@ import React from "react";
 import {mount, shallow} from "enzyme";
 import {PlacesContainer} from "../../app/components/places/PlacesContainer";
 import httpResources from "../../app/http/httpResources";
+import {aPlace, successfulResponseWith} from "../support/factory";
 
 jest.mock("../../app/http/httpResources", () => {
     return {
@@ -17,12 +18,19 @@ describe("places container component", () => {
 
     describe("init cycle", () => {
 
-        beforeEach(() => {
-            mount(<PlacesContainer/>)
+        it ("should fetch places", () => {
+            mount(<PlacesContainer/>);
+            expect(httpResources.places).toHaveBeenCalled();
         });
 
-        it ("should fetch places", () => {
-            expect(httpResources.places).toHaveBeenCalled();
+        it ("should set data", async () => {
+            const places = [aPlace(), aPlace()];
+            httpResources.places = successfulResponseWith(places);
+
+            const component = shallow(<PlacesContainer/>);
+            await component.instance().componentDidMount();
+
+            expect(component.find('.places_view').prop('places')).toEqual(places);
         });
     });
 });
