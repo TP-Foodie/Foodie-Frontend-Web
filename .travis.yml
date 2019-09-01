@@ -1,11 +1,18 @@
 language: node_js
 jobs:
   include:
-    - stage: build
-      script: "npm install"
-    - stage: test
-      script: "npm run test"
-    - stage: lint
-      script:
-        - "npm run eslint"
-        - "npm run jscpd"
+  - stage: build
+    script: npm install
+  - stage: test
+    script: npm run test
+  - stage: lint
+    script:
+    - npm run eslint
+    - npm run jscpd
+deploy:
+  provider: heroku
+  api_key:
+    secure: VcxzOxJXXEVVoEKMNLaVwfKVfOYD9MtnTOhOwYupZRr1tzWjWrRuQ2TJ2wFbCyqiPq0O3rYgqbv8ZqTQwRP7OMtLcUlLQwxim+rpUUxi1IEBRtBouFeMKhPCaszfKI7gZokI+e0CdQN6kVF29k0Hq6WhbqXowqviShP9Yxa1ZI5jHypAGdRbBBcLZIeP3e1kA61IdZYuNlribXO4dtDhCK/qNsA0mWHihVd83gUhZcDdtGjKjpqCsxHMCLt6Dlt+0IGVt/Oz9+myOkcMjP06EuVSPywE8ZI+vcnzCesV9WYt6y542eGJ2IK9JBI5XcQ/xI50JwZE1UXDb4RU3bgwcTwR24V/WavXu1YXG0KNluy5t/4DH1vazlWHibB9laRRzmXhhSxwHHH2ncjvDq62lGQjdV/HLk1vJje78/ooBA+rZc2pqEAO+j1YcEIjvwIF0oHVwRrr8QucNEizD3268RqcTcwwrU0wpyiCm4skO7qcpl6x7ySgFZRSjI2BMz4cwSumvX62TQ+1ILqbrgQa0fAZzpJ2vSTQWsr+QUsQFHITZiHzBeLhzhTp2G8Kd8QluaQqY+Lie681U4XZvSPbLvnWAHorBeG1GHXbF5+73slOFBJVk6p5nA8yS8awv3GZyZIpE7Ude3VGzsJH5B7D9c5Af/07FMciaXDtt4oXJ5I=
+  on:
+    branch: master
+    tags: true
