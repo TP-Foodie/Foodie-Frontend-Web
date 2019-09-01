@@ -12,6 +12,8 @@ jobs:
     script:
     - npm run eslint
     - npm run jscpd
+  - stage: build production
+    script: npm run build
 deploy:
   provider: heroku
   api_key:
