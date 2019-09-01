@@ -13,8 +13,14 @@ export class PlacesView extends React.Component {
         const {places} = this.props;
 
         return(
-            <Grid container className={"container"}>
-                <Grid item xs={places.length}>
+            <Grid
+                className={"container"}
+                container
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{minHeight: '100vh'}}>
+                <Grid item>
                     <List className={"places_list"}>
                         {places.map(place =>
                             <ListItemText key={place.id} className={place.name}>

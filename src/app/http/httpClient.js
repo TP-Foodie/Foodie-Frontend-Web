@@ -1,5 +1,5 @@
 import axios from "axios";
-import {apiServer} from "../../../config.json"
+import {apiServer} from "../../config.json"
 
 const DEFAULT_HEADER = {'Content-Type': 'application/json'};
 
