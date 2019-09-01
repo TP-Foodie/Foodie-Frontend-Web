@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow, render} from "enzyme";
+import {shallow} from "enzyme";
 import {WelcomeView} from "../../app/components/welcome/WelcomeView";
 
 describe("login view component", () => {
@@ -12,11 +12,15 @@ describe("login view component", () => {
         let component;
 
         beforeEach(() => {
-            component = render(<WelcomeView/>);
+            component = shallow(<WelcomeView/>);
         });
 
         it ("should render a title", () => {
             expect(component.find('h1').text()).toEqual("Bienvenido al sitio de administracion de Foodie")
+        });
+
+        it ("should render a places button", () => {
+            expect(component.find('.places_btn').exists()).toBeTruthy();
         });
     });
 });
