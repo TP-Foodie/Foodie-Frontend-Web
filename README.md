@@ -1,4 +1,4 @@
-# Foodie-Frontend-Web
+# Foodie-Frontend-Web [![Build Status](https://travis-ci.org/TP-Foodie/Foodie-Frontend-Web.svg?branch=master)](https://travis-ci.org/TP-Foodie/Foodie-Frontend-Web)
 Web Administration React app
 
 ## Setup
