@@ -1,6 +1,7 @@
 import {HttpClient} from "./httpClient";
 
-const PLACES_URL = "/places";
+const PLACES_URL = "/places/";
+const USERS_URL = "/users/";
 
 class HttpResources {
     constructor(client) {
@@ -9,6 +10,10 @@ class HttpResources {
 
     places = () => {
         return this.client.get(PLACES_URL);
+    }
+
+    users = () => {
+        return this.client.get(USERS_URL);
     }
 }
 

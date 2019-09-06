@@ -17,6 +17,13 @@ export const aPlace = () => {
     }
 };
 
+export const aUser = () => {
+    return {
+        id: 1,
+        name: "Juansito"
+    }
+};
+
 export const anError = () => {
     return {
         message: "someError"

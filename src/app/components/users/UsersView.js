@@ -4,13 +4,13 @@ import List from "@material-ui/core/List";
 import {ListItemText} from "@material-ui/core";
 import PropTypes from "prop-types";
 
-export class PlacesView extends React.Component {
+export class UsersView extends React.Component {
     static propTypes = {
-        places: PropTypes.array.isRequired
+        users: PropTypes.array.isRequired
     };
 
     render() {
-        const {places} = this.props;
+        const {users} = this.props;
 
         return(
             <Grid
@@ -21,10 +21,10 @@ export class PlacesView extends React.Component {
                 justify="center"
                 style={{minHeight: '100vh'}}>
                 <Grid item>
-                    <List className={"places_list"}>
-                        {places.map(place =>
-                            <ListItemText key={place.id} className={place.name}>
-                                {place.name} {place.coordinates}
+                    <List className={"users_list"}>
+                        {users.map(user =>
+                            <ListItemText key={user.id} className={user.name}>
+                                {user.name}
                             </ListItemText>
                         )}
                     </List>
