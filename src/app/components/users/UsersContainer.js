@@ -1,7 +1,33 @@
 import React from "react";
 import httpResources from "../../http/httpResources";
-import {UsersView} from "./UsersView";
+import {UsersView, UserDetailView} from "./UsersView";
 import {handleError} from "../../handlers/handleError";
+
+export class UserDetailContainer extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { user: {} };
+    }
+
+    componentDidMount = async () => {
+        try {
+            const param = this.props.match.params.userId
+            const {data} = await httpResources.user(param);
+            this.setState({user: data});
+        } catch (error) {
+            handleError(error);
+        }
+    };
+    
+    render() {
+        return (
+            <div className={"container"}>
+                <UserDetailView className={"user_detail"} user={this.state.user}/>
+            </div>
+        );
+    }
+}
 
 export class UsersContainer extends React.Component {
 
@@ -27,3 +53,4 @@ export class UsersContainer extends React.Component {
         );
     }
 }
+

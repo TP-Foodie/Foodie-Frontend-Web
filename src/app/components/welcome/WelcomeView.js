@@ -6,6 +6,18 @@ import {PLACES, USERS} from "../../navigation/routes";
 const WELCOME_TITLE = 'Bienvenido al sitio de administracion de Foodie';
 const PLACES_TITLE = "Lugares";
 const USERS_TITLE = "Usuarios";
+const DETAIL_BUTTON_LABEL = "Detalles"
+
+export function rowDetail(href){
+  return (
+      <Button className={"users_btn"} 
+              href={href} 
+              color={"primary"} >
+                  {DETAIL_BUTTON_LABEL}
+      </Button>
+  )
+}
+
 const buttonStyle = {
   "margin": '0.5%',
   "paddingLeft": '1%'
@@ -32,12 +44,12 @@ export class WelcomeView extends React.Component {
               <Grid item style={buttonStyle}>
                 <Button className={"users_btn"} href={USERS} color={"primary"} variant={"contained"}>
                       {USERS_TITLE}
-                  </Button>
+                </Button>
               </Grid>
               <Grid item style={buttonStyle}>
-                  <Button className={"places_btn"} href={PLACES} color={"primary"} variant={"contained"}>
+                <Button className={"places_btn"} href={PLACES} color={"primary"} variant={"contained"}>
                       {PLACES_TITLE}
-                  </Button>
+                </Button>
               </Grid>
           </Grid>
         </Grid>

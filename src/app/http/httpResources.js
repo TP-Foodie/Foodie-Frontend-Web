@@ -15,6 +15,10 @@ class HttpResources {
     users = () => {
         return this.client.get(USERS_URL);
     }
+
+    user = (id) => {
+        return this.client.get(`${USERS_URL}${id}`);
+    }
 }
 
 const httpResources = new HttpResources(new HttpClient());
