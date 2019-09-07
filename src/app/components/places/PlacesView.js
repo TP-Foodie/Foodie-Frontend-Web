@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import {ListItemText} from "@material-ui/core";
 import PropTypes from "prop-types";
+import {WelcomeView} from "../welcome/WelcomeView"
 
 export class PlacesView extends React.Component {
     static propTypes = {
@@ -13,21 +14,24 @@ export class PlacesView extends React.Component {
         const {places} = this.props;
 
         return(
-            <Grid
-                className={"container"}
-                container
-                direction="column"
-                alignItems="center"
-                justify="center"
-                style={{minHeight: '100vh'}}>
-                <Grid item>
-                    <List className={"places_list"}>
-                        {places.map(place =>
-                            <ListItemText key={place.id} className={place.name}>
-                                {place.name} {place.coordinates}
-                            </ListItemText>
-                        )}
-                    </List>
+            <Grid>
+                <WelcomeView/>
+                <Grid
+                    className={"container"}
+                    container
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{minHeight: '100vh'}}>
+                    <Grid item>
+                        <List className={"places_list"}>
+                            {places.map(place =>
+                                <ListItemText key={place.id} className={place.name}>
+                                    {place.name} {place.coordinates.longitude} {place.coordinates.latitude}
+                                </ListItemText>
+                            )}
+                        </List>
+                    </Grid>
                 </Grid>
             </Grid>
         );
