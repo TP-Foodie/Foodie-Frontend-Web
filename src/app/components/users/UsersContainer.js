@@ -1,9 +1,13 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import httpResources from "../../http/httpResources";
 import {UsersView, UserDetailView} from "./UsersView";
 import {handleError} from "../../handlers/handleError";
 
 export class UserDetailContainer extends React.Component {
+    static propTypes = {
+        match: PropTypes.any.isRequired
+    };
 
     constructor(props) {
         super(props);

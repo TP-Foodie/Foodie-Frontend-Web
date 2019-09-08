@@ -13,6 +13,10 @@ import {USERS} from "../../navigation/routes";
 import {Typography} from "@material-ui/core";
 
 export class UserDetailView extends React.Component{
+    static propTypes = {
+        user: PropTypes.any.isRequired
+    };
+
     render(){
         const {user} = this.props
 
@@ -24,7 +28,7 @@ export class UserDetailView extends React.Component{
                     container
                     direction="column">
                     <Paper className="user-detail">
-                        <Grid container>
+                        <Grid container className={user.id}>
                             <Grid item xs={6} align="center">
                                 !FOTO!
                             </Grid>
