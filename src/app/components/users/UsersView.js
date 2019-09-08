@@ -28,7 +28,7 @@ export class UserDetailView extends React.Component{
                     container
                     direction="column">
                     <Paper className="user-detail">
-                        <Grid container className={user.id}>
+                        <Grid container className={user._id}>
                             <Grid item xs={6} align="center">
                                 !FOTO!
                             </Grid>
@@ -85,13 +85,13 @@ export class UsersView extends React.Component {
                             </TableHead>
                             <TableBody>
                                 {users.map(user => (
-                                    <TableRow key={user.id} className={user.name}>
+                                    <TableRow key={user._id} className={user.name}>
                                         <TableCell component="th" scope="row">
-                                        {user.id}
+                                        {user._id}
                                         </TableCell>
                                         <TableCell align="right">{user.name}</TableCell>
                                         <TableCell align="right">{user.role}</TableCell>
-                                        <TableCell align="right">{rowDetail(`${USERS}/${user.id}`)}</TableCell>
+                                        <TableCell align="right">{rowDetail(`${USERS}/${user._id}`)}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

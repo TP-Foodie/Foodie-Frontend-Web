@@ -16,7 +16,7 @@ const routing = (
             <Route path={LOGIN} component={LoginView} />
             <Route path={WELCOME} component={WelcomeView} />
             <Route path={PLACES} component={PlacesContainer} />
-            <Route path={USERS} component={UsersContainer} />
+            <Route path={USERS} component={UsersContainer} exact/>
             <Route path={`${USERS}/:userId`} component={UserDetailContainer} />
         </div>
     </Router>

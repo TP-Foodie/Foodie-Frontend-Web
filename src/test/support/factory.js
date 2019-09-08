@@ -12,14 +12,14 @@ export const aPlace = () => {
             latitude: 1.0,
             longitude: 2.0
         },
-        id: 1,
+        _id: 1,
         name: "Mac"
     }
 };
 
 export const aUser = () => {
     return {
-        id: 1,
+        _id: 1,
         name: "Juansito",
         role: "Role",
         email: "Email",

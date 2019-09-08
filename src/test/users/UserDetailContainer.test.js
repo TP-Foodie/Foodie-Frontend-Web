@@ -7,7 +7,7 @@ import {handleError} from "../../app/handlers/handleError";
 
 jest.mock("../../app/http/httpResources", () => {
     return {
-        user: jest.fn()
+        users: jest.fn()
     }
 });
 
@@ -27,12 +27,12 @@ describe("user detail container component", () => {
         }
         it ("should fetch users", () => {
             mount(<UserDetailContainer match={match_val}/>);
-            expect(httpResources.user).toHaveBeenCalled();
+            expect(httpResources.users).toHaveBeenCalled();
         });
 
         it ("should set data", async () => {
             const user = aUser();
-            httpResources.user = successfulResponseWith(user);
+            httpResources.users = successfulResponseWith(user);
             const component = shallow(<UserDetailContainer match={match_val}/>);
             await component.instance().componentDidMount();
             expect(component.find('.user_detail').prop('user')).toEqual(user);
@@ -40,7 +40,7 @@ describe("user detail container component", () => {
 
         it ("should handle error if any", async () => {
             const error = anError();
-            httpResources.user = failedResponseWith(error);
+            httpResources.users = failedResponseWith(error);
 
             const component = shallow(<UserDetailContainer match={match_val}/>);
             await component.instance().componentDidMount();

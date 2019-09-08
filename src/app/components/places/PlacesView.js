@@ -16,7 +16,6 @@ export class PlacesView extends React.Component {
 
     render() {
         const {places} = this.props;
-
         return(
             <Grid>
                 <WelcomeView/>
@@ -40,9 +39,9 @@ export class PlacesView extends React.Component {
                             </TableHead>
                             <TableBody>
                                 {places.map(place => (
-                                    <TableRow key={place.id} className={place.name}>
+                                    <TableRow key={place._id} className={place.name}>
                                         <TableCell component="th" scope="row">
-                                        {place.id}
+                                        {place._id}
                                         </TableCell>
                                         <TableCell align="right">{place.name}</TableCell>
                                         <TableCell align="right">{place.coordinates.latitude}</TableCell>

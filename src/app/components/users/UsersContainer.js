@@ -17,7 +17,7 @@ export class UserDetailContainer extends React.Component {
     componentDidMount = async () => {
         try {
             const param = this.props.match.params.userId
-            const {data} = await httpResources.user(param);
+            const {data} = await httpResources.users(param);
             this.setState({user: data});
         } catch (error) {
             handleError(error);

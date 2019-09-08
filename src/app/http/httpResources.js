@@ -11,12 +11,10 @@ class HttpResources {
     places = () => {
         return this.client.get(PLACES_URL);
     }
-
-    users = () => {
-        return this.client.get(USERS_URL);
-    }
-
-    user = (id) => {
+    
+    users = (id) => {
+        if (id === undefined)
+            return this.client.get(USERS_URL);
         return this.client.get(`${USERS_URL}${id}`);
     }
 }
