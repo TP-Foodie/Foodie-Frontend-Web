@@ -6,7 +6,7 @@ import {handleError} from "../../handlers/handleError";
 
 export class UserDetailContainer extends React.Component {
     static propTypes = {
-        match: PropTypes.any.isRequired
+        match: PropTypes.any
     };
 
     constructor(props) {
