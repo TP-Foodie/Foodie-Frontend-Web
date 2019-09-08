@@ -40,7 +40,7 @@ export class PlacesView extends React.Component {
                             </TableHead>
                             <TableBody>
                                 {places.map(place => (
-                                    <TableRow key={place.id}>
+                                    <TableRow key={place.id} className={place.name}>
                                         <TableCell component="th" scope="row">
                                         {place.id}
                                         </TableCell>

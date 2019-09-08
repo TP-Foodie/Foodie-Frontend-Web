@@ -81,7 +81,7 @@ export class UsersView extends React.Component {
                             </TableHead>
                             <TableBody>
                                 {users.map(user => (
-                                    <TableRow key={user.id}>
+                                    <TableRow key={user.id} className={user.name}>
                                         <TableCell component="th" scope="row">
                                         {user.id}
                                         </TableCell>

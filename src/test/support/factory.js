@@ -20,7 +20,10 @@ export const aPlace = () => {
 export const aUser = () => {
     return {
         id: 1,
-        name: "Juansito"
+        name: "Juansito",
+        role: "Role",
+        email: "Email",
+        phone: "Phone"
     }
 };
 
