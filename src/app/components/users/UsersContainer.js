@@ -43,7 +43,7 @@ export class UsersContainer extends React.Component {
     componentDidMount = async () => {
         try {
             const {data} = await httpResources.users();
-            this.setState({users: data});
+            this.setState({users: data.users});
         } catch (error) {
             handleError(error);
         }

@@ -61,7 +61,6 @@ export class UsersView extends React.Component {
 
     render() {
         const {users} = this.props;
-
         return(
             <Grid>
                 <WelcomeView/>
