@@ -27,13 +27,16 @@ describe("users container component", () => {
         });
 
         it ("should set data", async () => {
-            const users = [aUser(), aUser()];
+            const users_array = [aUser(), aUser()]
+            const users = {
+                users: users_array
+            };
             httpResources.users = successfulResponseWith(users);
 
             const component = shallow(<UsersContainer/>);
             await component.instance().componentDidMount();
 
-            expect(component.find('.users_view').prop('users')).toEqual(users);
+            expect(component.find('.users_view').prop('users')).toEqual(users_array);
         });
 
         it ("should handle error if any", async () => {

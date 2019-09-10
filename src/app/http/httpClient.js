@@ -19,6 +19,10 @@ export class HttpClient {
         return this.axiosInstance.post(url, data);
     };
 
+    put = (url, data) => {
+        return this.axiosInstance.put(url, data);
+    }
+
     patch = (url, data) => {
         return this.axiosInstance.patch(url, data);
     }

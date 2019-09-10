@@ -27,14 +27,15 @@ export class UserDetailContainer extends React.Component {
     render() {
         return (
             <div className={"container"}>
-                <UserDetailView className={"user_detail"} user={this.state.user}/>
+                <UserDetailView 
+                        className={"user_detail"} 
+                        user={this.state.user}/>
             </div>
         );
     }
 }
 
 export class UsersContainer extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = { users: [] };
