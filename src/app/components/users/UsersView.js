@@ -40,7 +40,7 @@ export class UserDetailView extends React.Component{
 
     getTextField(id, value, placeHolder){
         const value_in_state = this.state[id]
-        const val = value_in_state === undefined || value_in_state.trim() === "" ? value : value_in_state
+        const val = value_in_state === undefined ||value_in_state.trim() === "" ? value : value_in_state
 
         if (this.state.edit)
             return (
