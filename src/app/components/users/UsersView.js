@@ -189,12 +189,12 @@ export class UsersView extends React.Component {
                             <TableBody>
                                 {users.map(user => (
                                     <TableRow key={user._id} className={user.name}>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell align="center" component="th" scope="row">
                                         {user._id}
                                         </TableCell>
-                                        <TableCell align="right">{user.name}</TableCell>
-                                        <TableCell align="right">{user.role}</TableCell>
-                                        <TableCell align="right">{rowDetail(`${USERS}/${user._id}`)}</TableCell>
+                                        <TableCell align="center">{user.name}</TableCell>
+                                        <TableCell align="center">{user.role}</TableCell>
+                                        <TableCell align="center">{rowDetail(`${USERS}/${user._id}`)}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
