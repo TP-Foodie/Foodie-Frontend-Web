@@ -7,7 +7,8 @@ import {LoginView} from "./app/components/auth/LoginView";
 import {LOGIN, PLACES, WELCOME, USERS} from "./app/navigation/routes";
 import {WelcomeView} from "./app/components/welcome/WelcomeView";
 import {PlacesContainer} from "./app/components/places/PlacesContainer";
-import {UsersContainer, UserDetailContainer} from "./app/components/users/UsersContainer";
+import {UsersContainer} from "./app/components/users/UsersContainer";
+import {UserDetailContainer} from "./app/components/users/UserDetailContainer";
 
 const routing = (
     <Router>

@@ -6,17 +6,6 @@ import {PLACES, USERS} from "../../navigation/routes";
 const WELCOME_TITLE = 'Bienvenido al sitio de administracion de Foodie';
 const PLACES_TITLE = "Lugares";
 const USERS_TITLE = "Usuarios";
-const DETAIL_BUTTON_LABEL = "Detalles"
-
-export function rowDetail(href){
-  return (
-      <Button className={"users_btn"} 
-              href={href} 
-              color={"primary"} >
-                  {DETAIL_BUTTON_LABEL}
-      </Button>
-  )
-}
 
 const buttonStyle = {
   "margin": '0.5%',

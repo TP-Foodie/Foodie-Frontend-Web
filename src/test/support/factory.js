@@ -19,9 +19,10 @@ export const aPlace = () => {
 
 export const aUser = () => {
     return {
-        _id: 1,
+        id: 1,
         name: "Juansito",
-        role: "Role",
+        last_name: "Lopez",
+        type: "Tipo",
         email: "Email",
         phone: "Phone"
     }

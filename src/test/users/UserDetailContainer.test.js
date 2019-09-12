@@ -1,6 +1,6 @@
 import React from "react";
 import {mount, shallow} from "enzyme";
-import {UserDetailContainer} from "../../app/components/users/UsersContainer";
+import {UserDetailContainer} from "../../app/components/users/UserDetailContainer";
 import httpResources from "../../app/http/httpResources";
 import {anError, aUser, failedResponseWith, successfulResponseWith} from "../support/factory";
 import {handleError} from "../../app/handlers/handleError";
