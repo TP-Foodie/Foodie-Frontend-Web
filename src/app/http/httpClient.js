@@ -20,7 +20,10 @@ export class HttpClient {
     };
 
     put = (url, data) => {
-        return this.axiosInstance.put(url, data);
+        return this.axiosInstance.put(url, data,{
+            headers: {
+                'Content-Type': 'application/json',
+            }});
     }
 
     patch = (url, data) => {

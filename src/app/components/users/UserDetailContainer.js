@@ -14,16 +14,25 @@ export class UserDetailContainer extends React.Component {
         this.state = { user: {} };
     }
 
+    cleanFields(value){
+        return value===undefined || value==null ? '' : value
+    }
+
     updateUser = async () => {
         try {
             const data = {
-                user: this.state.user
+                name: this.cleanFields(this.state.user.name),
+                last_name: this.cleanFields(this.state.user.last_name),
+                type: this.cleanFields(this.state.user.type),
+                email: this.cleanFields(this.state.user.email),
+                phone: this.cleanFields(this.state.user.phone),   
             }
-
-            const {response} = await httpResources.updateUser(data.user.id,JSON.stringify(data.user));
-            this.setState({ 
-                user: response,
-            })
+            // response empty.. why?
+            // const {response} = await httpResources.updateUser(this.state.user.id,JSON.stringify(data));
+            await httpResources.updateUser(this.state.user.id,JSON.stringify(data));
+            // this.setState({ 
+                // user: response,
+            // })
         } catch (error) {
             handleError(error);
         }

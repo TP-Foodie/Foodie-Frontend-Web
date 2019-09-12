@@ -47,6 +47,7 @@ export class UserDetailView extends React.Component{
 
     saveChanges = () => {
         this.props.onSubmit()
+        this.setState({edit: false})
     }
     
     render(){
