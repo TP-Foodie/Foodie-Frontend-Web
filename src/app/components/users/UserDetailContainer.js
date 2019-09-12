@@ -25,14 +25,9 @@ export class UserDetailContainer extends React.Component {
                 last_name: this.cleanFields(this.state.user.last_name),
                 type: this.cleanFields(this.state.user.type),
                 email: this.cleanFields(this.state.user.email),
-                phone: this.cleanFields(this.state.user.phone),   
+                phone: this.cleanFields(this.state.user.phone),
             }
-            // response empty.. why?
-            // const {response} = await httpResources.updateUser(this.state.user.id,JSON.stringify(data));
             await httpResources.updateUser(this.state.user.id,JSON.stringify(data));
-            // this.setState({ 
-                // user: response,
-            // })
         } catch (error) {
             handleError(error);
         }
@@ -52,12 +47,12 @@ export class UserDetailContainer extends React.Component {
         const {user} = {user: {...this.state.user, [event.target.id] : event.target.value}}
         this.setState({user});
     }
-    
+
     render() {
         return (
             <div className={"container"}>
-                <UserDetailView 
-                        className={"user_detail"} 
+                <UserDetailView
+                        className={"user_detail"}
                         user={this.state.user}
                         onSubmit={this.updateUser}
                         onChange={this.handleChange}/>
