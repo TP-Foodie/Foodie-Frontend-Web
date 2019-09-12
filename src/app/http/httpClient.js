@@ -19,6 +19,13 @@ export class HttpClient {
         return this.axiosInstance.post(url, data);
     };
 
+    put = (url, data) => {
+        return this.axiosInstance.put(url, data,{
+            headers: {
+                'Content-Type': 'application/json',
+            }});
+    }
+
     patch = (url, data) => {
         return this.axiosInstance.patch(url, data);
     }
