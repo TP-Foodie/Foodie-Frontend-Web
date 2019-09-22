@@ -2,6 +2,7 @@ import React from "react";
 import httpResources from "../../http/httpResources";
 import {PlacesView} from "./PlacesView";
 import {handleError} from "../../handlers/handleError";
+import {GeneralLayout} from "../welcome/GeneralLayout";
 
 export class PlacesContainer extends React.Component {
 
@@ -21,9 +22,9 @@ export class PlacesContainer extends React.Component {
 
     render() {
         return (
-            <div className={"container"}>
+            <GeneralLayout className={"container"}>
                 <PlacesView className={"places_view"} places={this.state.places}/>
-            </div>
+            </GeneralLayout>
         );
     }
 }

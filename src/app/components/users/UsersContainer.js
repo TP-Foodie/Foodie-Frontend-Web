@@ -2,6 +2,7 @@ import React from "react";
 import httpResources from "../../http/httpResources";
 import {UsersView} from "./UsersView";
 import {handleError} from "../../handlers/handleError";
+import {GeneralLayout} from "../welcome/GeneralLayout";
 
 export class UsersContainer extends React.Component {
     constructor(props) {
@@ -20,11 +21,11 @@ export class UsersContainer extends React.Component {
 
     render() {
         return (
-            <div className={"container"}>
+            <GeneralLayout className={"container"}>
                 <UsersView 
                     className={"users_view"} 
                     users={this.state.users}/>
-            </div>
+            </GeneralLayout>
         );
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './app/styles/index.css';
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import {LoginView} from "./app/components/auth/LoginView";
 import {LOGIN, PLACES, WELCOME, USERS} from "./app/navigation/routes";
 import {WelcomeView} from "./app/components/welcome/WelcomeView";
@@ -13,14 +13,14 @@ import 'typeface-roboto';
 const routing = (
     <div>
         <Router>
-            <div>
+            <Switch>
                 <Route exact path="/" component={LoginView} />
                 <Route path={LOGIN} component={LoginView} />
                 <Route path={WELCOME} component={WelcomeView} />
                 <Route path={PLACES} component={PlacesContainer} />
                 <Route path={USERS} component={UsersContainer} exact/>
                 <Route path={`${USERS}/:userId`} component={UserDetailContainer} />
-            </div>
+            </Switch>
         </Router>
     </div>
 );

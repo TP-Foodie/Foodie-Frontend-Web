@@ -20,6 +20,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
 import {PLACES, USERS} from "../../navigation/routes";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(styles.generalLayoutStyles);
 const TITLE = "Plataforma de administración Foodie";
@@ -36,7 +37,7 @@ const ROUTES_BY_MODULES = {
 export const GeneralLayout = props => {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
     function handleDrawerOpen() {
         setOpen(true);
@@ -91,7 +92,7 @@ export const GeneralLayout = props => {
                 <Divider />
                 <List>
                     {Object.keys(MODULES).map(moduleName => (
-                        <ListItem button key={moduleName} component="a" href={ROUTES_BY_MODULES[moduleName]}>
+                        <ListItem button key={moduleName} component={Link} to={ROUTES_BY_MODULES[moduleName]}>
                             <ListItemIcon>{MODULES[moduleName]}</ListItemIcon>
                             <ListItemText primary={moduleName} />
                         </ListItem>
