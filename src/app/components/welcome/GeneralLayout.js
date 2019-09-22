@@ -19,12 +19,18 @@ import {Map, Person} from "@material-ui/icons";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
+import {PLACES, USERS} from "../../navigation/routes";
 
 const useStyles = makeStyles(styles.generalLayoutStyles);
 const TITLE = "Plataforma de administración Foodie";
 const MODULES = {
     'Usuarios': <Person/>,
     'Lugares': <Map/>
+};
+
+const ROUTES_BY_MODULES = {
+    'Lugares': PLACES,
+    'Usuarios': USERS
 };
 
 export const GeneralLayout = props => {
@@ -85,7 +91,7 @@ export const GeneralLayout = props => {
                 <Divider />
                 <List>
                     {Object.keys(MODULES).map(moduleName => (
-                        <ListItem button key={moduleName}>
+                        <ListItem button key={moduleName} component="a" href={ROUTES_BY_MODULES[moduleName]}>
                             <ListItemIcon>{MODULES[moduleName]}</ListItemIcon>
                             <ListItemText primary={moduleName} />
                         </ListItem>
