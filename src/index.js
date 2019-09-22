@@ -9,6 +9,7 @@ import {WelcomeView} from "./app/components/welcome/WelcomeView";
 import {PlacesContainer} from "./app/components/places/PlacesContainer";
 import {UsersContainer} from "./app/components/users/UsersContainer";
 import {UserDetailContainer} from "./app/components/users/UserDetailContainer";
+import 'typeface-roboto';
 
 const routing = (
     <Router>
