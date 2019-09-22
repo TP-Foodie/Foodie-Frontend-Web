@@ -7,7 +7,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from "prop-types";
-import {WelcomeView} from "../welcome/WelcomeView"
 
 export class PlacesView extends React.Component {
     static propTypes = {
@@ -18,7 +17,6 @@ export class PlacesView extends React.Component {
         const {places} = this.props;
         return(
             <Grid>
-                <WelcomeView/>
                 <Grid
                     className={"container"}
                     container

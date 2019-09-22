@@ -7,7 +7,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from "prop-types";
-import {WelcomeView} from "../welcome/WelcomeView"
 import {UserDetailButton} from "../utils/UserDetailButton"
 import {USERS} from "../../navigation/routes";
 
@@ -22,7 +21,6 @@ export class UsersView extends React.Component {
         const {users} = this.props;
         return(
             <Grid>
-                <WelcomeView/>
                 <Grid
                     className={"container"}
                     container

@@ -6,7 +6,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
 import PropTypes from "prop-types";
-import {WelcomeView} from "../welcome/WelcomeView"
 
 export class UserDetailView extends React.Component{
     constructor(props){
@@ -63,7 +62,6 @@ export class UserDetailView extends React.Component{
     
         return(
             <Grid>
-                <WelcomeView/>
                 <Grid
                     className={"container"}
                     container
