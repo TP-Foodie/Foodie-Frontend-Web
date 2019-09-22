@@ -10,13 +10,14 @@ import {PlacesContainer} from "./app/components/places/PlacesContainer";
 import {UsersContainer} from "./app/components/users/UsersContainer";
 import {UserDetailContainer} from "./app/components/users/UserDetailContainer";
 import 'typeface-roboto';
+import {GeneralLayout} from "./app/components/welcome/GeneralLayout";
 
 const routing = (
     <Router>
         <div>
             <Route exact path="/" component={App} />
             <Route path={LOGIN} component={LoginView} />
-            <Route path={WELCOME} component={WelcomeView} />
+            <Route path={WELCOME} component={GeneralLayout} />
             <Route path={PLACES} component={PlacesContainer} />
             <Route path={USERS} component={UsersContainer} exact/>
             <Route path={`${USERS}/:userId`} component={UserDetailContainer} />

@@ -14,6 +14,10 @@ export const styles = {
         }
     },
 
+    flex_grow: {
+        flexGrow: 1
+    },
+
     pd_full_sm: {
         padding: 10
     },
@@ -23,6 +27,10 @@ export const styles = {
         padding: 20,
         borderTopRightRadius: 5,
         borderTopLeftRadius: 5,
+    },
+
+    main_gradient: {
+        background: 'linear-gradient(to bottom, #F3916D, #E3678A)',
     },
 
     login_box: {
