@@ -26,7 +26,7 @@ export class UsersView extends React.Component {
                     className={"container"}
                     container
                     direction="column"
-                    justify="center"
+                    justify="flex-start"
                     style={{minHeight: '100vh'}}>
                     <Grid item>
                         <Paper className={"users_list"}>

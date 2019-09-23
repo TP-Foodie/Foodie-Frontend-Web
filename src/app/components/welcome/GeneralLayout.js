@@ -17,6 +17,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import {styles} from "../../styles/common";
 import {Map, Person} from "@material-ui/icons";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
 import {PLACES, USERS} from "../../navigation/routes";
@@ -73,7 +74,11 @@ export const GeneralLayout = props => {
                     <IconButton edge={"end"}>
                         <Avatar>A</Avatar>
                     </IconButton>
-                </Toolbar>
+				</Toolbar>
+				{
+					props.loading &&
+					<LinearProgress />
+				}
             </AppBar>
             <Drawer
                 className={classes.drawer}
@@ -112,5 +117,6 @@ export const GeneralLayout = props => {
 };
 
 GeneralLayout.propTypes = {
-    children: PropTypes.oneOf([PropTypes.object, PropTypes.array])
+	children: PropTypes.oneOf([PropTypes.object, PropTypes.array]),
+	loading: PropTypes.bool
 };
