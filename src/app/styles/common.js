@@ -53,24 +53,7 @@ export const styles = {
             display: 'flex',
         },
         appBar: {
-            transition: theme.transitions.create(['margin', 'width'], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-            }),
-        },
-        appBarShift: {
-            width: `calc(100% - ${240}px)`,
-            marginLeft: DRAWER_WIDTH,
-            transition: theme.transitions.create(['margin', 'width'], {
-                easing: theme.transitions.easing.easeOut,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-        },
-        menuButton: {
-            marginRight: theme.spacing(2),
-        },
-        hide: {
-            display: 'none',
+            zIndex: theme.zIndex.drawer + 1,
         },
         drawer: {
             width: DRAWER_WIDTH,
@@ -79,29 +62,11 @@ export const styles = {
         drawerPaper: {
             width: DRAWER_WIDTH,
         },
-        drawerHeader: {
-            display: 'flex',
-            alignItems: 'center',
-            padding: theme.spacing(0, 1),
-            ...theme.mixins.toolbar,
-            justifyContent: 'flex-end',
-        },
         content: {
             flexGrow: 1,
             padding: theme.spacing(3),
-            transition: theme.transitions.create('margin', {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-            }),
-            marginLeft: -DRAWER_WIDTH,
         },
-        contentShift: {
-            transition: theme.transitions.create('margin', {
-                easing: theme.transitions.easing.easeOut,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            marginLeft: 0,
-        },
+        toolbar: theme.mixins.toolbar,
     }),
 
     no_content: {
@@ -111,5 +76,16 @@ export const styles = {
 	largeIcon: {
 		width: 160,
 		height: 160,
-	}
+	},
+
+    bigAvatar: {
+        margin: 10,
+        width: 100,
+        height: 100,
+    },
+
+    user_details_cont: {
+        margin: 10,
+        padding: 10
+    }
 };

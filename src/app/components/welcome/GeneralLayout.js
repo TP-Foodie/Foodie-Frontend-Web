@@ -53,21 +53,10 @@ export const GeneralLayout = props => {
             <CssBaseline />
             <AppBar
                 position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
+                className={classes.appBar}
                 style={styles.main_gradient}
             >
                 <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Typography variant="h6" style={styles.flex_grow}>
                         {TITLE}
                     </Typography>
@@ -82,19 +71,12 @@ export const GeneralLayout = props => {
             </AppBar>
             <Drawer
                 className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
+                variant="permanent"
                 classes={{
                     paper: classes.drawerPaper,
                 }}
             >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
+                <div className={classes.toolbar} />
                 <List>
                     {Object.keys(MODULES).map(moduleName => (
                         <ListItem button key={moduleName} component={Link} to={ROUTES_BY_MODULES[moduleName]}>
@@ -105,11 +87,9 @@ export const GeneralLayout = props => {
                 </List>
             </Drawer>
             <main
-                className={clsx(classes.content, {
-                    [classes.contentShift]: open,
-                })}
+                className={classes.content}
             >
-                <div className={classes.drawerHeader} />
+                <div className={classes.toolbar} />
                 {props.children}
             </main>
         </div>
