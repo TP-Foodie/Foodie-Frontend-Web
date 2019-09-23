@@ -21,7 +21,6 @@ export class PlacesView extends React.Component {
                     className={"container"}
                     container
                     direction="column"
-                    alignItems="center"
                     justify="flex-start">
                     <Grid item>
                         <Paper className={"places_list"}>
