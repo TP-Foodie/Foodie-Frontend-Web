@@ -37,7 +37,7 @@ const ROUTES_BY_MODULES = {
 export const GeneralLayout = props => {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
 
     function handleDrawerOpen() {
         setOpen(true);

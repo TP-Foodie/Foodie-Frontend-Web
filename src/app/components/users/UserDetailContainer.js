@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import httpResources from "../../http/httpResources";
 import {UserDetailView} from "./UserDetailView";
 import {handleError} from "../../handlers/handleError";
+import {GeneralLayout} from "../welcome/GeneralLayout";
 
 export class UserDetailContainer extends React.Component {
     static propTypes = {
@@ -50,13 +51,13 @@ export class UserDetailContainer extends React.Component {
 
     render() {
         return (
-            <div className={"container"}>
+            <GeneralLayout className={"container"}>
                 <UserDetailView
                         className={"user_detail"}
                         user={this.state.user}
                         onSubmit={this.updateUser}
                         onChange={this.handleChange}/>
-            </div>
+            </GeneralLayout>
         );
     }
 }

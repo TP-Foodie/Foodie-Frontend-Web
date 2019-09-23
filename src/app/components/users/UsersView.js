@@ -7,10 +7,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from "prop-types";
-import {UserDetailButton} from "../utils/UserDetailButton"
 import {USERS} from "../../navigation/routes";
+import {Link} from "react-router-dom";
+import {Button} from "@material-ui/core";
 
-const USER_DETAIL_LABEL = "Detalles"
+const USER_DETAIL_LABEL = "Detalles";
 
 export class UsersView extends React.Component {
     static propTypes = {
@@ -47,9 +48,13 @@ export class UsersView extends React.Component {
                                         <TableCell align="center">{user.name}</TableCell>
                                         <TableCell align="center">{user.type}</TableCell>
                                         <TableCell align="center">
-                                            <UserDetailButton 
-                                                href={`${USERS}/${user.id}`}
-                                                label={USER_DETAIL_LABEL} />
+                                            <Link
+                                                component={Button}
+                                                to={`${USERS}/${user.id}`}
+                                                color={"primary"}
+                                            >
+                                                {USER_DETAIL_LABEL}
+                                            </Link>
                                         </TableCell>
                                     </TableRow>
                                 ))}
