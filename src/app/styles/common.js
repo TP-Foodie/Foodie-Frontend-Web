@@ -47,7 +47,7 @@ export const styles = {
     heading: {
         color: "#FFFFFF"
     },
-    
+
     generalLayoutStyles: theme => ({
         root: {
             display: 'flex',
@@ -102,6 +102,14 @@ export const styles = {
             }),
             marginLeft: 0,
         },
-    })
-};
+    }),
 
+    no_content: {
+        color: "#c9c9c9"
+	},
+
+	largeIcon: {
+		width: 160,
+		height: 160,
+	}
+};
