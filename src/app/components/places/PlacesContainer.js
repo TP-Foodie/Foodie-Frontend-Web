@@ -8,13 +8,14 @@ export class PlacesContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { places: [] };
+        this.state = { places: [], loading: false };
     }
 
     componentDidMount = async () => {
         try {
+            this.setState({loading: true});
             const {data} = await httpResources.places();
-            this.setState({places: data});
+            this.setState({places: data, loading: false});
         } catch (error) {
             handleError(error);
         }
@@ -22,7 +23,7 @@ export class PlacesContainer extends React.Component {
 
     render() {
         return (
-            <GeneralLayout className={"container"}>
+            <GeneralLayout className={"container"} loading={this.state.loading}>
                 <PlacesView className={"places_view"} places={this.state.places}/>
             </GeneralLayout>
         );

@@ -83,3 +83,5 @@ typings/
 .env.test.local
 .env.production.local
 *.njsproj
+.vs/
+Foodie-Frontend-Web.sln

@@ -22,31 +22,30 @@ export class PlacesView extends React.Component {
                     container
                     direction="column"
                     alignItems="center"
-                    justify="center"
-                    style={{minHeight: '100vh'}}>
+                    justify="flex-start">
                     <Grid item>
                         <Paper className={"places_list"}>
                             <Table>
-                            <TableHead>
-                                <TableRow>
-                                <TableCell align="right">Id</TableCell>
-                                <TableCell align="right">Nombre</TableCell>
-                                <TableCell align="right">Latitud</TableCell>
-                                <TableCell align="right">Longitud</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {places.map(place => (
-                                    <TableRow key={place._id} className={place.name}>
-                                        <TableCell component="th" scope="row">
-                                        {place._id}
-                                        </TableCell>
-                                        <TableCell align="right">{place.name}</TableCell>
-                                        <TableCell align="right">{place.coordinates.latitude}</TableCell>
-                                        <TableCell align="right">{place.coordinates.longitude}</TableCell>
+                                <TableHead>
+                                    <TableRow>
+                                    <TableCell align="center">Id</TableCell>
+                                    <TableCell align="center">Nombre</TableCell>
+                                    <TableCell align="center">Latitud</TableCell>
+                                    <TableCell align="center">Longitud</TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
+                                </TableHead>
+                                <TableBody>
+                                    {places.map(place => (
+                                        <TableRow key={place._id} className={place.name}>
+                                            <TableCell component="th" scope="row">
+                                            {place._id}
+                                            </TableCell>
+                                            <TableCell align="right">{place.name}</TableCell>
+                                            <TableCell align="right">{place.coordinates.latitude}</TableCell>
+                                            <TableCell align="right">{place.coordinates.longitude}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
                             </Table>
                         </Paper>
                     </Grid>
