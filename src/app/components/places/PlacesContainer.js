@@ -2,7 +2,7 @@ import React from "react";
 import httpResources from "../../http/httpResources";
 import {PlacesView} from "./PlacesView";
 import {handleError} from "../../handlers/handleError";
-import {GeneralLayout} from "../welcome/GeneralLayout";
+import {GeneralLayout} from "../utils/GeneralLayout";
 import {NoContent} from "../utils/NoContent";
 
 export class PlacesContainer extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
-import {GeneralLayout} from "./GeneralLayout";
+import {GeneralLayout} from "../utils/GeneralLayout";
 
 const WELCOME_TITLE = 'Bienvenido al sitio de administracion de Foodie';
 

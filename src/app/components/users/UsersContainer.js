@@ -2,7 +2,7 @@ import React from "react";
 import httpResources from "../../http/httpResources";
 import {UsersView} from "./UsersView";
 import {handleError} from "../../handlers/handleError";
-import {GeneralLayout} from "../welcome/GeneralLayout";
+import {GeneralLayout} from "../utils/GeneralLayout";
 
 export class UsersContainer extends React.Component {
     constructor(props) {

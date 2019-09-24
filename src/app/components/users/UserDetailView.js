@@ -6,7 +6,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
 import PropTypes from "prop-types";
-import Typography from '@material-ui/core/Typography';
 
 const FIELDS = {
     "name": "Nombre",
@@ -18,10 +17,10 @@ const FIELDS = {
 
 export class UserDetailView extends React.Component{
     constructor(props){
-        super(props)
+        super(props);
         this.state = ({
             edit: false
-        })
+        });
         this.handleChange = this.handleChange.bind(this);
     }
     static propTypes = {
@@ -35,16 +34,16 @@ export class UserDetailView extends React.Component{
     }
 
     editModifierOnChange = () => {
-        const editValue = this.state.edit
+        const editValue = this.state.edit;
         this.setState({
             edit: !editValue,
         })
-    }
+    };
 
     saveChanges = () => {
-        this.props.onSubmit()
+        this.props.onSubmit();
         this.setState({edit: false})
-    }
+    };
 
     renderField = field => {
         return (
@@ -63,7 +62,7 @@ export class UserDetailView extends React.Component{
     };
 
     render(){
-        const {id, name, last_name, type, email, phone} = this.props.user
+        const {name, last_name} = this.props.user
 
         return(
             <Paper className="user-detail" style={styles.user_details_cont} elevation={5}>
@@ -85,54 +84,6 @@ export class UserDetailView extends React.Component{
                     </Grid>
                 </Grid>
             </Paper>
-
-
-
-            // <Grid
-            //     className={"container"}
-            //     container
-            //     direction="column">
-            //     <Grid item>
-            //         <Paper className="user-detail" style={styles.user_details_cont}>
-            //             <Grid container className={id} spacing={5}>
-            //                 <Grid item xs={12} align="center">
-            //                     <Grid item xs={5} align="center">
-            //                         <Avatar alt={name} src="" className={styles.bigAvatar} />
-            //                     </Grid>
-            //                     <Grid item xs={5} align="center">
-            //                         {this.getTextField("name", `${name}`, 'Nombre')}
-            //                     </Grid>
-            //                     <Grid item xs={5} align="center">
-            //                         {this.getTextField("last_name",`${last_name}`, 'Apellido')}
-            //                     </Grid>
-            //                     <Grid item xs={5} align="center">
-            //                         {this.getTextField("type", `${type}`, 'Tipo')}
-            //                     </Grid>
-            //                     <Grid item xs={5} align="center">
-            //                         {this.getTextField("email", `${email}`, 'Email')}
-            //                     </Grid>
-            //                     <Grid item xs={5} align="center">
-            //                         {this.getTextField("phone", `${phone}`, 'Telefono')}
-            //                     </Grid>
-            //                 </Grid>
-            //             </Grid>
-            //             <Grid container spacing={2} justify={"flex-end"}>
-            //                 <Grid item>
-            //                     <Button variant="contained"onClick={this.editModifierOnChange}>
-            //                         Editar
-            //                     </Button>
-            //                 </Grid>
-            //                 <Grid item>
-            //                     <Button variant="contained"
-            //                             color="secondary"
-            //                             onClick={this.saveChanges}>
-            //                                 Guardar
-            //                     </Button>
-            //                 </Grid>
-            //             </Grid>
-            //         </Paper>
-            //     </Grid>
-            // </Grid>
         );
     }
 }
