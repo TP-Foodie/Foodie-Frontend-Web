@@ -6,6 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
 import PropTypes from "prop-types";
+import {withRouter} from "react-router-dom";
 
 const FIELDS = {
     "name": "Nombre",
@@ -26,23 +27,20 @@ export class UserDetailView extends React.Component{
     static propTypes = {
         user: PropTypes.any.isRequired,
         onSubmit: PropTypes.func,
-        onChange: PropTypes.func
+        onChange: PropTypes.func,
+        history: PropTypes.object.isRequired
     };
 
     handleChange(event){
         this.props.onChange(event)
     }
 
-    editModifierOnChange = () => {
-        const editValue = this.state.edit;
-        this.setState({
-            edit: !editValue,
-        })
-    };
-
     saveChanges = () => {
         this.props.onSubmit();
-        this.setState({edit: false})
+    };
+
+    handleBack = () => {
+        this.props.history.goBack();
     };
 
     renderField = field => {
@@ -75,7 +73,12 @@ export class UserDetailView extends React.Component{
                         Object.keys(FIELDS).map(field => this.renderField(field))
                     }
 
-                    <Grid container spacing={2} justify={"flex-end"} style={styles.pd_full}>
+                    <Grid container justify={"flex-end"} direction={"row"} spacing={2} style={styles.pd_full}>
+                        <Grid item>
+                            <Button variant="contained" onClick={this.handleBack}>
+                                VOLVER
+                            </Button>
+                        </Grid>
                         <Grid item>
                             <Button variant="contained" color="secondary" onClick={this.saveChanges}>
                                 GUARDAR
@@ -87,3 +90,5 @@ export class UserDetailView extends React.Component{
         );
     }
 }
+
+export default withRouter(UserDetailView);

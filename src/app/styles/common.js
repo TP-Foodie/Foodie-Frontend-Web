@@ -5,6 +5,10 @@ export const styles = {
         padding: 20
     },
 
+    pd_right_sm: {
+        paddingRight: 10
+    },
+
     email_input: {
         marginTop: 10,
         paddingTop: 20

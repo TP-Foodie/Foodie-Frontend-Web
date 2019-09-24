@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import httpResources from "../../http/httpResources";
-import {UserDetailView} from "./UserDetailView";
+import UserDetailView from "./UserDetailView";
 import {handleError} from "../../handlers/handleError";
 import {GeneralLayout} from "../utils/GeneralLayout";
 import { SuccessMessage } from "../utils/SuccessMessage";
