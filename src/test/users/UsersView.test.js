@@ -15,11 +15,6 @@ describe("users view component", () => {
         render = props => shallow(<UsersView {...props}/>);
     });
 
-    it("should render without crashing", () => {
-        const component = render(props);
-        expect(component.find('.container').exists()).toBe(true);
-    });
-
     describe("elements", () => {
         let component;
 
@@ -27,8 +22,9 @@ describe("users view component", () => {
             component = render(props);
         });
 
-        it ("should render a list", () => {
-            expect(component.find('.users_list').exists()).toBeTruthy();
+
+        it("should render without crashing", () => {
+            expect(component.find('.container').exists()).toBe(true);
         });
 
         it ("should render each user name", () => {
@@ -36,6 +32,10 @@ describe("users view component", () => {
             for (const user of props.users) {
                 expect(component.find(`.${user.name}`).exists()).toBeTruthy();
             }
+        });
+
+        it ("should render a list", () => {
+            expect(component.find('.users_list').exists()).toBeTruthy();
         });
     });
 });

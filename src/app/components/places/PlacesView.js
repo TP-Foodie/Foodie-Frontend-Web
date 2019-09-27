@@ -7,7 +7,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from "prop-types";
-import {WelcomeView} from "../welcome/WelcomeView"
 
 export class PlacesView extends React.Component {
     static propTypes = {
@@ -18,37 +17,34 @@ export class PlacesView extends React.Component {
         const {places} = this.props;
         return(
             <Grid>
-                <WelcomeView/>
                 <Grid
                     className={"container"}
                     container
                     direction="column"
-                    alignItems="center"
-                    justify="center"
-                    style={{minHeight: '100vh'}}>
+                    justify="flex-start">
                     <Grid item>
                         <Paper className={"places_list"}>
                             <Table>
-                            <TableHead>
-                                <TableRow>
-                                <TableCell align="right">Id</TableCell>
-                                <TableCell align="right">Nombre</TableCell>
-                                <TableCell align="right">Latitud</TableCell>
-                                <TableCell align="right">Longitud</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {places.map(place => (
-                                    <TableRow key={place._id} className={place.name}>
-                                        <TableCell component="th" scope="row">
-                                        {place._id}
-                                        </TableCell>
-                                        <TableCell align="right">{place.name}</TableCell>
-                                        <TableCell align="right">{place.coordinates.latitude}</TableCell>
-                                        <TableCell align="right">{place.coordinates.longitude}</TableCell>
+                                <TableHead>
+                                    <TableRow>
+                                    <TableCell align="center">Id</TableCell>
+                                    <TableCell align="center">Nombre</TableCell>
+                                    <TableCell align="center">Latitud</TableCell>
+                                    <TableCell align="center">Longitud</TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
+                                </TableHead>
+                                <TableBody>
+                                    {places.map(place => (
+                                        <TableRow key={place._id} className={place.name}>
+                                            <TableCell component="th" scope="row">
+                                            {place._id}
+                                            </TableCell>
+                                            <TableCell align="right">{place.name}</TableCell>
+                                            <TableCell align="right">{place.coordinates.latitude}</TableCell>
+                                            <TableCell align="right">{place.coordinates.longitude}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
                             </Table>
                         </Paper>
                     </Grid>

@@ -5,13 +5,13 @@ import httpResources from "../../app/http/httpResources";
 import {anError, aUser, failedResponseWith, successfulResponseWith} from "../support/factory";
 import {handleError} from "../../app/handlers/handleError";
 
+jest.mock("../../app/handlers/handleError");
+
 jest.mock("../../app/http/httpResources", () => {
     return {
         users: jest.fn()
     }
 });
-
-jest.mock("../../app/handlers/handleError");
 
 describe("user detail container component", () => {
     it ("should render without crashing", () => {
