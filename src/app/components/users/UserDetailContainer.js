@@ -1,17 +1,19 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import httpResources from "../../http/httpResources";
-import {UserDetailView} from "./UserDetailView";
+import UserDetailView from "./UserDetailView";
 import {handleError} from "../../handlers/handleError";
+import {GeneralLayout} from "../utils/GeneralLayout";
+import { SuccessMessage } from "../utils/SuccessMessage";
 
 export class UserDetailContainer extends React.Component {
     static propTypes = {
-        match: PropTypes.any
+        match: PropTypes.any,
     };
 
     constructor(props) {
         super(props);
-        this.state = { user: {} };
+        this.state = { user: {}, showSuccess: false };
     }
 
     cleanFields(value){
@@ -27,7 +29,8 @@ export class UserDetailContainer extends React.Component {
                 email: this.cleanFields(this.state.user.email),
                 phone: this.cleanFields(this.state.user.phone),
             }
-            await httpResources.updateUser(this.state.user.id,JSON.stringify(data));
+            await httpResources.updateUser(this.state.user.id, JSON.stringify(data));
+            this.setState({showSuccess: true});
         } catch (error) {
             handleError(error);
         }
@@ -50,13 +53,14 @@ export class UserDetailContainer extends React.Component {
 
     render() {
         return (
-            <div className={"container"}>
+            <GeneralLayout className={"container"}>
                 <UserDetailView
                         className={"user_detail"}
                         user={this.state.user}
                         onSubmit={this.updateUser}
                         onChange={this.handleChange}/>
-            </div>
+                <SuccessMessage message={"Usuario actualizado con exito!"} show={this.state.showSuccess}/>
+            </GeneralLayout>
         );
     }
 }

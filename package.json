@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.4.0",
+    "@material-ui/icons": "^4.4.3",
     "axios": "^0.19.0",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
@@ -11,7 +12,10 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "typeface-roboto": "0.0.75",
+    "@material-ui/styles": "latest",
+    "clsx": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
