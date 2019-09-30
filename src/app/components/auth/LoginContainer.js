@@ -16,7 +16,7 @@ export class LoginContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {loading: false, userData: {}};
+        this.state = {loading: false, userData: {}, errors: {}};
     }
 
     login = () => {

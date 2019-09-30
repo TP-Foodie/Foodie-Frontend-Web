@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './app/styles/index.css';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
-import {LoginView} from "./app/components/auth/LoginView";
+import {LoginContainer} from "./app/components/auth/LoginContainer";
 import {LOGIN, PLACES, WELCOME, USERS} from "./app/navigation/routes";
 import {WelcomeView} from "./app/components/welcome/WelcomeView";
 import {PlacesContainer} from "./app/components/places/PlacesContainer";
@@ -14,8 +14,8 @@ const routing = (
     <div>
         <Router>
             <Switch>
-                <Route exact path="/" component={LoginView} />
-                <Route path={LOGIN} component={LoginView} />
+                <Route exact path="/" component={LoginContainer} />
+                <Route path={LOGIN} component={LoginContainer} />
                 <Route path={WELCOME} component={WelcomeView} />
                 <Route path={PLACES} component={PlacesContainer} />
                 <Route path={USERS} component={UsersContainer} exact/>

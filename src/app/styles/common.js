@@ -11,7 +11,11 @@ export const styles = {
 
     email_input: {
         marginTop: 10,
-        paddingTop: 20
+        paddingTop: 20,
+    },
+
+    error: {
+        color: "#FF0000"
     },
 
     label: {

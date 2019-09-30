@@ -4,6 +4,7 @@ import {WELCOME} from '../../navigation/routes';
 import {styles} from "../../styles/common";
 import {Email, Lock} from "@material-ui/icons";
 import PropTypes from "prop-types";
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const LOGIN_TEXT = 'LOGIN';
 const EMAIL_PLACEHOLDER = "Email";
@@ -17,7 +18,22 @@ export class LoginView extends React.Component {
         loading: PropTypes.bool,
     };
 
+	constructor(props) {
+		super(props);
+		this.state = {userData: {}}
+	}
+
+	onChangeField = (field, value) => {
+        this.setState({userData: {...this.state.userData, [field]: value}});
+	}
+
+    onLoginClick = () => {
+        this.props.onLogin(this.state.userData);
+    }
+
     render() {
+      const {errors} = this.props;
+
       return (
           <Grid
               className={'container'}
@@ -45,20 +61,29 @@ export class LoginView extends React.Component {
                           </Grid>
                           <Grid item>
                               <TextField
-                                  label={EMAIL_PLACEHOLDER}
-                                  type={"email"}
+								label={EMAIL_PLACEHOLDER}
+							    type={"email"}
+							    onChange={event => this.onChangeField("email", event.target.value)}
+                                helperText={errors.email}
+                                error={errors.email !== undefined}
                               />
                           </Grid>
                       </Grid>
                   </Grid>
 
-                  <Grid item style={styles.pd_full} xs={12}>
+                  <Grid item style={styles.pd_full}>
                       <Grid container spacing={1} alignItems="flex-end">
                           <Grid item>
                               <Lock/>
                           </Grid>
                           <Grid item>
-                              <TextField label={PASSWORD_PLACEHOLDER} type={"password"}/>
+                              <TextField
+                                label={PASSWORD_PLACEHOLDER}
+                                type={"password"}
+                                onChange={event => this.onChangeField("password", event.target.value)}
+                                helperText={errors.password}
+                                error={errors.password !== undefined}
+                              />
                           </Grid>
                       </Grid>
                   </Grid>
@@ -67,10 +92,13 @@ export class LoginView extends React.Component {
                     <Button
                         variant="contained"
                         className={'login_btn'}
-                        href={WELCOME}
-                        size={"large"}>
+                        size={"large"}
+                        onClick={this.onLoginClick}>
                       {LOGIN_TEXT}
                     </Button>
+                  </Grid>
+                  <Grid item style={styles.pd_full}>
+                    <FormHelperText style={styles.error}>{errors.general}</FormHelperText>
                   </Grid>
                 </Grid>
               </Paper>

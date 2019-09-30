@@ -1,12 +1,15 @@
 export const LOGIN_RULES = {
     email: {
         email: {
-            message: "^Por favor ingrese un email valido"
+            message: "^Ingrese un email valido"
+        },
+        presence: {
+            message: "^Ingrese un email valido"
         }
     },
     password: {
         presence: {
-            message: "^Por favor ingrese una contraseña valida"
+            message: "^Ingrese una contraseña valida"
         }
     }
 };
