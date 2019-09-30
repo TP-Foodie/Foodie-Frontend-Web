@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Grid, TextField, Paper, Typography} from '@material-ui/core';
-import {WELCOME} from '../../navigation/routes';
 import {styles} from "../../styles/common";
 import {Email, Lock} from "@material-ui/icons";
 import PropTypes from "prop-types";

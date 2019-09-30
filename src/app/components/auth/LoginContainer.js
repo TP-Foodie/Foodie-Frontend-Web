@@ -16,16 +16,14 @@ export class LoginContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {loading: false, userData: {}, errors: {}};
+        this.state = {loading: false, errors: {}};
     }
 
-    login = () => {
-        const {email, password} = this.state.userData;
-
+    login = async (email, password) => {
         this.setState({loading: true});
 
         try {
-            const {data} = httpResources.login(email, password);
+            const {data} = await httpResources.login(email, password);
             localStorage.set(TOKEN_NAME, data.token);
             this.props.history.push(WELCOME);
         } catch (error) {
@@ -37,7 +35,7 @@ export class LoginContainer extends React.Component {
 
     onLoginClick = (userData) => {
         const errors = validate(userData, LOGIN_RULES);
-        errors ? this.setState({errors: errors}) : this.login();
+        errors ? this.setState({errors: errors}) : this.login(userData.email, userData.password);
     };
 
     render() {
