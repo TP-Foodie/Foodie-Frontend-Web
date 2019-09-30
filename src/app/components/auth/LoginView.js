@@ -5,6 +5,7 @@ import {styles} from "../../styles/common";
 import {Email, Lock} from "@material-ui/icons";
 import PropTypes from "prop-types";
 import FormHelperText from '@material-ui/core/FormHelperText';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const LOGIN_TEXT = 'LOGIN';
 const EMAIL_PLACEHOLDER = "Email";
@@ -32,7 +33,7 @@ export class LoginView extends React.Component {
     }
 
     render() {
-      const {errors} = this.props;
+      const {errors, loading} = this.props;
 
       return (
           <Grid
@@ -94,7 +95,7 @@ export class LoginView extends React.Component {
                         className={'login_btn'}
                         size={"large"}
                         onClick={this.onLoginClick}>
-                      {LOGIN_TEXT}
+                      {loading ? <CircularProgress size={24} style={styles.main_color}/> : LOGIN_TEXT}
                     </Button>
                   </Grid>
                   <Grid item style={styles.pd_full}>

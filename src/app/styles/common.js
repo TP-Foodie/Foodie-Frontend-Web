@@ -43,6 +43,10 @@ export const styles = {
         background: 'linear-gradient(to bottom, #F3916D, #E3678A)',
     },
 
+    main_color: {
+        color: "#F3916D"
+    },
+
     login_box: {
         backgroundColor: "#FFFFFF"
     },
