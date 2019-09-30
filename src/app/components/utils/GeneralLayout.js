@@ -47,6 +47,8 @@ export const GeneralLayout = props => {
 
     const onLogout = () => {
         handleClose();
+        localStorage.clear();
+        window.location.reload();
     }
 
     return (
