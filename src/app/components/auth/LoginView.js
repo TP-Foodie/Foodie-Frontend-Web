@@ -3,6 +3,7 @@ import {Button, Grid, TextField, Paper, Typography} from '@material-ui/core';
 import {WELCOME} from '../../navigation/routes';
 import {styles} from "../../styles/common";
 import {Email, Lock} from "@material-ui/icons";
+import PropTypes from "prop-types";
 
 const LOGIN_TEXT = 'LOGIN';
 const EMAIL_PLACEHOLDER = "Email";
@@ -10,7 +11,13 @@ const PASSWORD_PLACEHOLDER = "Password";
 const TITLE = "Plataforma de administración Foodie";
 
 export class LoginView extends React.Component {
-  render() {
+    static propTypes = {
+        errors: PropTypes.object.isRequired,
+        onLogin: PropTypes.func.isRequired,
+        loading: PropTypes.bool,
+    };
+
+    render() {
       return (
           <Grid
               className={'container'}
@@ -69,6 +76,6 @@ export class LoginView extends React.Component {
               </Paper>
             </Grid>
           </Grid>
-    );
+);
   }
 }

@@ -1,12 +1,13 @@
 import React from "react";
 import {LoginView} from "./LoginView";
 import httpResources from "../../http/httpResources";
-import {handleError} from "../../handlers/handleError";
 import PropTypes from "prop-types";
 import {WELCOME} from "../../navigation/routes";
 import {TOKEN_NAME} from "../../common/constants";
 import {LOGIN_RULES} from "../../common/rules";
 import validate from "validate.js";
+
+const GENERAL_ERROR = "Email y/o passwords incorrectos";
 
 export class LoginContainer extends React.Component {
     static propTypes = {
@@ -28,7 +29,7 @@ export class LoginContainer extends React.Component {
             localStorage.set(TOKEN_NAME, data.token);
             this.props.history.push(WELCOME);
         } catch (error) {
-            handleError(error)
+            this.setState({errors: {...this.state.errors, general: GENERAL_ERROR}})
         }
 
         this.setState({loading: false});
