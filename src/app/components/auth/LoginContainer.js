@@ -5,6 +5,8 @@ import {handleError} from "../../handlers/handleError";
 import PropTypes from "prop-types";
 import {WELCOME} from "../../navigation/routes";
 import {TOKEN_NAME} from "../../common/constants";
+import {LOGIN_RULES} from "../../common/rules";
+import validate from "validate.js";
 
 export class LoginContainer extends React.Component {
     static propTypes = {
@@ -16,7 +18,7 @@ export class LoginContainer extends React.Component {
         this.state = {loading: false, userData: {}};
     }
 
-    onLogin = () => {
+    login = () => {
         const {email, password} = this.state.userData;
 
         this.setState({loading: true});
@@ -32,9 +34,13 @@ export class LoginContainer extends React.Component {
         this.setState({loading: false});
     };
 
-
+    onLoginClick = (userData) => {
+        const errors = validate(userData, LOGIN_RULES);
+        errors ? this.setState({errors: errors}) : this.login();
+    };
 
     render() {
-        return <LoginView/>
+        const {errors, loading} = this.state;
+        return <LoginView errors={errors} onLogin={this.onLoginClick} loading={loading}/>
     }
 }
