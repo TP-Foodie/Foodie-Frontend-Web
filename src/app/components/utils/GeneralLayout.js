@@ -17,6 +17,8 @@ import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
 import {PLACES, USERS} from "../../navigation/routes";
 import {Link} from "react-router-dom";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(styles.generalLayoutStyles);
 const TITLE = "Plataforma de administración Foodie";
@@ -33,6 +35,20 @@ const ROUTES_BY_MODULES = {
 export const GeneralLayout = props => {
     const classes = useStyles();
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const onUserClick = event => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const onLogout = () => {
+        handleClose();
+    }
+
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -45,9 +61,18 @@ export const GeneralLayout = props => {
                     <Typography variant="h6" style={styles.flex_grow}>
                         {TITLE}
                     </Typography>
-                    <IconButton edge={"end"}>
+                    <IconButton edge={"end"} onClick={onUserClick}>
                         <Avatar>A</Avatar>
                     </IconButton>
+                    <Menu
+                        anchorEl={anchorEl}
+                        id="simple-menu"
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                        keepMounted
+                    >
+                        <MenuItem onClick={onLogout}>Salir</MenuItem>
+                    </Menu>
 				</Toolbar>
 				{
 					props.loading &&
