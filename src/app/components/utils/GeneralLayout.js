@@ -82,6 +82,6 @@ export const GeneralLayout = props => {
 };
 
 GeneralLayout.propTypes = {
-	children: PropTypes.oneOf([PropTypes.object, PropTypes.array]),
+	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	loading: PropTypes.bool
 };

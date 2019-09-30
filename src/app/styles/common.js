@@ -44,7 +44,7 @@ export const styles = {
     },
 
     main_color: {
-        color: "#F3916D"
+        color: "#E3678A"
     },
 
     login_box: {

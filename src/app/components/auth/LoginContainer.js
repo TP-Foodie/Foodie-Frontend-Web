@@ -24,13 +24,15 @@ export class LoginContainer extends React.Component {
 
         try {
             const {data} = await httpResources.login(email, password);
-            localStorage.set(TOKEN_NAME, data.token);
+            localStorage.setItem(TOKEN_NAME, data.token);
+            this.setState({loading: false});
             this.props.history.push(WELCOME);
         } catch (error) {
-            this.setState({errors: {...this.state.errors, general: GENERAL_ERROR}})
+            this.setState({
+                errors: {...this.state.errors, general: GENERAL_ERROR},
+                loading: false
+            })
         }
-
-        this.setState({loading: false});
     };
 
     onLoginClick = (userData) => {
