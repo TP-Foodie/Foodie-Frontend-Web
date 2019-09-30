@@ -6,6 +6,7 @@ import {WELCOME} from "../../navigation/routes";
 import {TOKEN_NAME} from "../../common/constants";
 import {LOGIN_RULES} from "../../common/rules";
 import validate from "validate.js";
+import {isLoggedIn} from "../../common/utils";
 
 const GENERAL_ERROR = "Email y/o passwords incorrectos";
 
@@ -19,6 +20,16 @@ export class LoginContainer extends React.Component {
         this.state = {loading: false, errors: {}};
     }
 
+    componentDidMount = () => {
+        if (isLoggedIn()) {
+            this.navigateToNext();
+        }
+    };
+
+    navigateToNext = () => {
+        this.props.history.push(WELCOME);
+    }
+
     login = async (email, password) => {
         this.setState({loading: true});
 
@@ -26,7 +37,7 @@ export class LoginContainer extends React.Component {
             const {data} = await httpResources.login(email, password);
             localStorage.setItem(TOKEN_NAME, data.token);
             this.setState({loading: false});
-            this.props.history.push(WELCOME);
+            this.navigateToNext();
         } catch (error) {
             this.setState({
                 errors: {...this.state.errors, general: GENERAL_ERROR},
