@@ -61,9 +61,9 @@ export class LoginView extends React.Component {
                           </Grid>
                           <Grid item>
                               <TextField
-								label={EMAIL_PLACEHOLDER}
-							    type={"email"}
-							    onChange={event => this.onChangeField("email", event.target.value)}
+                                label={EMAIL_PLACEHOLDER}
+                                type={"email"}
+                                onChange={event => this.onChangeField("email", event.target.value)}
                                 helperText={errors.email}
                                 error={errors.email !== undefined}
                               />
