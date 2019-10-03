@@ -3,8 +3,15 @@ import {shallow} from "enzyme";
 import {LoginView} from "../../app/components/auth/LoginView";
 
 describe("login view component", () => {
+    let props;
+
+    beforeEach(() => {
+        props = {
+            errors: {}
+        }
+    })
     it ("should render without crashing", () => {
-        const component = shallow(<LoginView/>);
+        const component = shallow(<LoginView {...props}/>);
         expect(component.find('.container').exists()).toBe(true);
     });
 
@@ -12,7 +19,7 @@ describe("login view component", () => {
         let component;
 
         beforeEach(() => {
-            component = shallow(<LoginView/>);
+            component = shallow(<LoginView {...props}/>);
         });
 
         it ("should render login button", () => {

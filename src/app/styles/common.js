@@ -11,7 +11,11 @@ export const styles = {
 
     email_input: {
         marginTop: 10,
-        paddingTop: 20
+        paddingTop: 20,
+    },
+
+    error: {
+        color: "#FF0000"
     },
 
     label: {
@@ -37,6 +41,10 @@ export const styles = {
 
     main_gradient: {
         background: 'linear-gradient(to bottom, #F3916D, #E3678A)',
+    },
+
+    main_color: {
+        color: "#E3678A"
     },
 
     login_box: {

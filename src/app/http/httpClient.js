@@ -1,6 +1,8 @@
 import axios from "axios";
 import {apiServer} from "../../config.json"
+import {TOKEN_NAME} from '../common/constants';
 
+const TOKEN_TYPE = "Bearer";
 const DEFAULT_HEADER = {'Content-Type': 'application/json'};
 
 export class HttpClient {
@@ -9,6 +11,17 @@ export class HttpClient {
             baseURL: apiServer,
             headers: DEFAULT_HEADER
         })
+
+        this.axiosInstance.interceptors.request.use(request => {
+            const token = localStorage.getItem(TOKEN_NAME);
+            if (token) request.headers["Authorization"] = this.buildTokenHeader(token);
+            return request;
+        });
+
+    }
+
+    buildTokenHeader = token => {
+        return `${TOKEN_TYPE} ${token}`;
     }
 
     get = (url) => {
