@@ -19,6 +19,7 @@ import {PLACES, USERS} from "../../navigation/routes";
 import {Link} from "react-router-dom";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import {connect} from "react-redux";
 
 const useStyles = makeStyles(styles.generalLayoutStyles);
 const TITLE = "Plataforma de administración Foodie";
@@ -112,3 +113,11 @@ GeneralLayout.propTypes = {
 	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	loading: PropTypes.bool
 };
+
+const mapStateToProps = state => {
+    return {
+        loading: state.loading.loading,
+    };
+};
+
+export default connect(mapStateToProps)(GeneralLayout);

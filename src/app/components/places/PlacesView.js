@@ -35,13 +35,13 @@ export class PlacesView extends React.Component {
                                 </TableHead>
                                 <TableBody>
                                     {places.map(place => (
-                                        <TableRow key={place._id} className={place.name}>
-                                            <TableCell component="th" scope="row">
-                                            {place._id}
+                                        <TableRow key={place.id} className={place.name}>
+                                            <TableCell align="center">
+                                            {place.id}
                                             </TableCell>
-                                            <TableCell align="right">{place.name}</TableCell>
-                                            <TableCell align="right">{place.coordinates.latitude}</TableCell>
-                                            <TableCell align="right">{place.coordinates.longitude}</TableCell>
+                                            <TableCell align="center">{place.name}</TableCell>
+                                            <TableCell align="center">{place.coordinates.latitude}</TableCell>
+                                            <TableCell align="center">{place.coordinates.longitude}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

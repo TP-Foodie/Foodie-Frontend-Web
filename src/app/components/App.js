@@ -4,12 +4,12 @@ import {LoginContainer} from "./auth/LoginContainer";
 import {AuthLoadingContainer} from "./auth/AuthLoadingContainer";
 import {LOGIN, PLACES, WELCOME, USERS} from "../navigation/routes";
 import {WelcomeView} from "./welcome/WelcomeView";
-import {PlacesContainer} from "./places/PlacesContainer";
-import {UsersContainer} from "./users/UsersContainer";
+import PlacesContainer from "./places/PlacesContainer";
+import UsersContainer from "./users/UsersContainer";
 import {UserDetailContainer} from "./users/UserDetailContainer";
 import PrivateRoute from "./utils/PrivateRoute";
 import 'typeface-roboto';
-import { GeneralLayout } from './utils/GeneralLayout';
+import GeneralLayout from './utils/GeneralLayout';
 
 function App() {
   return (
