@@ -10,12 +10,12 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {styles} from "../../styles/common";
-import {Map, Person} from "@material-ui/icons";
+import {Map, Person, PlaylistAddCheck} from "@material-ui/icons";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
-import {PLACES, USERS} from "../../navigation/routes";
+import {PLACES, USERS, RULES} from "../../navigation/routes";
 import {Link} from "react-router-dom";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -25,12 +25,14 @@ const useStyles = makeStyles(styles.generalLayoutStyles);
 const TITLE = "Plataforma de administración Foodie";
 const MODULES = {
     'Usuarios': <Person/>,
-    'Lugares': <Map/>
+    'Lugares': <Map/>,
+    'Reglas': <PlaylistAddCheck/>
 };
 
 const ROUTES_BY_MODULES = {
     'Lugares': PLACES,
-    'Usuarios': USERS
+    'Usuarios': USERS,
+    'Reglas': RULES,
 };
 
 export const GeneralLayout = props => {
