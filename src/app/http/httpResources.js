@@ -3,6 +3,7 @@ import {HttpClient} from "./httpClient";
 const PLACES_URL = "/places/";
 const USERS_URL = "/users/";
 const LOGIN_URL = "/auth/";
+const RULES_URL = "/rules/"
 
 class HttpResources {
     constructor(client) {
@@ -25,6 +26,10 @@ class HttpResources {
 
     login = (email, password) => {
         return this.client.post(LOGIN_URL, {email, password});
+    }
+
+    rules = () => {
+        return this.client.get(RULES_URL);
     }
 }
 

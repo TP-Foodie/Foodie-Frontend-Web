@@ -2,23 +2,27 @@ import React, {useEffect, useState} from "react";
 import { RulesListView } from "./RulesListView";
 import {setLoading} from "../../redux/reducers/loading";
 import {connect} from "react-redux";
-import {httpResources} from "../../http/httpResources";
+import httpResources from "../../http/httpResources";
 import {handleError} from "../../handlers/handleError";
 import PropTypes from "prop-types";
 
 const RulesListContainer = props => {
     const [rules, setRules] = useState([]);
+    const {setLoading} = props;
 
-    useEffect(async () => {
-        try {
-            props.setLoading(true);
-            const {data} = await httpResources.rules();
-            setRules(data);
-            props.setLoading(false);
-        } catch (error) {
-            handleError(error);
+    useEffect(() => {
+        async function fetch() {
+            try {
+                setLoading(true);
+                const {data} = await httpResources.rules();
+                setRules(data);
+                setLoading(false);
+            } catch (error) {
+                handleError(error);
+            }
         }
-    })
+        fetch();
+    }, [setLoading])
 
     return (
         <RulesListView rules={rules}/>
