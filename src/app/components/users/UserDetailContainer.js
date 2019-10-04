@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import httpResources from "../../http/httpResources";
 import UserDetailView from "./UserDetailView";
 import {handleError} from "../../handlers/handleError";
-import {GeneralLayout} from "../utils/GeneralLayout";
 import { SuccessMessage } from "../utils/SuccessMessage";
 
 export class UserDetailContainer extends React.Component {
@@ -53,14 +52,14 @@ export class UserDetailContainer extends React.Component {
 
     render() {
         return (
-            <GeneralLayout className={"container"}>
+            <div>
                 <UserDetailView
-                        className={"user_detail"}
-                        user={this.state.user}
-                        onSubmit={this.updateUser}
-                        onChange={this.handleChange}/>
+                    className={"user_detail"}
+                    user={this.state.user}
+                    onSubmit={this.updateUser}
+                    onChange={this.handleChange}/>
                 <SuccessMessage message={"Usuario actualizado con exito!"} show={this.state.showSuccess}/>
-            </GeneralLayout>
+            </div>
         );
     }
 }

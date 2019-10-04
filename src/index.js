@@ -11,17 +11,20 @@ import {UsersContainer} from "./app/components/users/UsersContainer";
 import {UserDetailContainer} from "./app/components/users/UserDetailContainer";
 import PrivateRoute from "./app/components/utils/PrivateRoute";
 import 'typeface-roboto';
+import { GeneralLayout } from './app/components/utils/GeneralLayout';
 
 const routing = (
     <div>
         <Router>
             <Switch>
-                <Route exact path="/" component={AuthLoadingContainer} />
-                <Route path={LOGIN} component={LoginContainer} />
-                <PrivateRoute path={WELCOME} component={WelcomeView} />
-                <PrivateRoute path={PLACES} component={PlacesContainer} />
-                <PrivateRoute path={USERS} component={UsersContainer} exact/>
-                <PrivateRoute path={`${USERS}/:userId`} component={UserDetailContainer} />
+                <GeneralLayout>
+                    <Route exact path="/" component={AuthLoadingContainer} />
+                    <Route path={LOGIN} component={LoginContainer} />
+                    <PrivateRoute path={WELCOME} component={WelcomeView} />
+                    <PrivateRoute path={PLACES} component={PlacesContainer} />
+                    <PrivateRoute path={USERS} component={UsersContainer} exact/>
+                    <PrivateRoute path={`${USERS}/:userId`} component={UserDetailContainer} />
+                </GeneralLayout>
             </Switch>
         </Router>
     </div>
