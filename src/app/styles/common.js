@@ -47,6 +47,14 @@ export const styles = {
         color: "#E3678A"
     },
 
+    create_fab: {
+        backgroundColor: "#5e79ff",
+        position: "fixed",
+        bottom: 1,
+        right: 1,
+        margin: 20
+    },
+
     login_box: {
         backgroundColor: "#FFFFFF"
     },

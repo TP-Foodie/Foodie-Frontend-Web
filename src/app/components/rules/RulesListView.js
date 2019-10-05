@@ -7,7 +7,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { CheckCircle, RemoveCircle } from "@material-ui/icons";
+import {Add, CheckCircle, ChevronRight, RemoveCircle} from "@material-ui/icons";
+import IconButton from "@material-ui/core/IconButton";
+import Fab from "@material-ui/core/Fab";
+import {styles} from "../../styles/common";
 
 export const RulesListView = props => {
     const {rules} = props;
@@ -31,6 +34,7 @@ export const RulesListView = props => {
                             <TableRow>
                             <TableCell align="center">Nombre</TableCell>
                             <TableCell align="center">Activa</TableCell>
+                            <TableCell align="center">Acciones</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -38,11 +42,21 @@ export const RulesListView = props => {
                                 <TableRow key={rule.id}>
                                     <TableCell align="center">{rule.name}</TableCell>
                                     <TableCell align="center">{getActiveIcon(rule.active)}</TableCell>
+                                    <TableCell align="center">
+                                        <IconButton>
+                                            <ChevronRight/>
+                                        </IconButton>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                         </Table>
                     </Paper>
+                </Grid>
+                <Grid item>
+                    <Fab style={styles.create_fab}>
+                        <Add/>
+                    </Fab>
                 </Grid>
             </Grid>
             </Grid>
