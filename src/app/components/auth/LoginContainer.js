@@ -28,7 +28,7 @@ export class LoginContainer extends React.Component {
 
     navigateToNext = () => {
         this.props.history.push(WELCOME);
-    }
+    };
 
     login = async (email, password) => {
         this.setState({loading: true});

@@ -17,9 +17,9 @@ function App() {
     <div>
         <Router>
             <Switch>
+                <Route exact path="/" component={AuthLoadingContainer}/>
+                <Route path={LOGIN} component={LoginContainer} exact/>
                 <GeneralLayout>
-                    <Route exact path="/" component={AuthLoadingContainer}/>
-                    <Route path={LOGIN} component={LoginContainer} exact/>
                     <PrivateRoute path={WELCOME} component={WelcomeView} exact/>
                     <PrivateRoute path={PLACES} component={PlacesContainer} exact/>
                     <PrivateRoute path={USERS} component={UsersContainer} exact/>
