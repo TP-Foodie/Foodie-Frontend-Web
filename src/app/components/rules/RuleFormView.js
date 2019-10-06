@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, IconButton } from "@material-ui/core";
 import { styles } from "../../styles/common";
-import { Add } from "@material-ui/icons";
+import { Add, Delete } from "@material-ui/icons";
 import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
@@ -12,6 +12,8 @@ export const RuleFormView = props => {
     const [consequenceType, setConsequenceType] = useState("V");
     const [consequenceValue, setConsequenceValue] = useState(0);
     const [consequenceValueType, setConsequenceValueType] = useState("-");
+    const [conditions, setConditions] = useState([]);
+    const [name, setName] = useState("");
 
     const renderDivider = title => {
         return <Grid item style={styles.divider}>
@@ -19,24 +21,38 @@ export const RuleFormView = props => {
         </Grid>
     };
 
-    const renderAddButton = title => {
-        return <Grid item>
-            <Button>
-                <Grid container direction="row" alignItems="center">
-                    <Add style={{color: "green"}}/>
-                    <p>{title}</p>
-                </Grid>
-            </Button>
-        </Grid>
+    const addCondition = () => {
+        setConditions([...conditions, {id: conditions.length + 1}]);
     }
+
+    const removeCondition = conditionId => {
+        setConditions(conditions.filter(condition => condition.id !== conditionId));
+    };
 
     const handleBack = () => {
         props.history.goBack();
     }
 
     const handleSubmit = () => {
-        props.handleSubmit({consequenceType, consequenceValue, consequenceValueType});
+        props.handleSubmit({
+            conditions: conditions,
+            consequence: {
+                consequenceType, 
+                consequenceValue, 
+                consequenceValueType
+            },
+            name: name
+        });
     }
+
+    const editCondition = (field, value, conditionId) => {
+        const newConditions = conditions.map(condition => {
+            return condition.id === conditionId ? {...condition, [field]: value} : condition;
+        })
+        setConditions(newConditions);
+    }
+
+    const {errors} = props;
 
     return (
         <Paper style={styles.container}>
@@ -47,19 +63,80 @@ export const RuleFormView = props => {
                 justify="flex-start"
                 style={{minHeight: '100vh'}}
                 spacing={2}>
-                <Grid item>
+                <Grid item xs={12}>
                     <TextField 
                         label={"Nombre"}
                         fullWidth
                         variant="outlined"
+                        value={name}
+                        onChange={event => setName(event.target.value)}
+                        helperText={errors.name}
+                        error={errors.name !== undefined}
                     />
                 </Grid>
                 {renderDivider("Condiciones")}
-                {renderAddButton("Agregar condicion")}
+                {
+                    conditions.map(condition => <Grid item key={condition.id}> 
+                        <Grid container direction="row" spacing={2}>
+                            <Grid item xs={3}>
+                                <TextField
+                                    select
+                                    label={"Seleccione variable"}
+                                    fullWidth
+                                    variant="outlined"
+                                    value={conditions.find(current => current.id === condition.id).variable || ""}
+                                    onChange={event => editCondition("variable", event.target.value, condition.id)}
+                                    helperText={errors[condition.id] ? errors[condition.id].variable : null}
+                                    error={errors[condition.id] ? errors[condition.id].variable !== undefined : false}
+                                >
+                                    {props.variables.map(variable => <MenuItem key={variable.value} value={variable.value}>{variable.name}</MenuItem>)}
+                                </TextField>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <TextField
+                                    select
+                                    label={"Seleccione operador"}
+                                    fullWidth
+                                    variant="outlined"
+                                    value={conditions.find(current => current.id === condition.id).operator || ""}
+                                    onChange={event => editCondition("operator", event.target.value, condition.id)}
+                                    helperText={errors[condition.id] ? errors[condition.id].operator : null}
+                                    error={errors[condition.id] ? errors[condition.id].operator !== undefined : false}
+                                >
+                                    {props.operators.map(operator => <MenuItem key={operator.value} value={operator.value}>{operator.name}</MenuItem>)}
+                                </TextField>
+                            </Grid>
+                            <Grid item xs={5}>
+                                <TextField
+                                    label={"Seleccione valor"}
+                                    fullWidth
+                                    variant="outlined"
+                                    value={conditions.find(current => current.id === condition.id).value}
+                                    onChange={event => editCondition("value", event.target.value, condition.id)}
+                                    helperText={errors[condition.id] ? errors[condition.id].value : null}
+                                    error={errors[condition.id] ? errors[condition.id].value !== undefined : false}
+                                />
+                            </Grid>
+                            <Grid item xs={1}>
+                                <IconButton onClick={() => removeCondition(condition.id)}>
+                                    <Delete color="error"/>
+                                </IconButton>
+                            </Grid>
+                        </Grid>
+                    </Grid>)
+                }
+                <Grid item>
+                    <Button onClick={addCondition}>
+                        <Grid container direction="row" alignItems="center">
+                            <Add style={{color: "green"}}/>
+                            <p>{"Agregar condicion"}</p>
+                        </Grid>
+                    </Button>
+                </Grid>
                 {renderDivider("Consecuencia")}
                 <Grid item>
-                    <Grid container direction="row" xs={13} spacing={2}>
-                        <Grid item xs={1}>
+                    <Grid container direction="row" spacing={2}>
+                        <Grid item xs={3}>
                             <TextField 
                                 select
                                 fullWidth
@@ -71,19 +148,18 @@ export const RuleFormView = props => {
                                 <MenuItem value={"+"}>Recargo</MenuItem>
                             </TextField>
                         </Grid>
-                        <Grid item xs={1}>
-                            <TextField 
+                        <Grid item xs={3}>
+                            <TextField
                                 select
                                 fullWidth
                                 variant="outlined"
                                 value={consequenceType}
                                 onChange={event => setConsequenceType(event.target.value)}
                             >
-                                <MenuItem value={"P"}>%</MenuItem>
-                                <MenuItem value={"V"}>$</MenuItem>
+                                {props.consequenceTypes.map(type => <MenuItem key={type.value} value={type.value}>{type.name}</MenuItem>)}
                             </TextField>
                         </Grid>
-                        <Grid item xs={10}>
+                        <Grid item xs={6}>
                             <TextField 
                                 type={"number"}
                                 label={"Valor"}
@@ -114,7 +190,11 @@ export const RuleFormView = props => {
 
 RuleFormView.propTypes = {
     history: PropTypes.object.isRequired,
-    handleSubmit: PropTypes.func.isRequired
+    handleSubmit: PropTypes.func.isRequired,
+    variables: PropTypes.array.isRequired,
+    operators: PropTypes.array.isRequired,
+    consequenceTypes: PropTypes.array.isRequired,
+    errors: PropTypes.object
 };
 
 export default withRouter(RuleFormView);

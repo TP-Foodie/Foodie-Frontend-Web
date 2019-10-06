@@ -13,3 +13,21 @@ export const LOGIN_RULES = {
         }
     }
 };
+
+export const CONDITION_RULES = {
+    variable: {
+        presence: {
+            message: "^ Por favor seleccione una variable"
+        }
+    },
+    operator: {
+        presence: {
+            message: "^ Por favor seleccione un operador"
+        }
+    },
+    value: {
+        presence: {
+            message: "^ Por favor seleccione un valor"
+        }
+    }
+};
