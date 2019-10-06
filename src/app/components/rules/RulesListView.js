@@ -11,6 +11,8 @@ import {Add, CheckCircle, ChevronRight, RemoveCircle} from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import {styles} from "../../styles/common";
+import {Link} from "react-router-dom";
+import { RULE_CREATE } from "../../navigation/routes";
 
 export const RulesListView = props => {
     const {rules} = props;
@@ -54,7 +56,7 @@ export const RulesListView = props => {
                     </Paper>
                 </Grid>
                 <Grid item>
-                    <Fab style={styles.create_fab}>
+                    <Fab style={styles.create_fab} component={Link} to={RULE_CREATE}>
                         <Add/>
                     </Fab>
                 </Grid>
