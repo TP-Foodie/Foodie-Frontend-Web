@@ -119,6 +119,8 @@ export const styles = {
         color: "white",
         marginTop: 20,
         marginBottom: 20,
+        marginRight: 8,
+        marginLeft: 8,
         paddingLeft: 15,
     },
 };

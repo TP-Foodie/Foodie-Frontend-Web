@@ -1,5 +1,5 @@
 import React from "react";
-import { RuleFormView } from "./RuleFormView";
+import RuleFormView from "./RuleFormView";
 
 const RuleFormContainer = () => {
     return <RuleFormView/>
