@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import RuleFormView from "./RuleFormView";
 import { validate } from "validate.js";
-import { CONDITION_RULES, CONSEQUENCE_RULES, RULE_RULES } from "../../common/rules";
+import { CONDITION_RULES, RULE_RULES } from "../../common/rules";
 import {connect} from "react-redux";
 import {setLoading} from "../../redux/reducers/loading";
 import {handleError} from "../../handlers/handleError";
