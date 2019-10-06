@@ -9,10 +9,13 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { RuleConditionForm } from "./RuleConditionForm";
 import { RuleConsequenceForm } from "./RuleConsequenceForm";
 import {AdminButtonBar} from "../utils/AdminButtonBar"
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export const RuleFormView = props => {
     const [consequence, setConsequence] = useState({type: "V", value: 0});
     const [conditions, setConditions] = useState([]);
+    const [active, setActive] = useState(true);
     const [name, setName] = useState("");
 
     const renderDivider = title => {
@@ -37,7 +40,8 @@ export const RuleFormView = props => {
         props.handleSubmit({
             conditions: conditions,
             consequence,
-            name
+            name,
+            active
         });
     }
 
@@ -73,6 +77,18 @@ export const RuleFormView = props => {
                         helperText={errors.name}
                         error={errors.name !== undefined}
                     />
+                </Grid>
+                <Grid item>
+                <FormControlLabel
+                    control={
+                        <Switch
+                        checked={active}
+                        onChange={() => setActive(!active)}
+                        value="Activa"
+                    />
+                    }
+                    label="Activa"
+                />
                 </Grid>
                 {renderDivider("Condiciones")}
                 {
