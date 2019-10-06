@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
-import { TextField, Button, IconButton } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { styles } from "../../styles/common";
-import { Add, Delete } from "@material-ui/icons";
 import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import FormHelperText from '@material-ui/core/FormHelperText';
+import { RuleConditionForm } from "./RuleConditionForm";
 
 export const RuleFormView = props => {
     const [consequenceType, setConsequenceType] = useState("V");
@@ -53,7 +53,7 @@ export const RuleFormView = props => {
         setConditions(newConditions);
     }
 
-    const {errors} = props;
+    const {errors, operators, variables} = props;
 
     return (
         <Paper style={styles.container}>
@@ -82,64 +82,15 @@ export const RuleFormView = props => {
                         <FormHelperText style={styles.error}>{errors.conditions}</FormHelperText>
                     </Grid>
                 }
-                {
-                    conditions.map(condition => <Grid item key={condition.id}> 
-                        <Grid container direction="row" spacing={2}>
-                            <Grid item xs={3}>
-                                <TextField
-                                    select
-                                    label={"Seleccione variable"}
-                                    fullWidth
-                                    variant="outlined"
-                                    value={conditions.find(current => current.id === condition.id).variable || ""}
-                                    onChange={event => editCondition("variable", event.target.value, condition.id)}
-                                    helperText={errors[condition.id] ? errors[condition.id].variable : null}
-                                    error={errors[condition.id] ? errors[condition.id].variable !== undefined : false}
-                                >
-                                    {props.variables.map(variable => <MenuItem key={variable.value} value={variable.value}>{variable.name}</MenuItem>)}
-                                </TextField>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <TextField
-                                    select
-                                    label={"Seleccione operador"}
-                                    fullWidth
-                                    variant="outlined"
-                                    value={conditions.find(current => current.id === condition.id).operator || ""}
-                                    onChange={event => editCondition("operator", event.target.value, condition.id)}
-                                    helperText={errors[condition.id] ? errors[condition.id].operator : null}
-                                    error={errors[condition.id] ? errors[condition.id].operator !== undefined : false}
-                                >
-                                    {props.operators.map(operator => <MenuItem key={operator.value} value={operator.value}>{operator.name}</MenuItem>)}
-                                </TextField>
-                            </Grid>
-                            <Grid item xs={5}>
-                                <TextField
-                                    label={"Seleccione valor"}
-                                    fullWidth
-                                    variant="outlined"
-                                    value={conditions.find(current => current.id === condition.id).value}
-                                    onChange={event => editCondition("value", event.target.value, condition.id)}
-                                    helperText={errors[condition.id] ? errors[condition.id].value : null}
-                                    error={errors[condition.id] ? errors[condition.id].value !== undefined : false}
-                                />
-                            </Grid>
-                            <Grid item xs={1}>
-                                <IconButton onClick={() => removeCondition(condition.id)}>
-                                    <Delete color="error"/>
-                                </IconButton>
-                            </Grid>
-                        </Grid>
-                    </Grid>)
-                }
-                <Grid item>
-                    <Button onClick={addCondition}>
-                        <Grid container direction="row" alignItems="center">
-                            <Add style={{color: "green"}}/>
-                            <p>{"Agregar condicion"}</p>
-                        </Grid>
-                    </Button>
-                </Grid>
+                <RuleConditionForm 
+                    errors={errors} 
+                    operators={operators} 
+                    variables={variables}
+                    onEdit={editCondition}
+                    onAdd={addCondition}
+                    onRemove={removeCondition}
+                    conditions={conditions}
+                />
                 {renderDivider("Consecuencia")}
                 <Grid item>
                     <Grid container direction="row" spacing={2}>
