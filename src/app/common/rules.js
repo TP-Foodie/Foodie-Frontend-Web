@@ -31,3 +31,30 @@ export const CONDITION_RULES = {
         }
     }
 };
+
+export const CONSEQUENCE_RULES = {
+    consequenceType: {
+        presence: {
+            message: "^ Por favor seleccione un tipo"
+        }
+    },
+    consequenceValue: CONDITION_RULES.value
+}
+
+export const RULE_RULES = {
+    name: {
+        presence: {
+            message: "^Por favor ingrese un nombre",
+        },
+        length: {
+            minimum: 1,
+            message: "^Por favor ingrese un nombre"
+        }
+    },
+    conditions: {
+        length: {
+            minimum: 1,
+            message: "^Por favor ingrese al menos una condicion"
+        }
+    }
+}

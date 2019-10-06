@@ -7,6 +7,7 @@ import { Add, Delete } from "@material-ui/icons";
 import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 export const RuleFormView = props => {
     const [consequenceType, setConsequenceType] = useState("V");
@@ -76,6 +77,12 @@ export const RuleFormView = props => {
                 </Grid>
                 {renderDivider("Condiciones")}
                 {
+                    errors.conditions && 
+                    <Grid item style={styles.pd_left}>
+                        <FormHelperText style={styles.error}>{errors.conditions}</FormHelperText>
+                    </Grid>
+                }
+                {
                     conditions.map(condition => <Grid item key={condition.id}> 
                         <Grid container direction="row" spacing={2}>
                             <Grid item xs={3}>
@@ -143,6 +150,7 @@ export const RuleFormView = props => {
                                 variant="outlined"
                                 value={consequenceValueType}
                                 onChange={event => setConsequenceValueType(event.target.value)}
+                                
                             >
                                 <MenuItem value={"-"}>Descuento</MenuItem>
                                 <MenuItem value={"+"}>Recargo</MenuItem>
@@ -155,6 +163,8 @@ export const RuleFormView = props => {
                                 variant="outlined"
                                 value={consequenceType}
                                 onChange={event => setConsequenceType(event.target.value)}
+                                helperText={errors.consequenceType}
+                                error={errors.consequenceType !== undefined}
                             >
                                 {props.consequenceTypes.map(type => <MenuItem key={type.value} value={type.value}>{type.name}</MenuItem>)}
                             </TextField>
@@ -167,6 +177,8 @@ export const RuleFormView = props => {
                                 variant="outlined"
                                 value={consequenceValue}
                                 onChange={event => setConsequenceValue(event.target.value)}
+                                helperText={errors.consequenceValue}
+                                error={errors.consequenceValue !== undefined}
                             />
                         </Grid>
                     </Grid>

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import RuleFormView from "./RuleFormView";
 import { validate } from "validate.js";
-import { CONDITION_RULES } from "../../common/rules";
+import { CONDITION_RULES, CONSEQUENCE_RULES, RULE_RULES } from "../../common/rules";
 
 const RuleFormContainer = () => {
     const [errors, setErrors] = useState({});
@@ -27,11 +27,15 @@ const RuleFormContainer = () => {
 
     const handleSubmit = values => {
         let errors = {};
+        
         values.conditions.forEach(condition => {
-            console.log(condition);
             errors[condition.id] = validate(condition, CONDITION_RULES);
-        })
+        });
+
+        errors = {...errors, ...validate(values, RULE_RULES)}
+
         console.log(errors, values);
+
         setErrors(errors);
     };
 

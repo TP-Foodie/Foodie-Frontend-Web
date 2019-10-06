@@ -9,6 +9,10 @@ export const styles = {
         paddingRight: 10
     },
 
+    pd_left: {
+        paddingLeft: 20
+    },
+
     email_input: {
         marginTop: 10,
         paddingTop: 20,
