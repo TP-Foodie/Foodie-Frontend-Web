@@ -3,16 +3,14 @@ import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
 import { TextField, Button } from "@material-ui/core";
 import { styles } from "../../styles/common";
-import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { RuleConditionForm } from "./RuleConditionForm";
+import { RuleConsequenceForm } from "./RuleConsequenceForm";
 
 export const RuleFormView = props => {
-    const [consequenceType, setConsequenceType] = useState("V");
-    const [consequenceValue, setConsequenceValue] = useState(0);
-    const [consequenceValueType, setConsequenceValueType] = useState("-");
+    const [consequence, setConsequence] = useState({type: "V", value: 0});
     const [conditions, setConditions] = useState([]);
     const [name, setName] = useState("");
 
@@ -37,12 +35,8 @@ export const RuleFormView = props => {
     const handleSubmit = () => {
         props.handleSubmit({
             conditions: conditions,
-            consequence: {
-                consequenceType, 
-                consequenceValue, 
-                consequenceValueType
-            },
-            name: name
+            consequence,
+            name
         });
     }
 
@@ -51,6 +45,10 @@ export const RuleFormView = props => {
             return condition.id === conditionId ? {...condition, [field]: value} : condition;
         })
         setConditions(newConditions);
+    }
+
+    const editConsequence = (field, value) => {
+        setConsequence({...consequence, [field]: value});
     }
 
     const {errors, operators, variables} = props;
@@ -92,48 +90,12 @@ export const RuleFormView = props => {
                     conditions={conditions}
                 />
                 {renderDivider("Consecuencia")}
-                <Grid item>
-                    <Grid container direction="row" spacing={2}>
-                        <Grid item xs={3}>
-                            <TextField 
-                                select
-                                fullWidth
-                                variant="outlined"
-                                value={consequenceValueType}
-                                onChange={event => setConsequenceValueType(event.target.value)}
-                                
-                            >
-                                <MenuItem value={"-"}>Descuento</MenuItem>
-                                <MenuItem value={"+"}>Recargo</MenuItem>
-                            </TextField>
-                        </Grid>
-                        <Grid item xs={3}>
-                            <TextField
-                                select
-                                fullWidth
-                                variant="outlined"
-                                value={consequenceType}
-                                onChange={event => setConsequenceType(event.target.value)}
-                                helperText={errors.consequenceType}
-                                error={errors.consequenceType !== undefined}
-                            >
-                                {props.consequenceTypes.map(type => <MenuItem key={type.value} value={type.value}>{type.name}</MenuItem>)}
-                            </TextField>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField 
-                                type={"number"}
-                                label={"Valor"}
-                                fullWidth
-                                variant="outlined"
-                                value={consequenceValue}
-                                onChange={event => setConsequenceValue(event.target.value)}
-                                helperText={errors.consequenceValue}
-                                error={errors.consequenceValue !== undefined}
-                            />
-                        </Grid>
-                    </Grid>
-                </Grid>
+                <RuleConsequenceForm
+                    consequence={consequence}
+                    errors={errors}
+                    onEditField={editConsequence}
+                    types={props.consequenceTypes}
+                />
             </Grid>
             <Grid container justify={"flex-end"} direction={"row"} alignItems="flex-end" spacing={2} style={styles.pd_full_sm}>
                     <Grid item>
@@ -146,7 +108,7 @@ export const RuleFormView = props => {
                             GUARDAR
                         </Button>
                     </Grid>
-                </Grid>
+            </Grid>
         </Paper>
     );
 }

@@ -9,7 +9,7 @@ export const RuleConditionForm = props => {
     const {errors, conditions, onEdit, onRemove, onAdd} = props;
 
     return (
-        <div>
+        <Grid container direction="column" justify="flex-start" spacing={2} style={{margin: 1}}>
             {
                 conditions.map(condition => <Grid item key={condition.id}> 
                     <Grid container direction="row" spacing={2}>
@@ -68,14 +68,14 @@ export const RuleConditionForm = props => {
                     </Grid>
                 </Button>
             </Grid>
-        </div>
+        </Grid>
     );
 }
 
 RuleConditionForm.propTypes = {
     variables: PropTypes.array.isRequired,
     operators: PropTypes.array.isRequired,
-    errors: PropTypes.array.isRequired,
+    errors: PropTypes.object.isRequired,
     conditions: PropTypes.array.isRequired,
     onAdd: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,

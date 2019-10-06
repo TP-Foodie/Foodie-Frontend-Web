@@ -3,8 +3,8 @@ export class Parser {
         return {
             conditions: values.conditions,
             consequence: {
-                consequence_type: values.consequence.consequenceType,
-                value: values.consequence.consequenceValue
+                consequence_type: values.consequence.type,
+                value: values.consequence.value
             },
             name: values.name
         }
