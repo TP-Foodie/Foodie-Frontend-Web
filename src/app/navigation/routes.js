@@ -3,3 +3,4 @@ export const WELCOME = "/welcome";
 export const PLACES = "/places";
 export const USERS = "/users";
 export const RULES = "/rules";
+export const RULE_CREATE = "/rules/new";

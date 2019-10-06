@@ -107,5 +107,18 @@ export const styles = {
     user_details_cont: {
         margin: 10,
         padding: 10
-    }
+    },
+
+    container: {
+        margin: 20,
+        padding: 20
+    },
+
+    divider: {
+        backgroundColor: "#328ca8",
+        color: "white",
+        marginTop: 20,
+        marginBottom: 20,
+        paddingLeft: 15,
+    },
 };
