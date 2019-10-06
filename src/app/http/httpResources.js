@@ -1,4 +1,5 @@
 import {HttpClient} from "./httpClient";
+import {Parser} from "../common/parser";
 
 const PLACES_URL = "/places/";
 const USERS_URL = "/users/";
@@ -30,6 +31,10 @@ class HttpResources {
 
     rules = () => {
         return this.client.get(RULES_URL);
+    }
+
+    addRule = values => {
+        return this.client.post(RULES_URL, Parser.buildRuleRequest(values));
     }
 }
 
