@@ -9,7 +9,8 @@ export const RuleConditionForm = props => {
     const {errors, conditions, onEdit, onRemove, onAdd} = props;
 
     return (
-        <Grid container direction="column" justify="flex-start" spacing={2} style={{margin: 1}}>
+        <Grid item>
+            <Grid container direction="column" justify="flex-start" spacing={2}>
             {
                 conditions.map(condition => <Grid item key={condition.id}> 
                     <Grid container direction="row" spacing={2}>
@@ -69,6 +70,7 @@ export const RuleConditionForm = props => {
                 </Button>
             </Grid>
         </Grid>
+    </Grid>
     );
 }
 

@@ -19,7 +19,7 @@ export const RuleConsequenceForm = props => {
 
     return (
         <Grid item>
-            <Grid container direction="row" spacing={2}>
+            <Grid container direction="row" spacing={2} justify="center">
                 <Grid item xs={3}>
                     <TextField 
                         select

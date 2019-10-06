@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
-import { TextField, Button } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { styles } from "../../styles/common";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { RuleConditionForm } from "./RuleConditionForm";
 import { RuleConsequenceForm } from "./RuleConsequenceForm";
+import {AdminButtonBar} from "../utils/AdminButtonBar"
 
 export const RuleFormView = props => {
     const [consequence, setConsequence] = useState({type: "V", value: 0});
@@ -97,18 +98,7 @@ export const RuleFormView = props => {
                     types={props.consequenceTypes}
                 />
             </Grid>
-            <Grid container justify={"flex-end"} direction={"row"} alignItems="flex-end" spacing={2} style={styles.pd_full_sm}>
-                    <Grid item>
-                        <Button variant="contained" onClick={handleBack}>
-                            CANCELAR
-                        </Button>
-                    </Grid>
-                    <Grid item>
-                        <Button variant="contained" color="secondary" onClick={handleSubmit}>
-                            GUARDAR
-                        </Button>
-                    </Grid>
-            </Grid>
+            <AdminButtonBar handleBack={handleBack} handleSubmit={handleSubmit}/>
         </Paper>
     );
 }
