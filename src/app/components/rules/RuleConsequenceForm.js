@@ -10,7 +10,7 @@ export const RuleConsequenceForm = props => {
 
     const onEditField = (field, value) => {
         let editedValue = value;
-        if (field == "value") { 
+        if (field === "value") { 
             editedValue *= valueType;
         }
 

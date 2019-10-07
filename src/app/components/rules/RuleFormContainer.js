@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import RuleFormView from "./RuleFormView";
 import { validate } from "validate.js";
 import { CONDITION_RULES, RULE_RULES } from "../../common/rules";
@@ -6,24 +6,29 @@ import {connect} from "react-redux";
 import {setLoading} from "../../redux/reducers/loading";
 import {handleError} from "../../handlers/handleError";
 import httpResources from "../../http/httpResources";
+import {Parser} from "../../common/parser";
 
 const RuleFormContainer = () => {
     const [errors, setErrors] = useState({});
+    const [variables, setVariables] = useState([]);
+    const [operators, setOperators] = useState([]);
+    const [consequenceTypes, setConsequenceTypes] = useState([]);
 
-    const variables = [
-        {value: "OD", name: "Dia del pedido"},
-        {value: "UR", name: "Reputacion del usuario"}
-    ]
-
-    const operators = [
-        {value: "GTE", name: "Mayor o igual a"},
-        {value: "LT", name: "Menor a"}
-    ]
-
-    const consequenceTypes = [
-        {value: "P", name: "%"},
-        {value: "V", name: "$"}
-    ]
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const variablesResponse = await  httpResources.rulesData("variables");
+                const operatorsResponse = await httpResources.rulesData("operators");
+                const consequenceTypesResponse = await httpResources.rulesData("consequence_types");
+                setVariables(Parser.parseRuleVariables(variablesResponse.data));
+                setOperators(operatorsResponse.data);
+                setConsequenceTypes(consequenceTypesResponse.data);
+            } catch (error) {
+                handleError(error);
+            }
+        }
+        fetchData();
+    }, [setVariables, setOperators, setConsequenceTypes]);
 
     const uploadChanges = async values => {
         try {

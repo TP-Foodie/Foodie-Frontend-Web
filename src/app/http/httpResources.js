@@ -36,6 +36,10 @@ class HttpResources {
     addRule = values => {
         return this.client.post(RULES_URL, Parser.buildRuleRequest(values));
     }
+
+    rulesData = dataName => {
+        return this.client.get(RULES_URL + dataName + '/');
+    }
 }
 
 const httpResources = new HttpResources(new HttpClient());

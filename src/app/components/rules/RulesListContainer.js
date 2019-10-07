@@ -16,10 +16,10 @@ const RulesListContainer = props => {
                 setLoading(true);
                 const {data} = await httpResources.rules();
                 setRules(data);
-                setLoading(false);
             } catch (error) {
                 handleError(error);
             }
+            setLoading(false);
         }
         fetch();
     }, [setLoading])
