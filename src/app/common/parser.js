@@ -17,7 +17,15 @@ const VARIABLES_NAMES = {
     "OT": "Hora de la orden",
     "OC": "Cantidad de productos en la orden",
     "TD": "Dia de la orden"
-}
+};
+
+const OPERATORS_NAMES = {
+    "GTE": "Mayor o igual a",
+    "GT": "Mayor a",
+    "LTE": "Menor o igual a",
+    "LT": "Menor a",
+    "IT": "Igual a"
+};
 
 export class Parser {
     static buildRuleRequest = values => {
@@ -29,11 +37,17 @@ export class Parser {
             },
             name: values.name
         }
-    }
+    };
 
     static parseRuleVariables = variables => {
         return variables.map(variable => {
             return {value: variable, name: VARIABLES_NAMES[variable]}
+        })
+    };
+
+    static parseRuleOperators = operators => {
+        return operators.map(operator => {
+            return {value: operator, name: OPERATORS_NAMES[operator]}
         })
     }
 }
