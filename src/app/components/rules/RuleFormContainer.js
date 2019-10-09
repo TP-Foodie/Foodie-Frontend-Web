@@ -35,7 +35,7 @@ const RuleFormContainer = props => {
             props.setLoading(false);
         }
         fetchData();
-    }, [setVariables, setOperators, setConsequenceTypes]);
+    }, [setVariables, setOperators, setConsequenceTypes, props.setLoading]);
 
     const uploadChanges = async values => {
         props.setLoading(true);
@@ -71,6 +71,7 @@ const RuleFormContainer = props => {
         operators={operators} 
         consequenceTypes={consequenceTypes} 
         errors={errors}
+        initialData={props.initialRule}
     />
 }
 
@@ -79,7 +80,7 @@ RuleFormContainer.propTypes = {
     loading: PropTypes.bool,
     setLoading: PropTypes.func.isRequired,
     handleSuccess: PropTypes.func.isRequired,
-
+    initialRule: PropTypes.object
 }
 
 const mapStateToProps = state => {

@@ -12,7 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import {styles} from "../../styles/common";
 import {Link} from "react-router-dom";
-import { RULE_CREATE } from "../../navigation/routes";
+import { RULE_CREATE, RULE_EDIT } from "../../navigation/routes";
 
 export const RulesListView = props => {
     const {rules} = props;
@@ -45,7 +45,7 @@ export const RulesListView = props => {
                                     <TableCell align="center">{rule.name}</TableCell>
                                     <TableCell align="center">{getActiveIcon(rule.active)}</TableCell>
                                     <TableCell align="center">
-                                        <IconButton>
+                                        <IconButton component={Link} to={`${RULE_EDIT}/${rule.id}`}>
                                             <ChevronRight/>
                                         </IconButton>
                                     </TableCell>
@@ -66,5 +66,5 @@ export const RulesListView = props => {
 }
 
 RulesListView.propTypes = {
-    rules: PropTypes.array.isRequired
+    rules: PropTypes.array.isRequired,
 }

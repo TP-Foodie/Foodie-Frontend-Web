@@ -13,10 +13,10 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export const RuleFormView = props => {
-    const [consequence, setConsequence] = useState({type: "V", value: 0});
-    const [conditions, setConditions] = useState([]);
+    const [consequence, setConsequence] = useState(props.initialData ? props.initialData.consequence : {type: "V", value: 0});
+    const [conditions, setConditions] = useState(props.initialData ? props.initialData.conditions : []);
     const [active, setActive] = useState(true);
-    const [name, setName] = useState("");
+    const [name, setName] = useState(props.initialData ? props.initialData.name : "");
 
     const renderDivider = title => {
         return <Grid item style={styles.divider}>
@@ -125,7 +125,8 @@ RuleFormView.propTypes = {
     variables: PropTypes.array.isRequired,
     operators: PropTypes.array.isRequired,
     consequenceTypes: PropTypes.array.isRequired,
-    errors: PropTypes.object
+    errors: PropTypes.object,
+    initialData: PropTypes.object
 };
 
 export default withRouter(RuleFormView);
