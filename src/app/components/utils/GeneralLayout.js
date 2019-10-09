@@ -20,7 +20,7 @@ import {Link} from "react-router-dom";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {connect} from "react-redux";
-import { SuccessMessage } from './SuccessMessage';
+import SuccessMessage from './SuccessMessage';
 
 const useStyles = makeStyles(styles.generalLayoutStyles);
 const TITLE = "Plataforma de administración Foodie";

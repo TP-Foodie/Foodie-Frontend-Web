@@ -6,6 +6,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import { green } from '@material-ui/core/colors';
 import PropTypes from "prop-types";
+import {hideSuccess} from "../../redux/reducers/handlers";
+import {connect} from "react-redux";
 
 export const SuccessMessage = props => {
     const [open, setOpen] = React.useState(false);
@@ -14,7 +16,10 @@ export const SuccessMessage = props => {
         setOpen(props.show);    
     }, [props]);
 
-    const onClose = () => setOpen(false);
+    const onClose = () => {
+        setOpen(false);
+        props.hideSuccess();
+    }
 
     return (
         <Snackbar open={open}>
@@ -38,5 +43,12 @@ export const SuccessMessage = props => {
 
 SuccessMessage.propTypes = {
     show: PropTypes.bool,
-    message: PropTypes.string
+    message: PropTypes.string,
+    hideSuccess: PropTypes.func.isRequired
 }
+
+const mapDispatchToProps = {
+    hideSuccess
+}
+
+export default connect(undefined, mapDispatchToProps)(SuccessMessage);
