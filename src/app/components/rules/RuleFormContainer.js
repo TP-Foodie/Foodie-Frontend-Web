@@ -21,8 +21,8 @@ const RuleFormContainer = () => {
                 const operatorsResponse = await httpResources.rulesData("operators");
                 const consequenceTypesResponse = await httpResources.rulesData("consequence_types");
                 setVariables(Parser.parseRuleVariables(variablesResponse.data));
-                setOperators(operatorsResponse.data);
-                setConsequenceTypes(consequenceTypesResponse.data);
+                setOperators(Parser.parseRuleOperators(operatorsResponse.data));
+                setConsequenceTypes(Parser.parseRuleConsequenceTypes(consequenceTypesResponse.data));
             } catch (error) {
                 handleError(error);
             }

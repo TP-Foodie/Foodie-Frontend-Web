@@ -27,10 +27,21 @@ const OPERATORS_NAMES = {
     "IT": "Igual a"
 };
 
+const CONSEQUENCE_TYPES_NAMES = {
+    "V": "Valor fijo",
+    "P": "Porcentaje"
+}
+
 export class Parser {
     static buildRuleRequest = values => {
         return {
-            conditions: values.conditions,
+            conditions: values.conditions.map(condition => {
+                return {
+                    variable: condition.variable.value,
+                    operator: condition.operator.value,
+                    condition_value: condition.value
+                }
+            }),
             consequence: {
                 consequence_type: values.consequence.type,
                 value: values.consequence.value
@@ -48,6 +59,14 @@ export class Parser {
     static parseRuleOperators = operators => {
         return operators.map(operator => {
             return {value: operator, name: OPERATORS_NAMES[operator]}
+        })
+    }
+
+    static parseRuleConsequenceTypes = types => {
+        return types.map(type => {
+            return {
+                value: type, name: CONSEQUENCE_TYPES_NAMES[type]
+            }
         })
     }
 }
