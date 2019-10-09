@@ -40,6 +40,10 @@ class HttpResources {
     rulesData = dataName => {
         return this.client.get(RULES_URL + dataName + '/');
     }
+
+    rule = ruleId => {
+        return this.client.get(RULES_URL + ruleId);
+    }
 }
 
 const httpResources = new HttpResources(new HttpClient());

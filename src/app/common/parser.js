@@ -50,15 +50,23 @@ export class Parser {
         }
     };
 
+    static parseVariable = variable => {
+        return {value: variable, name: VARIABLES_NAMES[variable]}
+    }
+
+    static parseOperator = operator => {
+        return {value: operator, name: OPERATORS_NAMES[operator]}
+    }
+
     static parseRuleVariables = variables => {
         return variables.map(variable => {
-            return {value: variable, name: VARIABLES_NAMES[variable]}
+            return Parser.parseVariable(variable);
         })
     };
 
     static parseRuleOperators = operators => {
         return operators.map(operator => {
-            return {value: operator, name: OPERATORS_NAMES[operator]}
+            return Parser.parseOperator(operator)
         })
     }
 
@@ -68,5 +76,23 @@ export class Parser {
                 value: type, name: CONSEQUENCE_TYPES_NAMES[type]
             }
         })
+    }
+
+    static parseRule = rule => {
+        return {
+            name: rule.name,
+            conditions: rule.conditions.map((condition, index) => {
+                return {
+                    variable: Parser.parseVariable(condition.variable),
+                    operator: Parser.parseOperator(condition.operator),
+                    value: condition.condition_value,
+                    id: index
+                };
+            }),
+            consequence: {
+                type: rule.consequence_type,
+                value: rule.consequence_value
+            }
+        }
     }
 }

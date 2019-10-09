@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
 import { TextField } from "@material-ui/core";
@@ -13,10 +13,20 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export const RuleFormView = props => {
-    const [consequence, setConsequence] = useState(props.initialData ? props.initialData.consequence : {type: "V", value: 0});
-    const [conditions, setConditions] = useState(props.initialData ? props.initialData.conditions : []);
+    const [consequence, setConsequence] = useState({type: "V", value: 0});
+    const [conditions, setConditions] = useState([]);
     const [active, setActive] = useState(true);
-    const [name, setName] = useState(props.initialData ? props.initialData.name : "");
+    const [name, setName] = useState("");
+    const {initialData} = props;
+    
+    useEffect(() => {
+        function initialize() {
+            setName(initialData.name);
+            setConditions(initialData.conditions);
+            setConsequence(initialData.consequence);
+        }
+        if (initialData) initialize();
+    }, [initialData, setName, setConsequence, setConditions]);
 
     const renderDivider = title => {
         return <Grid item style={styles.divider}>

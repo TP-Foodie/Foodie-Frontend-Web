@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import { handleError } from "../../handlers/handleError";
 import httpResources from "../../http/httpResources";
+import {Parser} from "../../common/parser";
 
 const RuleDetailsContainer = props => {
     const [rule, setRule] = useState(undefined);
@@ -17,7 +18,7 @@ const RuleDetailsContainer = props => {
             setLoading(true);
             try {
                 const {data} = await httpResources.rule(ruleId);
-                setRule(data);
+                setRule(Parser.parseRule(data));
             } catch (error) {
                 handleError(error)
             }
