@@ -40,8 +40,7 @@ const RuleFormContainer = props => {
     const uploadChanges = async values => {
         props.setLoading(true);
         try {
-            const {data} = await httpResources.addRule(values);
-            // TODO: set new rule
+            await httpResources.addRule(values);
             props.handleSuccess(SUCCESS_MESSAGE);
             props.history.goBack();
         } catch (error) {
