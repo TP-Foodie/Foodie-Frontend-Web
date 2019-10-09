@@ -17,10 +17,11 @@ const RuleFormContainer = props => {
     const [variables, setVariables] = useState([]);
     const [operators, setOperators] = useState([]);
     const [consequenceTypes, setConsequenceTypes] = useState([]);
+    const {setLoading} = props;
 
     useEffect(() => {
         async function fetchData() {
-            props.setLoading(true);
+            setLoading(true);
             try {
                 const variablesResponse = await  httpResources.rulesData("variables");
                 const operatorsResponse = await httpResources.rulesData("operators");
@@ -32,10 +33,10 @@ const RuleFormContainer = props => {
             } catch (error) {
                 handleError(error);
             }
-            props.setLoading(false);
+            setLoading(false);
         }
         fetchData();
-    }, [setVariables, setOperators, setConsequenceTypes, props.setLoading]);
+    }, [setVariables, setOperators, setConsequenceTypes, setLoading]);
 
     const uploadChanges = async values => {
         props.setLoading(true);

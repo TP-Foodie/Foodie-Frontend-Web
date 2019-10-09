@@ -9,20 +9,22 @@ import httpResources from "../../http/httpResources";
 
 const RuleDetailsContainer = props => {
     const [rule, setRule] = useState(undefined);
+    const {setLoading} = props;
+    const ruleId = props.match.params.ruleId;
 
     useEffect(() => {
         async function fetchRule() {
-            props.setLoading(true);
+            setLoading(true);
             try {
-                const {data} = await httpResources.rule(props.match.params.ruleId);
+                const {data} = await httpResources.rule(ruleId);
                 setRule(data);
             } catch (error) {
                 handleError(error)
             }
-            props.setLoading(false);
+            setLoading(false);
         }
         fetchRule()
-    }, [props.setLoading, setRule]);
+    }, [setLoading, setRule, ruleId]);
 
     return (
         <RuleFormContainer
