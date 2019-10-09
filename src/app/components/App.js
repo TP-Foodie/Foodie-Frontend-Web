@@ -6,7 +6,7 @@ import {LOGIN, PLACES, WELCOME, USERS, RULES, RULE_CREATE} from "../navigation/r
 import {WelcomeView} from "./welcome/WelcomeView";
 import PlacesContainer from "./places/PlacesContainer";
 import UsersContainer from "./users/UsersContainer";
-import {UserDetailContainer} from "./users/UserDetailContainer";
+import UserDetailContainer from "./users/UserDetailContainer";
 import PrivateRoute from "./utils/PrivateRoute";
 import 'typeface-roboto';
 import GeneralLayout from './utils/GeneralLayout';
