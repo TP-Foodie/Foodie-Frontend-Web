@@ -12,7 +12,7 @@ export class UserDetailContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { user: {}, showSuccess: false };
+        this.state = { user: {} };
     }
 
     cleanFields(value){
@@ -29,7 +29,6 @@ export class UserDetailContainer extends React.Component {
                 phone: this.cleanFields(this.state.user.phone),
             }
             await httpResources.updateUser(this.state.user.id, JSON.stringify(data));
-            this.setState({showSuccess: true});
         } catch (error) {
             handleError(error);
         }
@@ -58,7 +57,6 @@ export class UserDetailContainer extends React.Component {
                     user={this.state.user}
                     onSubmit={this.updateUser}
                     onChange={this.handleChange}/>
-                <SuccessMessage message={"Usuario actualizado con exito!"} show={this.state.showSuccess}/>
             </div>
         );
     }

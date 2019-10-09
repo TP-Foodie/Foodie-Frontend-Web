@@ -4,11 +4,15 @@ import { validate } from "validate.js";
 import { CONDITION_RULES, RULE_RULES } from "../../common/rules";
 import {connect} from "react-redux";
 import {setLoading} from "../../redux/reducers/loading";
+import {handleSuccess} from "../../redux/reducers/handlers";
 import {handleError} from "../../handlers/handleError";
 import httpResources from "../../http/httpResources";
 import {Parser} from "../../common/parser";
+import PropTypes from "prop-types";
 
-const RuleFormContainer = () => {
+const SUCCESS_MESSAGE = "Regla creada con exito!";
+
+const RuleFormContainer = props => {
     const [errors, setErrors] = useState({});
     const [variables, setVariables] = useState([]);
     const [operators, setOperators] = useState([]);
@@ -16,28 +20,34 @@ const RuleFormContainer = () => {
 
     useEffect(() => {
         async function fetchData() {
+            props.setLoading(true);
             try {
                 const variablesResponse = await  httpResources.rulesData("variables");
                 const operatorsResponse = await httpResources.rulesData("operators");
                 const consequenceTypesResponse = await httpResources.rulesData("consequence_types");
+
                 setVariables(Parser.parseRuleVariables(variablesResponse.data));
                 setOperators(Parser.parseRuleOperators(operatorsResponse.data));
                 setConsequenceTypes(Parser.parseRuleConsequenceTypes(consequenceTypesResponse.data));
             } catch (error) {
                 handleError(error);
             }
+            props.setLoading(false);
         }
         fetchData();
     }, [setVariables, setOperators, setConsequenceTypes]);
 
     const uploadChanges = async values => {
+        props.setLoading(true);
         try {
-            setLoading(true);
             const {data} = await httpResources.addRule(values);
             // TODO: set new rule
+            props.handleSuccess(SUCCESS_MESSAGE);
+            props.history.goBack();
         } catch (error) {
             handleError(error)
         }
+        props.setLoading(false);
     }
 
     const handleSubmit = values => {
@@ -65,6 +75,14 @@ const RuleFormContainer = () => {
     />
 }
 
+RuleFormContainer.propTypes = {
+    history: PropTypes.object.isRequired,
+    loading: PropTypes.bool,
+    setLoading: PropTypes.func.isRequired,
+    handleSuccess: PropTypes.func.isRequired,
+
+}
+
 const mapStateToProps = state => {
     return {
         loading: state.loading.loading,
@@ -72,7 +90,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    setLoading
+    setLoading,
+    handleSuccess
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RuleFormContainer);
