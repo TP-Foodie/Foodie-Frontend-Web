@@ -28,7 +28,9 @@ export const SuccessMessage = props => {
                 message={
                     <span id="client-snackbar" style={{display: "flex", alignItems: "center"}}>
                         <CheckCircleIcon/>
-                        {props.message}
+                        <div style={{paddingLeft: 10}}>
+                            {props.message}
+                        </div>
                     </span>
                 }
                 action={[
