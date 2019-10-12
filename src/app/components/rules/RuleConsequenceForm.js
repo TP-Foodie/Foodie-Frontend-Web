@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 export const RuleConsequenceForm = props => {
     const [valueType, setValueType] = useState(-1);
     const {consequence, errors, types} = props;
-
+    
     const onEditField = (field, value) => {
         let editedValue = value;
         if (field === "value") { 

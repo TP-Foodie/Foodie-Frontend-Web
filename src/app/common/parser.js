@@ -37,8 +37,8 @@ export class Parser {
         return {
             conditions: values.conditions.map(condition => {
                 return {
-                    variable: condition.variable.value,
-                    operator: condition.operator.value,
+                    variable: condition.variable,
+                    operator: condition.operator,
                     condition_value: condition.value
                 }
             }),
@@ -58,6 +58,10 @@ export class Parser {
         return {value: operator, name: OPERATORS_NAMES[operator]}
     }
 
+    static parseConsequenceType = type => {
+        return {value: type, name: CONSEQUENCE_TYPES_NAMES[type]};
+    }
+
     static parseRuleVariables = variables => {
         return variables.map(variable => {
             return Parser.parseVariable(variable);
@@ -72,9 +76,7 @@ export class Parser {
 
     static parseRuleConsequenceTypes = types => {
         return types.map(type => {
-            return {
-                value: type, name: CONSEQUENCE_TYPES_NAMES[type]
-            }
+            return Parser.parseConsequenceType(type);
         })
     }
 
@@ -83,15 +85,15 @@ export class Parser {
             name: rule.name,
             conditions: rule.conditions.map((condition, index) => {
                 return {
-                    variable: Parser.parseVariable(condition.variable),
-                    operator: Parser.parseOperator(condition.operator),
+                    variable: condition.variable,
+                    operator:condition.operator,
                     value: condition.condition_value,
                     id: index
                 };
             }),
             consequence: {
-                type: rule.consequence_type,
-                value: rule.consequence_value
+                type: rule.consequence.consequence_type,
+                value: rule.consequence.value
             }
         }
     }

@@ -45,7 +45,7 @@ export const RulesListView = props => {
                                     <TableCell align="center">{rule.name}</TableCell>
                                     <TableCell align="center">{getActiveIcon(rule.active)}</TableCell>
                                     <TableCell align="center">
-                                        <IconButton>
+                                        <IconButton component={Link} to={`${RULE_EDIT}/${rule.id}`}>
                                             <ChevronRight/>
                                         </IconButton>
                                     </TableCell>
