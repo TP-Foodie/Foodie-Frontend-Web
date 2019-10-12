@@ -82,6 +82,7 @@ export class Parser {
 
     static parseRule = rule => {
         return {
+            id: rule.id,
             name: rule.name,
             conditions: rule.conditions.map((condition, index) => {
                 return {

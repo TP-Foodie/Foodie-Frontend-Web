@@ -37,6 +37,10 @@ class HttpResources {
         return this.client.post(RULES_URL, Parser.buildRuleRequest(values));
     }
 
+    updateRule = (values, ruleId) => {
+        return this.client.patch(RULES_URL + ruleId, Parser.buildRuleRequest(values));
+    }
+
     rulesData = dataName => {
         return this.client.get(RULES_URL + dataName + '/');
     }

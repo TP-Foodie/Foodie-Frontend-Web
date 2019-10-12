@@ -41,8 +41,8 @@ const RuleFormContainer = props => {
     const uploadChanges = async values => {
         props.setLoading(true);
         try {
-            await httpResources.addRule(values);
-            props.handleSuccess(SUCCESS_MESSAGE);
+            props.initialRule ? await httpResources.updateRule(values, props.initialRule.id) : await httpResources.addRule(values);
+            props.handleSuccess(props.successMessage || SUCCESS_MESSAGE);
             props.history.goBack();
         } catch (error) {
             handleError(error)
@@ -81,7 +81,8 @@ RuleFormContainer.propTypes = {
     loading: PropTypes.bool,
     setLoading: PropTypes.func.isRequired,
     handleSuccess: PropTypes.func.isRequired,
-    initialRule: PropTypes.object
+    initialRule: PropTypes.object,
+    successMessage: PropTypes.string
 }
 
 const mapStateToProps = state => {

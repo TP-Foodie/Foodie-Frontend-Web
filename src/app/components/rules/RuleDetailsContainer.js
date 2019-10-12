@@ -8,6 +8,8 @@ import { handleError } from "../../handlers/handleError";
 import httpResources from "../../http/httpResources";
 import {Parser} from "../../common/parser";
 
+const SUCCESS_MESSAGE = "Regla actualizada con exito!";
+
 const RuleDetailsContainer = props => {
     const [rule, setRule] = useState(undefined);
     const {setLoading} = props;
@@ -31,6 +33,7 @@ const RuleDetailsContainer = props => {
         <RuleFormContainer
             {...props}
             initialRule={rule}
+            successMessage={SUCCESS_MESSAGE}
         />
     );
 }
