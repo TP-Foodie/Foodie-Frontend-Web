@@ -24,6 +24,7 @@ export const RuleFormView = props => {
             setName(initialData.name);
             setConditions(initialData.conditions);
             setConsequence(initialData.consequence);
+            setActive(initialData.active);
         }
         if (initialData) initialize();
     }, [initialData, setName, setConsequence, setConditions]);

@@ -46,7 +46,8 @@ export class Parser {
                 consequence_type: values.consequence.type,
                 value: values.consequence.value
             },
-            name: values.name
+            name: values.name,
+            active: values.active,
         }
     };
 
@@ -95,7 +96,8 @@ export class Parser {
             consequence: {
                 type: rule.consequence.consequence_type,
                 value: rule.consequence.value
-            }
+            },
+            active: rule.active
         }
     }
 }
