@@ -13,6 +13,7 @@ import Fab from "@material-ui/core/Fab";
 import {styles} from "../../styles/common";
 import {Link} from "react-router-dom";
 import { RULE_CREATE, RULE_EDIT } from "../../navigation/routes";
+import {NoContent} from "../utils/NoContent";
 
 export const RulesListView = props => {
     const {rules} = props;
@@ -21,8 +22,8 @@ export const RulesListView = props => {
         return isActive ? <CheckCircle style={{color: "green"}}/> : <RemoveCircle color={"error"}/>
     }
 
-    return (
-        <Grid>
+    const renderContent = () => {
+        return props.rules.length ? (
             <Grid
                 className={"container"}
                 container
@@ -55,13 +56,19 @@ export const RulesListView = props => {
                         </Table>
                     </Paper>
                 </Grid>
-                <Grid item>
-                    <Fab style={styles.create_fab} component={Link} to={RULE_CREATE}>
-                        <Add/>
-                    </Fab>
-                </Grid>
             </Grid>
+        ) : <NoContent/>;
+    }
+
+    return (
+        <Grid>
+            {renderContent()}
+            <Grid item>
+                <Fab style={styles.create_fab} component={Link} to={RULE_CREATE}>
+                    <Add/>
+                </Fab>
             </Grid>
+        </Grid>
     );
 }
 
