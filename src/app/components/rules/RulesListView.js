@@ -12,7 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import {styles} from "../../styles/common";
 import {Link} from "react-router-dom";
-import { RULE_CREATE, RULE_EDIT } from "../../navigation/routes";
+import { RULE_CREATE } from "../../navigation/routes";
 
 export const RulesListView = props => {
     const {rules} = props;
