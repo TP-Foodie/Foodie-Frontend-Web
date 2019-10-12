@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import httpResources from "../../http/httpResources";
 import {handleError} from "../../handlers/handleError";
 import PropTypes from "prop-types";
+import {NoContent} from "../utils/NoContent";
 
 const RulesListContainer = props => {
     const [rules, setRules] = useState([]);
@@ -25,7 +26,7 @@ const RulesListContainer = props => {
     }, [setLoading])
 
     return (
-        <RulesListView rules={rules}/>
+        rules.length > 0 ? <RulesListView rules={rules}/> : <NoContent/>
     );
 }
 
