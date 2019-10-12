@@ -9,11 +9,24 @@ import httpResources from "../../http/httpResources";
 import {Parser} from "../../common/parser";
 
 const SUCCESS_MESSAGE = "Regla actualizada con exito!";
+const SUCCESS_DELETE_MESSAGE = "Regla eliminada con exito!"
 
 const RuleDetailsContainer = props => {
     const [rule, setRule] = useState(undefined);
     const {setLoading} = props;
     const ruleId = props.match.params.ruleId;
+
+    const handleDelete = async () => {
+        setLoading(true);
+        try {
+            await httpResources.deleteRule(ruleId);
+            handleSuccess(SUCCESS_DELETE_MESSAGE);
+            props.history.goBack();
+        } catch (error) {
+            handleError(error);
+        }
+        setLoading(false);
+    }
 
     useEffect(() => {
         async function fetchRule() {
@@ -34,6 +47,7 @@ const RuleDetailsContainer = props => {
             {...props}
             initialRule={rule}
             successMessage={SUCCESS_MESSAGE}
+            handleDelete={handleDelete}
         />
     );
 }

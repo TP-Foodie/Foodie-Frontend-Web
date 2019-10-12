@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 export const RuleConditionForm = props => {
     const {errors, conditions, onEdit, onRemove, onAdd} = props;
-    console.log(conditions);
+
     return (
         <Grid item>
             <Grid container direction="column" justify="flex-start" spacing={2}>

@@ -124,7 +124,7 @@ export const RuleFormView = props => {
                     types={props.consequenceTypes}
                 />
             </Grid>
-            <AdminButtonBar handleBack={handleBack} handleSubmit={handleSubmit}/>
+            <AdminButtonBar handleBack={handleBack} handleSubmit={handleSubmit} handleDelete={props.handleDelete}/>
         </Paper>
     );
 }
@@ -132,6 +132,7 @@ export const RuleFormView = props => {
 RuleFormView.propTypes = {
     history: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired,
     variables: PropTypes.array.isRequired,
     operators: PropTypes.array.isRequired,
     consequenceTypes: PropTypes.array.isRequired,

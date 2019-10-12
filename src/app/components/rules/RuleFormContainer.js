@@ -73,6 +73,7 @@ const RuleFormContainer = props => {
         consequenceTypes={consequenceTypes} 
         errors={errors}
         initialData={props.initialRule}
+        handleDelete={props.handleDelete}
     />
 }
 
@@ -81,6 +82,7 @@ RuleFormContainer.propTypes = {
     loading: PropTypes.bool,
     setLoading: PropTypes.func.isRequired,
     handleSuccess: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func,
     initialRule: PropTypes.object,
     successMessage: PropTypes.string
 }
