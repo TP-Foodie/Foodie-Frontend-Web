@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+fimport React, {useState, useEffect} from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
 import { TextField } from "@material-ui/core";
@@ -123,7 +123,7 @@ export const RuleFormView = props => {
                     errors={errors}
                     onEditField={editConsequence}
                     types={props.consequenceTypes}
-                    variables={variables.filter(variable => conditions.some(condition => condition.variable == variable.value))}
+                    variables={variables.filter(variable => conditions.some(condition => condition.variable === variable.value))}
                 />
             </Grid>
             <AdminButtonBar handleBack={handleBack} handleSubmit={handleSubmit} handleDelete={props.handleDelete}/>

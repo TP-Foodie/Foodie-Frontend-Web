@@ -19,7 +19,7 @@ export const RuleConsequenceForm = props => {
     }
 
     const renderValue = () => {
-        return consequence.type == "PV" ? (
+        return consequence.type === "PV" ? (
             <React.Fragment>
                 <Grid item xs={2}>
                     <TextField 
