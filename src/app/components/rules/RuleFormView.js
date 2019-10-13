@@ -123,6 +123,7 @@ export const RuleFormView = props => {
                     errors={errors}
                     onEditField={editConsequence}
                     types={props.consequenceTypes}
+                    variables={variables.filter(variable => conditions.some(condition => condition.variable == variable.value))}
                 />
             </Grid>
             <AdminButtonBar handleBack={handleBack} handleSubmit={handleSubmit} handleDelete={props.handleDelete}/>

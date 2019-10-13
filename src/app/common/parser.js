@@ -29,7 +29,8 @@ const OPERATORS_NAMES = {
 
 const CONSEQUENCE_TYPES_NAMES = {
     "V": "Valor fijo",
-    "P": "Porcentaje"
+    "P": "Porcentaje",
+    "PV": "Valor por unidad"
 }
 
 export class Parser {

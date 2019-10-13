@@ -48,6 +48,10 @@ class HttpResources {
     rule = ruleId => {
         return this.client.get(RULES_URL + ruleId);
     }
+
+    deleteRule = ruleId => {
+        return this.client.delete(RULES_URL + ruleId);
+    }
 }
 
 const httpResources = new HttpResources(new HttpClient());
