@@ -9,6 +9,10 @@ export const styles = {
         paddingRight: 10
     },
 
+    pd_left: {
+        paddingLeft: 20
+    },
+
     email_input: {
         marginTop: 10,
         paddingTop: 20,
@@ -45,6 +49,14 @@ export const styles = {
 
     main_color: {
         color: "#E3678A"
+    },
+
+    create_fab: {
+        backgroundColor: "#5e79ff",
+        position: "fixed",
+        bottom: 1,
+        right: 1,
+        margin: 20
     },
 
     login_box: {
@@ -99,5 +111,20 @@ export const styles = {
     user_details_cont: {
         margin: 10,
         padding: 10
-    }
+    },
+
+    container: {
+        margin: 20,
+        padding: 20
+    },
+
+    divider: {
+        backgroundColor: "#328ca8",
+        color: "white",
+        marginTop: 20,
+        marginBottom: 20,
+        marginRight: 8,
+        marginLeft: 8,
+        paddingLeft: 15,
+    },
 };

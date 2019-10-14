@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import httpResources from "../../http/httpResources";
 import UserDetailView from "./UserDetailView";
 import {handleError} from "../../handlers/handleError";
-import {GeneralLayout} from "../utils/GeneralLayout";
-import { SuccessMessage } from "../utils/SuccessMessage";
+import {setLoading} from "../../redux/reducers/loading";
+import {handleSuccess} from "../../redux/reducers/handlers";
+import {connect} from "react-redux";
+
+const SUCCESS_MESSAGE = "Usuario actualizado con exito!";
 
 export class UserDetailContainer extends React.Component {
     static propTypes = {
@@ -13,7 +16,7 @@ export class UserDetailContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { user: {}, showSuccess: false };
+        this.state = { user: {} };
     }
 
     cleanFields(value){
@@ -21,6 +24,7 @@ export class UserDetailContainer extends React.Component {
     }
 
     updateUser = async () => {
+        this.props.setLoading(true);
         try {
             const data = {
                 name: this.cleanFields(this.state.user.name),
@@ -30,10 +34,12 @@ export class UserDetailContainer extends React.Component {
                 phone: this.cleanFields(this.state.user.phone),
             }
             await httpResources.updateUser(this.state.user.id, JSON.stringify(data));
-            this.setState({showSuccess: true});
+            this.props.handleSuccess(SUCCESS_MESSAGE);
+            this.props.history.goBack();
         } catch (error) {
             handleError(error);
         }
+        this.props.setLoading(false);
     }
 
     componentDidMount = async () => {
@@ -53,14 +59,26 @@ export class UserDetailContainer extends React.Component {
 
     render() {
         return (
-            <GeneralLayout className={"container"}>
+            <div>
                 <UserDetailView
-                        className={"user_detail"}
-                        user={this.state.user}
-                        onSubmit={this.updateUser}
-                        onChange={this.handleChange}/>
-                <SuccessMessage message={"Usuario actualizado con exito!"} show={this.state.showSuccess}/>
-            </GeneralLayout>
+                    className={"user_detail"}
+                    user={this.state.user}
+                    onSubmit={this.updateUser}
+                    onChange={this.handleChange}/>
+            </div>
         );
     }
 }
+
+UserDetailContainer.propTypes = {
+    setLoading: PropTypes.func.isRequired,
+    handleSuccess: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
+}
+
+const mapDispatchToProps = {
+    setLoading,
+    handleSuccess,
+}
+
+export default connect(undefined, mapDispatchToProps)(UserDetailContainer)

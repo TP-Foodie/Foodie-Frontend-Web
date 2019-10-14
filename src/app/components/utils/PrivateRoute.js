@@ -13,7 +13,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
 }
 
 PrivateRoute.propTypes = {
-    component: PropTypes.object
+    component: PropTypes.oneOfType([PropTypes.object, PropTypes.func])
 }
 
 export default PrivateRoute;

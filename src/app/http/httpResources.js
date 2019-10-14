@@ -1,8 +1,10 @@
 import {HttpClient} from "./httpClient";
+import {Parser} from "../common/parser";
 
 const PLACES_URL = "/places/";
 const USERS_URL = "/users/";
 const LOGIN_URL = "/auth/";
+const RULES_URL = "/rules/"
 
 class HttpResources {
     constructor(client) {
@@ -25,6 +27,30 @@ class HttpResources {
 
     login = (email, password) => {
         return this.client.post(LOGIN_URL, {email, password});
+    }
+
+    rules = () => {
+        return this.client.get(RULES_URL);
+    }
+
+    addRule = values => {
+        return this.client.post(RULES_URL, Parser.buildRuleRequest(values));
+    }
+
+    updateRule = (values, ruleId) => {
+        return this.client.patch(RULES_URL + ruleId, Parser.buildRuleRequest(values));
+    }
+
+    rulesData = dataName => {
+        return this.client.get(RULES_URL + dataName + '/');
+    }
+
+    rule = ruleId => {
+        return this.client.get(RULES_URL + ruleId);
+    }
+
+    deleteRule = ruleId => {
+        return this.client.delete(RULES_URL + ruleId);
     }
 }
 

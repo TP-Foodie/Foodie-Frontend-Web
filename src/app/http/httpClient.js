@@ -42,4 +42,8 @@ export class HttpClient {
     patch = (url, data) => {
         return this.axiosInstance.patch(url, data);
     }
+
+    delete = url => {
+        return this.axiosInstance.delete(url);
+    }
 }
