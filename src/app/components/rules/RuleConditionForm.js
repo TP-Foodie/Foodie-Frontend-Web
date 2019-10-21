@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { Add, Delete } from "@material-ui/icons";
 import Grow from '@material-ui/core/Grow';
 import PropTypes from "prop-types";
+import RuleConditionValue from "./RuleConditionValue";
 
 export const RuleConditionForm = props => {
     const {errors, conditions, onEdit, onRemove, onAdd} = props;
@@ -45,14 +46,10 @@ export const RuleConditionForm = props => {
                                 </TextField>
                             </Grid>
                             <Grid item xs={5}>
-                                <TextField
-                                    label={"Seleccione valor"}
-                                    fullWidth
-                                    variant="outlined"
-                                    value={conditions.find(current => current.id === condition.id).value}
+                                <RuleConditionValue
+                                    error={errors[condition.id] ? errors[condition.id].value : null}
                                     onChange={event => onEdit("value", event.target.value, condition.id)}
-                                    helperText={errors[condition.id] ? errors[condition.id].value : null}
-                                    error={errors[condition.id] ? errors[condition.id].value !== undefined : false}
+                                    initialValue={conditions.find(current => current.id === condition.id).value}
                                 />
                             </Grid>
                             <Grid item xs={1}>
