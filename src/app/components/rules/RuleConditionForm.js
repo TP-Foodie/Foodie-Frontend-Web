@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import { TextField, IconButton, Button } from "@material-ui/core";
 import MenuItem from '@material-ui/core/MenuItem';
@@ -8,7 +8,13 @@ import PropTypes from "prop-types";
 import RuleConditionValue from "./RuleConditionValue";
 
 export const RuleConditionForm = props => {
+    const [selectedVariable, setSelectedVariable] = useState();
     const {errors, conditions, onEdit, onRemove, onAdd} = props;
+
+    const onSelectVariable = (event, conditionId) => {
+        setSelectedVariable(event.target.value);
+        onEdit("variable", event.target.value, conditionId)
+    }
 
     return (
         <Grid item>
@@ -24,7 +30,7 @@ export const RuleConditionForm = props => {
                                     fullWidth
                                     variant="outlined"
                                     value={conditions.find(current => current.id === condition.id).variable || ""}
-                                    onChange={event => onEdit("variable", event.target.value, condition.id)}
+                                    onChange={event => onSelectVariable(event, condition.id)}
                                     helperText={errors[condition.id] ? errors[condition.id].variable : null}
                                     error={errors[condition.id] ? errors[condition.id].variable !== undefined : false}
                                 >
@@ -48,8 +54,9 @@ export const RuleConditionForm = props => {
                             <Grid item xs={5}>
                                 <RuleConditionValue
                                     error={errors[condition.id] ? errors[condition.id].value : null}
-                                    onChange={event => onEdit("value", event.target.value, condition.id)}
+                                    onChange={value => onEdit("value", value, condition.id)}
                                     initialValue={conditions.find(current => current.id === condition.id).value}
+                                    type={selectedVariable}
                                 />
                             </Grid>
                             <Grid item xs={1}>

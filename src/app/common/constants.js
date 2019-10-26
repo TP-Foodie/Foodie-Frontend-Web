@@ -9,3 +9,11 @@ export const DAYS_NAMES = [
     {value: 6, name: 'Sabado'},
     {value: 7, name: 'Domingo'}
 ];
+
+export const DATE_FIELDS_TYPES = ["ODA"]
+export const DAY_FIELDS_TYPES = ["TD"]
+export const TIME_FIELDS_TYPES = ["OT", "TT"]
+export const NUMERIC_FIELDS_TYPES = [
+    "UR", "UDT", "UMT", "UA", "DR", "DDT", "DMT", "DA", "DB", "OD", "ODI", "OC"
+]
+export const LOCALIZATION_FIELD_TYPES = ["OP"]
