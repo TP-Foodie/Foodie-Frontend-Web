@@ -10,13 +10,16 @@ const VARIABLES_NAMES = {
     "DB": "Saldo del usuario",
     "CPM": "Pago con efectivo",
     "CRPM": "Pago con tarjeta de credito",
-    "OD": "Duracion de la orden",
-    "ODI": "Distancia de la orden",
-    "OP": "Localizacion de la orden",
+    "OD": "Duracion de la orden (minutos)",
+    "ODI": "Distancia de la orden (kilometros)",
+    "OP": "Localizacion de la orden (ciudad)",
     "ODA": "Fecha de la orden",
     "OT": "Hora de la orden",
     "OC": "Cantidad de productos en la orden",
-    "TD": "Dia de la orden"
+    "TD": "Dia del viaje",
+    "PM": "Metodo de pago",
+    "ORD": "Dia de la orden",
+    "TT": "Hora del viaje",
 };
 
 const OPERATORS_NAMES = {
@@ -45,7 +48,8 @@ export class Parser {
             }),
             consequence: {
                 consequence_type: values.consequence.type,
-                value: values.consequence.value
+                value: values.consequence.value,
+                variable: values.consequence.variable
             },
             name: values.name,
             active: values.active,

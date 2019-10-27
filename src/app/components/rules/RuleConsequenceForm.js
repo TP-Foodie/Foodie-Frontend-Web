@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 
 export const RuleConsequenceForm = props => {
     const [valueType, setValueType] = useState(-1);
-    const [unitValue, setUnitValue] = useState();
     const {consequence, errors, types, variables} = props;
     
     const onEditField = (field, value) => {
@@ -39,8 +38,8 @@ export const RuleConsequenceForm = props => {
                         label={"Unidad"}
                         fullWidth
                         variant="outlined"
-                        value={unitValue || props.variables.length ? props.variables[0].value : null}
-                        onChange={event => setUnitValue(event.target.value)}
+                        value={consequence.variable}
+                        onChange={event => onEditField("variable", event.target.value)}
                     >
                         {variables.map(variable => <MenuItem key={variable.value} value={variable.value}>{variable.name}</MenuItem>)}
                     </TextField>
@@ -52,7 +51,7 @@ export const RuleConsequenceForm = props => {
                     type={"number"}
                     fullWidth
                     variant="outlined"
-                    value={consequence.value}
+                    value={Math.abs(consequence.value)}
                     onChange={event => onEditField("value", event.target.value)}
                     helperText={errors.consequenceValue}
                     error={errors.consequenceValue !== undefined}

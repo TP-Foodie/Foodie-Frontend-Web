@@ -10,10 +10,15 @@ export const DAYS_NAMES = [
     {value: 7, name: 'Domingo'}
 ];
 
+export const PAYMENT_OPTIONS = [
+    {value: "CPM", name: "Efectivo"},
+    {value: "CRPM", name: "Tarjeta"},
+]
+
 export const DATE_FIELDS_TYPES = ["ODA"]
-export const DAY_FIELDS_TYPES = ["TD"]
+export const DAY_FIELDS_TYPES = ["TD", "ORD"]
 export const TIME_FIELDS_TYPES = ["OT", "TT"]
 export const NUMERIC_FIELDS_TYPES = [
     "UR", "UDT", "UMT", "UA", "DR", "DDT", "DMT", "DA", "DB", "OD", "ODI", "OC"
 ]
-export const LOCALIZATION_FIELD_TYPES = ["OP"]
+export const PAYMENT_FIELDS = ["PM"]

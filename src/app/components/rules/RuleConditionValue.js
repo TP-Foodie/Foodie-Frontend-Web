@@ -1,8 +1,8 @@
 import React from "react";
-import {TextField, Grid} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from "prop-types";
-import {DAYS_NAMES, DATE_FIELDS_TYPES, DAY_FIELDS_TYPES, TIME_FIELDS_TYPES, NUMERIC_FIELDS_TYPES, LOCALIZATION_FIELD_TYPES} from "../../common/constants";
+import {DAYS_NAMES, DATE_FIELDS_TYPES, DAY_FIELDS_TYPES, TIME_FIELDS_TYPES, NUMERIC_FIELDS_TYPES, PAYMENT_FIELDS, PAYMENT_OPTIONS} from "../../common/constants";
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
@@ -15,11 +15,11 @@ const RuleConditionValue = props => {
 
     const defaultField = (
         <TextField
-            label={"Seleccione valor"}
+            label={"Escriba una valor"}
             fullWidth
             variant="outlined"
             value={initialValue}
-            onChange={event => onChange(event.target.value)}
+            onChange={event => onChange(event.target.value.toLowerCase())}
             helperText={error ? error : null}
             error={Boolean(error)}
         />
@@ -75,7 +75,7 @@ const RuleConditionValue = props => {
 
     const numericField = (
         <TextField
-            label={"Seleccione valor"}
+            label={"Escriba un valor"}
             fullWidth
             variant="outlined"
             value={initialValue}
@@ -86,42 +86,28 @@ const RuleConditionValue = props => {
         />
     )
 
-    const localizationField = (
-        <Grid container direction="row" spacing={2}>
-            <Grid item>
-                <TextField
-                    label={"latitud"}
-                    fullWidth
-                    variant="outlined"
-                    value={initialValue}
-                    onChange={event => onChange(event.target.value)}
-                    helperText={error ? error : null}
-                    error={Boolean(error)}
-                    type={"number"}
-                />
-            </Grid>
-            <Grid item>
-                <TextField
-                    label={"longitud"}
-                    fullWidth
-                    variant="outlined"
-                    value={initialValue}
-                    onChange={event => onChange(event.target.value)}
-                    helperText={error ? error : null}
-                    error={Boolean(error)}
-                    type={"number"}
-                />
-            </Grid>
-        </Grid>
-    )
+    const paymentField = (
+        <TextField
+            select
+            label={"Seleccione metodo de pago"}
+            fullWidth
+            variant="outlined"
+            value={initialValue}
+            onChange={event => onChange(event.target.value)}
+            helperText={error ? error : null}
+            error={Boolean(error)}
+        >
+            {PAYMENT_OPTIONS.map(method => <MenuItem key={method.value} value={method.value}>{method.name}</MenuItem>)}
+        </TextField>
+    );
 
     const fieldsByType = [
         {types: DATE_FIELDS_TYPES, field: dateField},
         {types: DAY_FIELDS_TYPES, field:dayNameField},
         {types: TIME_FIELDS_TYPES, field: timeField},
         {types: NUMERIC_FIELDS_TYPES, field: numericField},
-        {types: LOCALIZATION_FIELD_TYPES, field: localizationField},
-        {types: [props.type], field: defaultField}
+        {types: PAYMENT_FIELDS, field: paymentField},
+        {types: [props.type], field: defaultField},
     ]
 
     return fieldsByType.find(fieldObj => fieldObj.types.some(type => type === props.type)).field;
@@ -131,7 +117,7 @@ RuleConditionValue.propTypes = {
     error: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     initialValue: PropTypes.string,
-    type: PropTypes.string.isRequired
+    type: PropTypes.string
 }
 
 export default RuleConditionValue
