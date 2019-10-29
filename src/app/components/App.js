@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import {LoginContainer} from "./auth/LoginContainer";
 import {AuthLoadingContainer} from "./auth/AuthLoadingContainer";
-import {LOGIN, PLACES, WELCOME, USERS, RULES, RULE_CREATE, RULE_EDIT} from "../navigation/routes";
+import {LOGIN, PLACES, WELCOME, USERS, RULES, RULE_CREATE, RULE_EDIT, BALANCES} from "../navigation/routes";
 import {WelcomeView} from "./welcome/WelcomeView";
 import PlacesContainer from "./places/PlacesContainer";
 import UsersContainer from "./users/UsersContainer";
@@ -13,6 +13,7 @@ import GeneralLayout from './utils/GeneralLayout';
 import RulesListContainer from './rules/RulesListContainer';
 import RuleFormContainer from './rules/RuleFormContainer';
 import RuleDetailsContainer from './rules/RuleDetailsContainer';
+import {BalanceListContainer} from "./balance/BalanceListContainer";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                     <PrivateRoute path={RULES} component={RulesListContainer} exact/>
                     <PrivateRoute path={RULE_CREATE} component={RuleFormContainer} exact/>
                     <PrivateRoute path={`${RULE_EDIT}/:ruleId`} component={RuleDetailsContainer} exact/>
+                    <PrivateRoute path={BALANCES} component={BalanceListContainer} exact/>
                 </GeneralLayout>
             </Switch>
         </Router>
