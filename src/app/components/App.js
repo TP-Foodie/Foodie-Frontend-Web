@@ -13,7 +13,7 @@ import GeneralLayout from './utils/GeneralLayout';
 import RulesListContainer from './rules/RulesListContainer';
 import RuleFormContainer from './rules/RuleFormContainer';
 import RuleDetailsContainer from './rules/RuleDetailsContainer';
-import {BalanceListContainer} from "./balance/BalanceListContainer";
+import BalanceListContainer from "./balance/BalanceListContainer";
 
 function App() {
   return (
