@@ -30,6 +30,14 @@ export const BalanceListContainer = props => {
         try {
             setLoading(true);
             await httpResources.updateUser(userId, Parser.buildUpdateBalanceRequest(value));
+            const newUserList = users.map(user => {
+                if (user.id === userId) return {
+                    ...user,
+                    balance: value
+                }
+                return user;
+            })
+            setUsers(newUserList);
         } catch {
             handleError();
         }
