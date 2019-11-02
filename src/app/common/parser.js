@@ -101,4 +101,10 @@ export class Parser {
             active: rule.active
         }
     }
+
+    static buildUpdateBalanceRequest = (value) => {
+        return {
+            balance: value,
+        };
+    }
 }
