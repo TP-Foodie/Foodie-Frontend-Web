@@ -27,7 +27,13 @@ export const BalanceListContainer = props => {
 
     const onUpdateBalance = async (valueToAdd, userId) => {
         const value = valueToAdd + (users.find(user => user.id === userId).balance || 0); 
-        await httpResources.updateUser(userId, Parser.buildUpdateBalanceRequest(value));
+        try {
+            setLoading(true);
+            await httpResources.updateUser(userId, Parser.buildUpdateBalanceRequest(value));
+        } catch {
+            handleError();
+        }
+        setLoading(false);
     }
 
     return (
