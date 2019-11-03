@@ -57,7 +57,8 @@ RuleDetailsContainer.propTypes = {
     loading: PropTypes.bool,
     setLoading: PropTypes.func.isRequired,
     handleSuccess: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    handleError: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {

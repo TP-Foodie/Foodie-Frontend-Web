@@ -49,7 +49,7 @@ export const Message = props => {
 Message.propTypes = {
     show: PropTypes.bool,
     message: PropTypes.string,
-    hide: PropTypes.func.isRequired,
+    hideMessage: PropTypes.func.isRequired,
     error: PropTypes.bool
 }
 

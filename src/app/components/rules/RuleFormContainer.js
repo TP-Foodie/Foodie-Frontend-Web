@@ -84,7 +84,8 @@ RuleFormContainer.propTypes = {
     handleSuccess: PropTypes.func.isRequired,
     handleDelete: PropTypes.func,
     initialRule: PropTypes.object,
-    successMessage: PropTypes.string
+    successMessage: PropTypes.string,
+    handleError: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {

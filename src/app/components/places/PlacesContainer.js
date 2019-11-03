@@ -9,7 +9,8 @@ import {handleError} from "../../redux/reducers/handlers";
 
 export class PlacesContainer extends React.Component {
     static propTypes = {
-        setLoading: PropTypes.func.isRequired
+        setLoading: PropTypes.func.isRequired,
+        handleError: PropTypes.func.isRequired
     }
 
     constructor(props) {

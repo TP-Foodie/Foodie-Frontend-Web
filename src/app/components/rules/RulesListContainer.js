@@ -31,6 +31,7 @@ const RulesListContainer = props => {
 
 RulesListContainer.propTypes = {
     setLoading: PropTypes.func.isRequired,
+    handleError: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = {

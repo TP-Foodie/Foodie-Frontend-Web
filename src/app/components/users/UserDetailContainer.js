@@ -73,7 +73,8 @@ export class UserDetailContainer extends React.Component {
 UserDetailContainer.propTypes = {
     setLoading: PropTypes.func.isRequired,
     handleSuccess: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    handleError: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = {

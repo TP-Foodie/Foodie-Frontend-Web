@@ -8,7 +8,8 @@ import PropTypes from "prop-types";
 
 export class UsersContainer extends React.Component {
     static propTypes = {
-        setLoading: PropTypes.func.isRequired
+        setLoading: PropTypes.func.isRequired,
+        handleError: PropTypes.func.isRequired
     }
 
     constructor(props) {

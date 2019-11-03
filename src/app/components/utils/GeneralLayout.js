@@ -118,7 +118,10 @@ GeneralLayout.propTypes = {
 	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     loading: PropTypes.bool,
     successMessage: PropTypes.string,
-    showSuccess: PropTypes.bool
+    showSuccess: PropTypes.bool,
+    showError: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    handleError: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
