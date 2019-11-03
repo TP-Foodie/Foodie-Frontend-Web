@@ -4,12 +4,13 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
-import { green } from '@material-ui/core/colors';
+import ErrorIcon from '@material-ui/icons/Error';
+import { green, red } from '@material-ui/core/colors';
 import PropTypes from "prop-types";
 import {hideSuccess} from "../../redux/reducers/handlers";
 import {connect} from "react-redux";
 
-export const SuccessMessage = props => {
+export const Message = props => {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
@@ -21,13 +22,15 @@ export const SuccessMessage = props => {
         props.hideSuccess();
     }
 
+    const backgroundStyle = {backgroundColor: props.error ? red[600] : green[600]};
+
     return (
         <Snackbar open={open}>
             <SnackbarContent 
-                style={{backgroundColor: green[600]}}
+                style={backgroundStyle}
                 message={
                     <span id="client-snackbar" style={{display: "flex", alignItems: "center"}}>
-                        <CheckCircleIcon/>
+                        {props.error ? <ErrorIcon/> : <CheckCircleIcon/>}
                         <div style={{paddingLeft: 10}}>
                             {props.message}
                         </div>
@@ -43,14 +46,15 @@ export const SuccessMessage = props => {
     );
 }
 
-SuccessMessage.propTypes = {
+Message.propTypes = {
     show: PropTypes.bool,
     message: PropTypes.string,
-    hideSuccess: PropTypes.func.isRequired
+    hide: PropTypes.func.isRequired,
+    error: PropTypes.bool
 }
 
 const mapDispatchToProps = {
     hideSuccess
 }
 
-export default connect(undefined, mapDispatchToProps)(SuccessMessage);
+export default connect(undefined, mapDispatchToProps)(Message);

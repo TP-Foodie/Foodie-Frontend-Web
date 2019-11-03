@@ -20,7 +20,7 @@ import {Link} from "react-router-dom";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {connect} from "react-redux";
-import SuccessMessage from './SuccessMessage';
+import Message from './Message';
 
 const useStyles = makeStyles(styles.generalLayoutStyles);
 const TITLE = "Plataforma de administración Foodie";
@@ -108,7 +108,8 @@ export const GeneralLayout = props => {
                 <div className={classes.toolbar} />
                 {props.children}
             </main>
-            <SuccessMessage message={props.successMessage} show={props.showSuccess}/>
+            <Message message={props.successMessage} show={props.showSuccess} />
+            <Message message={props.errorMessage} show={props.showError} error/>
         </div>
     );
 };
@@ -124,7 +125,8 @@ const mapStateToProps = state => {
     return {
         loading: state.loading.loading,
         successMessage: state.handlers.successMessage,
-        showSuccess: state.handlers.showSuccess
+        errorMessage: state.handlers.errorMessage,
+        showError: state.handlers.showError
     };
 };
 
