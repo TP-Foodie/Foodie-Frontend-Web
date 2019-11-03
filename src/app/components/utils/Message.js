@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ErrorIcon from '@material-ui/icons/Error';
 import { green, red } from '@material-ui/core/colors';
 import PropTypes from "prop-types";
-import {hideSuccess} from "../../redux/reducers/handlers";
+import {hideMessage} from "../../redux/reducers/handlers";
 import {connect} from "react-redux";
 
 export const Message = props => {
@@ -19,7 +19,7 @@ export const Message = props => {
 
     const onClose = () => {
         setOpen(false);
-        props.hideSuccess();
+        props.hideMessage();
     }
 
     const backgroundStyle = {backgroundColor: props.error ? red[600] : green[600]};
@@ -54,7 +54,7 @@ Message.propTypes = {
 }
 
 const mapDispatchToProps = {
-    hideSuccess
+    hideMessage
 }
 
 export default connect(undefined, mapDispatchToProps)(Message);
