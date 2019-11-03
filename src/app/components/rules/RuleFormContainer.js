@@ -5,7 +5,7 @@ import { CONDITION_RULES, RULE_RULES } from "../../common/rules";
 import {connect} from "react-redux";
 import {setLoading} from "../../redux/reducers/loading";
 import {handleSuccess} from "../../redux/reducers/handlers";
-import {handleError} from "../../handlers/handleError";
+import {handleError} from "../../redux/reducers/handlers";
 import httpResources from "../../http/httpResources";
 import {Parser} from "../../common/parser";
 import PropTypes from "prop-types";
@@ -17,7 +17,7 @@ const RuleFormContainer = props => {
     const [variables, setVariables] = useState([]);
     const [operators, setOperators] = useState([]);
     const [consequenceTypes, setConsequenceTypes] = useState([]);
-    const {setLoading} = props;
+    const {setLoading, handleError} = props;
 
     useEffect(() => {
         async function fetchData() {
@@ -36,7 +36,7 @@ const RuleFormContainer = props => {
             setLoading(false);
         }
         fetchData();
-    }, [setVariables, setOperators, setConsequenceTypes, setLoading]);
+    }, [setVariables, setOperators, setConsequenceTypes, setLoading, handleError]);
 
     const uploadChanges = async values => {
         props.setLoading(true);
@@ -95,7 +95,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     setLoading,
-    handleSuccess
+    handleSuccess,
+    handleError
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RuleFormContainer);

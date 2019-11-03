@@ -1,7 +1,7 @@
 import React from "react";
 import httpResources from "../../http/httpResources";
 import {UsersView} from "./UsersView";
-import {handleError} from "../../handlers/handleError";
+import {handleError} from "../../redux/reducers/handlers";
 import {setLoading} from "../../redux/reducers/loading";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -23,7 +23,7 @@ export class UsersContainer extends React.Component {
             this.setState({users: data.users});
             this.props.setLoading(false);
         } catch (error) {
-            handleError(error);
+            this.props.handleError(error);
         }
     };
 
@@ -37,7 +37,8 @@ export class UsersContainer extends React.Component {
 }
 
 const mapDispatchToProps = {
-    setLoading
+    setLoading,
+    handleError,
 };
 
 export default connect(undefined, mapDispatchToProps)(UsersContainer);

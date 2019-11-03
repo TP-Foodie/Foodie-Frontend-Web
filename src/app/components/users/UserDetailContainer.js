@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import httpResources from "../../http/httpResources";
 import UserDetailView from "./UserDetailView";
-import {handleError} from "../../handlers/handleError";
+import {handleError} from "../../redux/reducers/handlers";
 import {setLoading} from "../../redux/reducers/loading";
 import {handleSuccess} from "../../redux/reducers/handlers";
 import {connect} from "react-redux";
@@ -19,7 +19,7 @@ export class UserDetailContainer extends React.Component {
         this.state = { user: {} };
     }
 
-    cleanFields(value){
+    cleanFields(value) {
         return value===undefined || value==null ? '' : value
     }
 
@@ -37,7 +37,7 @@ export class UserDetailContainer extends React.Component {
             this.props.handleSuccess(SUCCESS_MESSAGE);
             this.props.history.goBack();
         } catch (error) {
-            handleError(error);
+            this.props.handleError(error);
         }
         this.props.setLoading(false);
     }
@@ -48,7 +48,7 @@ export class UserDetailContainer extends React.Component {
             const {data} = await httpResources.users(param);
             this.setState({user: data});
         } catch (error) {
-            handleError(error);
+            this.props.handleError(error);
         }
     };
 
@@ -79,6 +79,7 @@ UserDetailContainer.propTypes = {
 const mapDispatchToProps = {
     setLoading,
     handleSuccess,
+    handleError,
 }
 
 export default connect(undefined, mapDispatchToProps)(UserDetailContainer)

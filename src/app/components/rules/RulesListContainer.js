@@ -3,12 +3,12 @@ import { RulesListView } from "./RulesListView";
 import {setLoading} from "../../redux/reducers/loading";
 import {connect} from "react-redux";
 import httpResources from "../../http/httpResources";
-import {handleError} from "../../handlers/handleError";
+import {handleError} from "../../redux/reducers/handlers";
 import PropTypes from "prop-types";
 
 const RulesListContainer = props => {
     const [rules, setRules] = useState([]);
-    const {setLoading} = props;
+    const {setLoading, handleError} = props;
 
     useEffect(() => {
         async function fetch() {
@@ -22,7 +22,7 @@ const RulesListContainer = props => {
             setLoading(false);
         }
         fetch();
-    }, [setLoading])
+    }, [setLoading, handleError])
 
     return (
         <RulesListView rules={rules}/>
@@ -34,7 +34,8 @@ RulesListContainer.propTypes = {
 }
 
 const mapDispatchToProps = {
-    setLoading
+    setLoading,
+    handleError
 };
 
 export default connect(undefined, mapDispatchToProps)(RulesListContainer);

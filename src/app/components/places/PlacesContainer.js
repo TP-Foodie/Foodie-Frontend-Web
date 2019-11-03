@@ -1,11 +1,11 @@
 import React from "react";
 import httpResources from "../../http/httpResources";
 import {PlacesView} from "./PlacesView";
-import {handleError} from "../../handlers/handleError";
 import {NoContent} from "../utils/NoContent";
 import {setLoading} from "../../redux/reducers/loading";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {handleError} from "../../redux/reducers/handlers";
 
 export class PlacesContainer extends React.Component {
     static propTypes = {
@@ -24,7 +24,7 @@ export class PlacesContainer extends React.Component {
             this.setState({places: data});
             this.props.setLoading(false);
         } catch (error) {
-            handleError(error);
+            this.props.handleError(error);
         }
     };
 
@@ -36,7 +36,8 @@ export class PlacesContainer extends React.Component {
 }
 
 const mapDispatchToProps = {
-    setLoading
+    setLoading,
+    handleError
 };
 
 export default connect(undefined, mapDispatchToProps)(PlacesContainer);
