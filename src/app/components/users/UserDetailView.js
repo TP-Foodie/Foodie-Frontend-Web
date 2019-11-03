@@ -66,7 +66,7 @@ export class UserDetailView extends React.Component{
             <Paper className="user-detail" style={styles.user_details_cont} elevation={5}>
                 <Grid container direction={"column"} justify={"center"} alignItems={"stretch"} style={styles.mg_full}>
                     <Grid item align="center">
-                        <Avatar style={styles.bigAvatar}>{name ? name.charAt(0) + last_name.charAt(0) : ""}</Avatar>
+                        <Avatar style={styles.bigAvatar}>{name && last_name ? name.charAt(0).toUpperCase() + last_name.charAt(0).toUpperCase() : ""}</Avatar>
                     </Grid>
 
                     {
