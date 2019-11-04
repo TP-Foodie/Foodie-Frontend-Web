@@ -16,7 +16,7 @@ class HttpResources {
     }
 
     updateUser = (id, user) => {
-        return this.client.put(`${USERS_URL}${id}`, user)
+        return this.client.patch(`${USERS_URL}${id}`, user)
     }
 
     users = (id) => {

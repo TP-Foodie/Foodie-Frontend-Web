@@ -10,12 +10,12 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {styles} from "../../styles/common";
-import {Map, Person, PlaylistAddCheck} from "@material-ui/icons";
+import {AttachMoney, Map, Person, PlaylistAddCheck} from "@material-ui/icons";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
-import {PLACES, USERS, RULES} from "../../navigation/routes";
+import {PLACES, USERS, RULES, BALANCES} from "../../navigation/routes";
 import {Link} from "react-router-dom";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -27,13 +27,15 @@ const TITLE = "Plataforma de administración Foodie";
 const MODULES = {
     'Usuarios': <Person/>,
     'Lugares': <Map/>,
-    'Reglas': <PlaylistAddCheck/>
+    'Reglas': <PlaylistAddCheck/>,
+    'Balances': <AttachMoney/>,
 };
 
 const ROUTES_BY_MODULES = {
     'Lugares': PLACES,
     'Usuarios': USERS,
     'Reglas': RULES,
+    'Balances': BALANCES,
 };
 
 export const GeneralLayout = props => {
@@ -53,7 +55,7 @@ export const GeneralLayout = props => {
         handleClose();
         localStorage.clear();
         window.location.reload();
-    }
+    };
 
     return (
         <div className={classes.root}>
