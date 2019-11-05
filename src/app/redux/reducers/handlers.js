@@ -1,5 +1,7 @@
 const HANDLE_SUCCESS = "HANDLE_SUCCESS";
-const CLOSE_SUCCESS_MESSAGE = "CLOSE_SUCCESS_MESSAGE";
+const CLOSE_MESSAGE = "CLOSE_MESSAGE";
+const HANDLE_ERROR = "HANDLE_ERROR";
+const DEFAULT_ERROR_MESSAGE = "Ups! Algo salio mal :(";
 
 export const handlers = (state, action) => {
     switch (action.type) {
@@ -9,10 +11,17 @@ export const handlers = (state, action) => {
                 showSuccess: true,
                 successMessage: action.message
             };
-        case CLOSE_SUCCESS_MESSAGE:
+        case HANDLE_ERROR:
             return {
                 ...state,
-                showSuccess: false
+                showError: true,
+                errorMessage: DEFAULT_ERROR_MESSAGE
+            }
+        case CLOSE_MESSAGE:
+            return {
+                ...state,
+                showSuccess: false,
+                showError: false,
             }
         default:
             return state || {showSuccess: false};
@@ -26,8 +35,15 @@ export const handleSuccess = message => {
     }
 }
 
-export const hideSuccess = () => {
+export const hideMessage = () => {
     return {
-        type: CLOSE_SUCCESS_MESSAGE,
+        type: CLOSE_MESSAGE,
+    }
+}
+
+export const handleError = (error) => {
+    return {
+        type: HANDLE_ERROR,
+        error
     }
 }
