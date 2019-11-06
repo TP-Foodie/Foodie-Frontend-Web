@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {BalanceListView} from "./BalanceListView";
 import httpResources from "../../http/httpResources";
-import {handleError} from "../../handlers/handleError";
+import {handleError} from "../../redux/reducers/handlers";
 import PropTypes from "prop-types";
 import {setLoading} from "../../redux/reducers/loading";
 import {connect} from "react-redux";
