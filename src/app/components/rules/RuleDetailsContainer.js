@@ -68,7 +68,7 @@ const RuleDetailsContainer = props => {
                         onChange={handleTabChange}
                         centered
                         >
-                            {versions.slice(0, -1).map((version, index) => <Tab label={`${"Version"} ${index + 1}`}/>)}
+                            {versions.slice(0, -1).map((version, index) => <Tab key={index} label={`${"Version"} ${index + 1}`}/>)}
                             <Tab label="Version Actual" />
                     </Tabs>
                 </Paper>
