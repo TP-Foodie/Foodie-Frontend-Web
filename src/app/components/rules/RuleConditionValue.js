@@ -65,7 +65,7 @@ const RuleConditionValue = props => {
                 label="Seleccione una hora"
                 inputVariant="outlined"
                 value={initialValue}
-                onChange={onChange}
+                onChange={time => onChange(parseDate(time).toString())}
                 fullWidth
                 KeyboardButtonProps={{
                     'aria-label': 'change time',
