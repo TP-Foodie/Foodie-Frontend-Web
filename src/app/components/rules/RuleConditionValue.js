@@ -9,6 +9,7 @@ import {
     KeyboardTimePicker
   } from '@material-ui/pickers';
   import DateFnsUtils from "@date-io/date-fns";
+import { parseDate } from "../../common/utils";
 
 const RuleConditionValue = props => {
     const {error, onChange, initialValue} = props;
@@ -49,7 +50,7 @@ const RuleConditionValue = props => {
                 format="MM/dd/yyyy"
                 label="Seleccione fecha"
                 value={initialValue}
-                onChange={onChange}
+                onChange={date => onChange(parseDate(date).toString())}
                 fullWidth
                 KeyboardButtonProps={{
                     'aria-label': 'change date',
