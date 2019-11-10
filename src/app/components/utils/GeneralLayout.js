@@ -10,30 +10,32 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {styles} from "../../styles/common";
-import {Map, Person, PlaylistAddCheck} from "@material-ui/icons";
+import {AttachMoney, Map, Person, PlaylistAddCheck} from "@material-ui/icons";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
-import {PLACES, USERS, RULES} from "../../navigation/routes";
+import {PLACES, USERS, RULES, BALANCES} from "../../navigation/routes";
 import {Link} from "react-router-dom";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {connect} from "react-redux";
-import SuccessMessage from './SuccessMessage';
+import Message from './Message';
 
 const useStyles = makeStyles(styles.generalLayoutStyles);
 const TITLE = "Plataforma de administración Foodie";
 const MODULES = {
     'Usuarios': <Person/>,
     'Lugares': <Map/>,
-    'Reglas': <PlaylistAddCheck/>
+    'Reglas': <PlaylistAddCheck/>,
+    'Balances': <AttachMoney/>,
 };
 
 const ROUTES_BY_MODULES = {
     'Lugares': PLACES,
     'Usuarios': USERS,
     'Reglas': RULES,
+    'Balances': BALANCES,
 };
 
 export const GeneralLayout = props => {
@@ -53,7 +55,7 @@ export const GeneralLayout = props => {
         handleClose();
         localStorage.clear();
         window.location.reload();
-    }
+    };
 
     return (
         <div className={classes.root}>
@@ -108,7 +110,8 @@ export const GeneralLayout = props => {
                 <div className={classes.toolbar} />
                 {props.children}
             </main>
-            <SuccessMessage message={props.successMessage} show={props.showSuccess}/>
+            <Message message={props.successMessage} show={props.showSuccess} />
+            <Message message={props.errorMessage} show={props.showError} error/>
         </div>
     );
 };
@@ -117,14 +120,18 @@ GeneralLayout.propTypes = {
 	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     loading: PropTypes.bool,
     successMessage: PropTypes.string,
-    showSuccess: PropTypes.bool
+    showSuccess: PropTypes.bool,
+    showError: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    handleError: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
     return {
         loading: state.loading.loading,
         successMessage: state.handlers.successMessage,
-        showSuccess: state.handlers.showSuccess
+        errorMessage: state.handlers.errorMessage,
+        showError: state.handlers.showError
     };
 };
 

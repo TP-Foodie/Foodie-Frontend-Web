@@ -4,7 +4,7 @@ import {setLoading} from "../../redux/reducers/loading";
 import {handleSuccess} from "../../redux/reducers/handlers";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import { handleError } from "../../handlers/handleError";
+import {handleError} from "../../redux/reducers/handlers";
 import httpResources from "../../http/httpResources";
 import {Parser} from "../../common/parser";
 import Tabs from '@material-ui/core/Tabs';
@@ -49,7 +49,7 @@ const RuleDetailsContainer = props => {
             setLoading(false);
         }
         fetchRule()
-    }, [setLoading, setRule, ruleId, setVersions]);
+    }, [setLoading, setRule, ruleId, setVersions, handleError]);
 
     const handleTabChange = (event, newValue) => {
         setCurrentVersion(newValue);
@@ -91,7 +91,8 @@ RuleDetailsContainer.propTypes = {
     loading: PropTypes.bool,
     setLoading: PropTypes.func.isRequired,
     handleSuccess: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    handleError: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -102,7 +103,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     setLoading,
-    handleSuccess
+    handleSuccess,
+    handleError
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RuleDetailsContainer);
