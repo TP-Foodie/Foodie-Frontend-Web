@@ -19,7 +19,7 @@ const RuleDetailsContainer = props => {
     const [rule, setRule] = useState(undefined);
     const [versions, setVersions] = useState([]);
     const [currentVersion, setCurrentVersion] = useState(undefined);
-    const {setLoading} = props;
+    const {setLoading, handleError} = props;
     const ruleId = props.match.params.ruleId;
 
     const handleDelete = async () => {
