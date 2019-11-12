@@ -14,6 +14,7 @@ import ArrowUpward from '@material-ui/icons/ArrowDownward'
 
 export const SubscriptionListView = props => {
     const isPremium = (user) => user.subscription === userSubscriptions.PREMIUM;
+    const {onUpgrade, onCancel, users} = props;
 
     return (
         <Grid
@@ -33,15 +34,16 @@ export const SubscriptionListView = props => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {props.users.map(user => (
+                            {users.map(user => (
                                 <TableRow key={user.id}>
                                     <TableCell align="center">{user.name}</TableCell>
-                                    <TableCell align="center">{user.subscription}</TableCell>
+                                    <TableCell align="center">{user.subscription[0] + user.subscription.toLowerCase().slice(1)}</TableCell>
                                     <TableCell align="center">
                                         <Button 
                                             variant="contained" 
                                             style={{backgroundColor: isPremium(user) ? 'red' : 'green', color: 'white'}}
                                             startIcon={isPremium(user) ? <ArrowDownward/> : <ArrowUpward/>}
+                                            onClick={isPremium(user) ? () => onCancel(user.id): () => onUpgrade(user.id)}
                                         >
                                             {isPremium(user) ? "Cancelar" : "Upgrade"}
                                         </Button>
@@ -57,5 +59,7 @@ export const SubscriptionListView = props => {
 }
 
 SubscriptionListView.propTypes = {
-    users: PropTypes.array.isRequired
+    users: PropTypes.array.isRequired,
+    onUpgrade: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
 }

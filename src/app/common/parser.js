@@ -111,4 +111,16 @@ export class Parser {
             balance: value,
         };
     }
+
+    static parseSubscription = subscription => {
+        return subscription[0] + subscription.toLowerCase().slice(1)
+    }
+
+    static parseUsers = users => {
+        return users.users;
+    }
+
+    static buildSubscriptionObj = subscription => ({
+        subscription
+    })
 }

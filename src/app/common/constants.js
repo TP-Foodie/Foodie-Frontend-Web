@@ -24,5 +24,6 @@ export const NUMERIC_FIELDS_TYPES = [
 export const PAYMENT_FIELDS = ["PM"]
 
 export const userSubscriptions = {
-    PREMIUM: "PREMIUM"
+    PREMIUM: "PREMIUM",
+    FLAT: "FLAT"
 }
