@@ -5,6 +5,7 @@ const PLACES_URL = "/places/";
 const USERS_URL = "/users/";
 const LOGIN_URL = "/auth/";
 const RULES_URL = "/rules/"
+const BENEFITS_URL = "benefits";
 
 class HttpResources {
     constructor(client) {
@@ -51,6 +52,10 @@ class HttpResources {
 
     deleteRule = ruleId => {
         return this.client.delete(RULES_URL + ruleId);
+    }
+
+    benefitRules = () => {
+        return this.client.get(RULES_URL + BENEFITS_URL)
     }
 }
 

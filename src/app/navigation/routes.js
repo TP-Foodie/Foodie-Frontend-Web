@@ -7,3 +7,4 @@ export const RULE_CREATE = "/rules/new";
 export const RULE_EDIT = "/rules/edit";
 export const BALANCES = "/balances";
 export const SUBSCRIPTIONS = "/subscriptions";
+export const BENEFITS = "/benefits";
