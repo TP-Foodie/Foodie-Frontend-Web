@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import RuleFormView from "./RuleFormView";
 import { validate } from "validate.js";
-import { CONDITION_RULES, RULE_RULES } from "../../common/rules";
+import { CONDITION_RULES, RULE_RULES, BENEFIT_RULES } from "../../common/rules";
 import {connect} from "react-redux";
 import {setLoading} from "../../redux/reducers/loading";
 import {handleSuccess} from "../../redux/reducers/handlers";
@@ -53,14 +53,18 @@ const RuleFormContainer = props => {
     const handleSubmit = values => {
         let errors = {};
         
-        values.conditions.forEach(condition => {
-            const error = validate(condition, CONDITION_RULES)
-            if (error ) {
-                errors[condition.id] = error;
-            }
-        });
+        if (!props.benefit) {
+            values.conditions.forEach(condition => {
+                const error = validate(condition, CONDITION_RULES)
+                if (error ) {
+                    errors[condition.id] = error;
+                }
+            });
+        } else {
+            values['benefit'] = true;
+        }
 
-        errors = {...errors, ...validate(values, RULE_RULES)}
+        errors = {...errors, ...validate(values, props.benefit ? BENEFIT_RULES : RULE_RULES)}
         setErrors(errors);
 
         if (!Object.keys(errors).length) uploadChanges(values);
