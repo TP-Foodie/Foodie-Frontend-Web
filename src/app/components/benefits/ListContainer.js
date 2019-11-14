@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import httpResources from "../../http/httpResources";
 import {handleError} from "../../redux/reducers/handlers";
 import PropTypes from "prop-types";
-import { BENEFIT_CREATE } from "../../navigation/routes";
 
 const BenfitsListContainer = props => {
     const [rules, setRules] = useState([]);
@@ -26,7 +25,7 @@ const BenfitsListContainer = props => {
     }, [setLoading, handleError])
 
     return (
-        <RulesListView rules={rules} createUrl={BENEFIT_CREATE}/>
+        <RulesListView rules={rules} benefits/>
     );
 }
 

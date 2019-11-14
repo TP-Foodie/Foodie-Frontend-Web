@@ -9,3 +9,4 @@ export const BALANCES = "/balances";
 export const SUBSCRIPTIONS = "/subscriptions";
 export const BENEFITS = "/benefits";
 export const BENEFIT_CREATE = "/benefits/create";
+export const BENEFIT_EDIT = "/benefits/edit";

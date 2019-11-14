@@ -12,7 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import {styles} from "../../styles/common";
 import {Link} from "react-router-dom";
-import { RULE_CREATE, RULE_EDIT } from "../../navigation/routes";
+import { RULE_CREATE, RULE_EDIT, BENEFIT_EDIT, BENEFIT_CREATE } from "../../navigation/routes";
 import {NoContent} from "../utils/NoContent";
 
 export const RulesListView = props => {
@@ -46,7 +46,7 @@ export const RulesListView = props => {
                                     <TableCell align="center">{rule.name}</TableCell>
                                     <TableCell align="center">{getActiveIcon(rule.active)}</TableCell>
                                     <TableCell align="center">
-                                        <IconButton component={Link} to={`${RULE_EDIT}/${rule.id}`}>
+                                        <IconButton component={Link} to={props.benefits ? `${BENEFIT_EDIT}/${rule.id}` : `${RULE_EDIT}/${rule.id}`}>
                                             <ChevronRight/>
                                         </IconButton>
                                     </TableCell>
@@ -64,7 +64,7 @@ export const RulesListView = props => {
         <Grid>
             {renderContent()}
             <Grid item>
-                <Fab style={styles.create_fab} component={Link} to={props.createUrl || RULE_CREATE}>
+                <Fab style={styles.create_fab} component={Link} to={props.benefits ? BENEFIT_CREATE : RULE_CREATE}>
                     <Add/>
                 </Fab>
             </Grid>
@@ -74,5 +74,5 @@ export const RulesListView = props => {
 
 RulesListView.propTypes = {
     rules: PropTypes.array.isRequired,
-    createUrl: PropTypes.string
+    benefits: PropTypes.bool,
 }
