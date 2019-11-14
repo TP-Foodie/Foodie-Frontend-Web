@@ -64,7 +64,7 @@ export const RulesListView = props => {
         <Grid>
             {renderContent()}
             <Grid item>
-                <Fab style={styles.create_fab} component={Link} to={RULE_CREATE}>
+                <Fab style={styles.create_fab} component={Link} to={props.createUrl || RULE_CREATE}>
                     <Add/>
                 </Fab>
             </Grid>
@@ -74,4 +74,5 @@ export const RulesListView = props => {
 
 RulesListView.propTypes = {
     rules: PropTypes.array.isRequired,
+    createUrl: PropTypes.string
 }

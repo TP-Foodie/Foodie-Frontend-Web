@@ -66,7 +66,7 @@ const RuleFormContainer = props => {
         if (!Object.keys(errors).length) uploadChanges(values);
     };
 
-    return <RuleFormView 
+    return <RuleFormView
         handleSubmit={handleSubmit} 
         variables={variables} 
         operators={operators} 
@@ -74,6 +74,7 @@ const RuleFormContainer = props => {
         errors={errors}
         initialData={props.initialRule}
         handleDelete={props.handleDelete}
+        benefit={props.benefit}
     />
 }
 
@@ -85,7 +86,8 @@ RuleFormContainer.propTypes = {
     handleDelete: PropTypes.func,
     initialRule: PropTypes.object,
     successMessage: PropTypes.string,
-    handleError: PropTypes.func.isRequired
+    handleError: PropTypes.func.isRequired,
+    benefit: PropTypes.bool,
 }
 
 const mapStateToProps = state => {

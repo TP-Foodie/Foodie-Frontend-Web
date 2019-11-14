@@ -72,7 +72,7 @@ export const RuleConsequenceForm = props => {
                         onChange={event => setValueType(event.target.value)}
                     >
                         <MenuItem value={-1}>Descuento</MenuItem>
-                        <MenuItem value={1}>Recargo</MenuItem>
+                        {!props.benefit ? <MenuItem value={1}>Recargo</MenuItem> : null}
                     </TextField>
                 </Grid>
                 <Grid item xs={3}>
@@ -99,5 +99,6 @@ RuleConsequenceForm.propTypes = {
     errors: PropTypes.object,
     onEditField: PropTypes.func.isRequired,
     types: PropTypes.array.isRequired,
-    variables: PropTypes.array.isRequired
+    variables: PropTypes.array.isRequired,
+    benefit: PropTypes.bool,
 }
