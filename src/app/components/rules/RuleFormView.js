@@ -101,30 +101,26 @@ export const RuleFormView = props => {
                     label={props.benefit ? "Activo" : "Activa"}
                 />
                 </Grid>
-                {
-                    !props.benefit &&
-                    <React.Fragment>
-                        {renderDivider("Condiciones")}
+                <React.Fragment>
+                    {renderDivider("Condiciones")}
 
-                        {
-                            errors.conditions && 
-                            <Grid item style={styles.pd_left}>
-                                <FormHelperText style={styles.error}>{errors.conditions}</FormHelperText>
-                            </Grid>
-                        }
+                    {
+                        errors.conditions && 
+                        <Grid item style={styles.pd_left}>
+                            <FormHelperText style={styles.error}>{errors.conditions}</FormHelperText>
+                        </Grid>
+                    }
 
-                        <RuleConditionForm 
-                            errors={errors} 
-                            operators={operators} 
-                            variables={variables}
-                            onEdit={editCondition}
-                            onAdd={addCondition}
-                            onRemove={removeCondition}
-                            conditions={conditions}
-                        />
-                    </React.Fragment>
-                    
-                }
+                    <RuleConditionForm 
+                        errors={errors} 
+                        operators={operators} 
+                        variables={variables}
+                        onEdit={editCondition}
+                        onAdd={addCondition}
+                        onRemove={removeCondition}
+                        conditions={conditions}
+                    />
+                </React.Fragment>
                 {props.benefit ? renderDivider("Beneficio") : renderDivider("Consecuencia")}
                 <RuleConsequenceForm
                     benefit={props.benefit}
