@@ -7,13 +7,19 @@ import {connect} from "react-redux";
 import {handleError} from "../../redux/reducers/handlers";
 import httpResources from "../../http/httpResources";
 import {Parser} from "../../common/parser";
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Grid from "@material-ui/core/Grid";
+import { Paper } from "@material-ui/core";
 
 const SUCCESS_MESSAGE = "Regla actualizada con exito!";
 const SUCCESS_DELETE_MESSAGE = "Regla eliminada con exito!"
 
 const RuleDetailsContainer = props => {
     const [rule, setRule] = useState(undefined);
-    const {setLoading, handleSuccess, handleError} = props;
+    const [versions, setVersions] = useState([]);
+    const [currentVersion, setCurrentVersion] = useState(undefined);
+    const {setLoading, handleError} = props;
     const ruleId = props.match.params.ruleId;
 
     const handleDelete = async () => {
@@ -32,24 +38,52 @@ const RuleDetailsContainer = props => {
         async function fetchRule() {
             setLoading(true);
             try {
-                const {data} = await httpResources.rule(ruleId);
-                setRule(Parser.parseRule(data));
+                const {data} = await httpResources.ruleHistory(ruleId);
+                const rule = Parser.parseRule(data.rule)
+                setRule(rule);
+                setVersions([...data.versions.map(version => Parser.parseRule(version)), rule]);
+                setCurrentVersion(data.versions.length);
             } catch (error) {
                 handleError(error)
             }
             setLoading(false);
         }
         fetchRule()
-    }, [setLoading, setRule, ruleId, handleError]);
+    }, [setLoading, setRule, ruleId, setVersions, handleError]);
+
+    const handleTabChange = (event, newValue) => {
+        setCurrentVersion(newValue);
+        setRule(versions[newValue]);
+    }
 
     return (
-        <RuleFormContainer
-            {...props}
-            initialRule={rule}
-            successMessage={SUCCESS_MESSAGE}
-            handleDelete={handleDelete}
-            benefit={props.benefit}
-        />
+        <Grid container justify="center" direction="row">
+            <Grid item xs={2}>
+                <Paper style={{marginTop: 20}}>
+                    <Tabs
+                        style={{height: 500}}
+                        variant="scrollable"
+                        orientation="vertical"
+                        value={currentVersion}
+                        onChange={handleTabChange}
+                        centered
+                        >
+                            {versions.slice(0, -1).map((version, index) => <Tab key={index} label={`${"Version"} ${index + 1}`}/>)}
+                            <Tab label="Version Actual" />
+                    </Tabs>
+                </Paper>
+                
+            </Grid>
+            <Grid item xs={10}>
+                <RuleFormContainer
+                    {...props}
+                    initialRule={rule}
+                    successMessage={SUCCESS_MESSAGE}
+                    handleDelete={handleDelete}
+                    benefit={props.benefit}
+                />
+            </Grid>
+        </Grid>
     );
 }
 
