@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 export const AdminGraph = props => {
     return (
@@ -9,6 +9,7 @@ export const AdminGraph = props => {
             <YAxis />
             <Area type="monotone" dataKey="y" stroke="#8884d8" fill="#8884d8" />
             <Tooltip />
+            <Legend content={<h3>{props.title}</h3>}/>
         </AreaChart>
     );
 }

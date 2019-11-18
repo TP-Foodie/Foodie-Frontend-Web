@@ -32,7 +32,7 @@ export const RegistrationsContainer = props => {
         fetchUsers()
     }, [setLoading, setUsers, handleError]);
 
-    return <AdminGraph data={users}/>
+    return <AdminGraph data={users} title="Cantidad de usuarios registrados por fecha"/>
 }
 
 RegistrationsContainer.propTypes = {
