@@ -10,12 +10,12 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {styles} from "../../styles/common";
-import {AttachMoney, Map, Person, PlaylistAddCheck} from "@material-ui/icons";
+import {AttachMoney, Map, Person, PlaylistAddCheck, Assessment} from "@material-ui/icons";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
-import {PLACES, USERS, RULES, BALANCES} from "../../navigation/routes";
+import {PLACES, USERS, RULES, BALANCES, STATISTICS} from "../../navigation/routes";
 import {Link} from "react-router-dom";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -29,6 +29,7 @@ const MODULES = {
     'Lugares': <Map/>,
     'Reglas': <PlaylistAddCheck/>,
     'Balances': <AttachMoney/>,
+    'Estadisticas': <Assessment/>
 };
 
 const ROUTES_BY_MODULES = {
@@ -36,6 +37,7 @@ const ROUTES_BY_MODULES = {
     'Usuarios': USERS,
     'Reglas': RULES,
     'Balances': BALANCES,
+    'Estadisticas': STATISTICS
 };
 
 export const GeneralLayout = props => {

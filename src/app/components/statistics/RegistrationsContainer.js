@@ -4,6 +4,7 @@ import {setLoading} from '../../redux/reducers/loading';
 import {handleError} from '../../redux/reducers/handlers';
 import { AdminGraph } from './AdminGraph';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 export const RegistrationsContainer = props => {
     const [users, setUsers] = useState([]);

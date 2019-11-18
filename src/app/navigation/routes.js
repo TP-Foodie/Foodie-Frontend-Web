@@ -6,3 +6,4 @@ export const RULES = "/rules";
 export const RULE_CREATE = "/rules/new";
 export const RULE_EDIT = "/rules/edit";
 export const BALANCES = "/balances";
+export const STATISTICS = "/statistics";
