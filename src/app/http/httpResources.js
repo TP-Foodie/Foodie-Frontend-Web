@@ -6,6 +6,7 @@ const USERS_URL = "/users/";
 const LOGIN_URL = "/auth/";
 const RULES_URL = "/rules/"
 const RULES_HISTORY = "/history";
+const REGISTRATIONS_URL = "/statistics/registrations";
 
 class HttpResources {
     constructor(client) {
@@ -56,6 +57,10 @@ class HttpResources {
 
     ruleHistory = ruleId => {
         return this.client.get(RULES_URL + ruleId + RULES_HISTORY)
+    }
+
+    usersStatistics = () => {
+        return this.client.get(REGISTRATIONS_URL)
     }
 }
 
