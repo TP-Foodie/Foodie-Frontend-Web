@@ -8,7 +8,7 @@ import RegistrationsContainer from './RegistrationsContainer';
 export const AdminStatistics = props => {
     return (
         <Grid container>
-            <Grid xs={6}>
+            <Grid item xs={6}>
                 <RegistrationsContainer {...props}/>
             </Grid>
         </Grid>

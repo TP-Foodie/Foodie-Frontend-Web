@@ -13,8 +13,8 @@ export const RegistrationsContainer = props => {
 
     const prepareDateForChart = data => {
         return data.map(user => ({
-            name: toDate(user.date),
-            uv: user.count
+            x: toDate(user.date),
+            y: user.count
         }))
     }
 

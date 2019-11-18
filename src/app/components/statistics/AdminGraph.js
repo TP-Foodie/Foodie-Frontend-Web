@@ -1,14 +1,14 @@
 import React from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
 export const AdminGraph = props => {
     return (
-        <LineChart width={400} height={400} data={props.data}>
-            <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+        <AreaChart width={400} height={400} data={props.data}>
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
-            <XAxis dataKey="name" />
+            <XAxis dataKey="x" />
             <YAxis />
+            <Area type="monotone" dataKey="y" stroke="#8884d8" fill="#8884d8" />
             <Tooltip />
-        </LineChart>
+        </AreaChart>
     );
 }
