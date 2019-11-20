@@ -8,6 +8,7 @@ const RULES_URL = "/rules/"
 const RULES_HISTORY = "/history";
 const REGISTRATIONS_URL = "/statistics/registrations";
 const COMPLETED_ORDERS_URL = "/statistics/completed_orders";
+const CANCELLED_ORDERS_URL = "/statistics/cancelled_orders";
 
 class HttpResources {
     constructor(client) {
@@ -66,6 +67,10 @@ class HttpResources {
 
     ordersCompletedStatistics = () => {
         return this.client.get(COMPLETED_ORDERS_URL);
+    }
+
+    ordersCancelledStatistics = () => {
+        return this.client.get(CANCELLED_ORDERS_URL);
     }
 }
 
