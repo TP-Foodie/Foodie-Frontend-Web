@@ -1,3 +1,5 @@
+import {toDate} from './utils';
+
 const VARIABLES_NAMES = {
     "UR": "Reputacion del usuario",
     "DR": "Reputacion del delivery",
@@ -104,11 +106,18 @@ export class Parser {
             },
             active: rule.active
         }
-    }
+    };
 
     static buildUpdateBalanceRequest = (value) => {
         return {
             balance: value,
         };
-    }
+    };
+
+    static parseDateForChart = data => {
+        return data.map(value => ({
+            x: toDate(value.date),
+            y: value.count
+        }));
+    };
 }

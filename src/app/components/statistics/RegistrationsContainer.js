@@ -5,25 +5,19 @@ import {handleError} from '../../redux/reducers/handlers';
 import { AdminGraph } from './AdminGraph';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {toDate} from '../../common/utils';
+import {Parser} from '../../common/parser';
+
 
 export const RegistrationsContainer = props => {
     const [users, setUsers] = useState([]);
     const {setLoading, handleError} = props;
-
-    const prepareDateForChart = data => {
-        return data.map(user => ({
-            x: toDate(user.date),
-            y: user.count
-        }))
-    }
 
     useEffect(() => {
         async function fetchUsers() {
             try {
                 setLoading(true);
                 const {data} = await httpResources.usersStatistics();
-                setUsers(prepareDateForChart(data));
+                setUsers(Parser.parseDateForChart(data));
             } catch (error) {
                 handleError(error);
             }
