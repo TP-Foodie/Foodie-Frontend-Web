@@ -5,10 +5,10 @@ import {handleError} from '../../redux/reducers/handlers';
 import { connect } from 'react-redux';
 import StatisticsContainer from './StatisticsContainer';
 
-export const RegistrationsContainer = props => (
+export const CompletedOrdersContainer = props => (
     <StatisticsContainer 
-        fetchData={httpResources.usersStatistics} 
-        chartTitle="Cantidad de usuarios registrados por fecha" 
+        fetchData={httpResources.ordersCompletedStatistics} 
+        chartTitle="Cantidad de pedidos completados por fecha" 
         {...props}
     />
 );
@@ -18,4 +18,4 @@ const mapDistpatchToProps = {
     handleError
 }
 
-export default connect(undefined, mapDistpatchToProps)(RegistrationsContainer);
+export default connect(undefined, mapDistpatchToProps)(CompletedOrdersContainer);
