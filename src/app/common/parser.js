@@ -118,6 +118,8 @@ export class Parser {
         return data.map(value => ({
             x: toDate(value.date),
             y: value.count
-        }));
+        }))
+            .sort((anObj, anotherObj) => new Date(anObj.x) - new Date(anotherObj.x))
+            .filter(obj => obj.x);
     };
 }

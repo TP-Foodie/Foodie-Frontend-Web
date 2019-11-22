@@ -1,5 +1,6 @@
 import React from 'react';
 import { AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import PropTypes from 'prop-types';
 
 export const AdminGraph = props => {
     return (
@@ -12,4 +13,9 @@ export const AdminGraph = props => {
             <Legend content={<h3>{props.title}</h3>}/>
         </AreaChart>
     );
-}
+};
+
+AdminGraph.propTypes = {
+    data: PropTypes.object.isRequired,
+    title: PropTypes.string,
+};
