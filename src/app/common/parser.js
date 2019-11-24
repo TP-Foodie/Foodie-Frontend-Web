@@ -115,11 +115,8 @@ export class Parser {
     };
 
     static parseDateForChart = data => {
-        return data.map(value => ({
-            x: toDate(value.date),
-            y: value.count
-        }))
-            .sort((anObj, anotherObj) => new Date(anObj.x) - new Date(anotherObj.x))
-            .filter(obj => obj.x);
+        return data.filter(value => value.date)
+        .map(value => ({x: toDate(value.date), y: value.count}))
+        .sort((anObj, anotherObj) => new Date(anObj.x) - new Date(anotherObj.x));
     };
 }
