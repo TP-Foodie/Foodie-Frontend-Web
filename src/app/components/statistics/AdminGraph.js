@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Label } from 'recharts';
+import { AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import PropTypes from 'prop-types';
 import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
 import DateFnsUtils from "@date-io/date-fns";
@@ -38,4 +38,6 @@ export const AdminGraph = props => {
 AdminGraph.propTypes = {
     data: PropTypes.object.isRequired,
     title: PropTypes.string,
+    selectedDate: PropTypes.object,
+    onChangeDate: PropTypes.func
 };
