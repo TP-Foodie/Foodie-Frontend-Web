@@ -9,23 +9,37 @@ import {Parser} from '../../common/parser';
 
 export const StatisticsContainer = props => {
     const [data, setData] = useState([]);
+    const [selectedDate, setSelectedDate] = useState(new Date())
     const {setLoading, handleError} = props;
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                setLoading(true);
-                const {data} = await props.fetchData();
-                setData(Parser.parseDateForChart(data));
-            } catch (error) {
-                handleError(error);
-            }
-            setLoading(false);
+    const fetchData = async (date = new Date()) => {        
+        try {
+            setLoading(true);
+            const {data} = await props.fetchData(date);
+            setData(Parser.parseDateForChart(data));
+        } catch (error) {
+            handleError(error);
         }
+        setLoading(false);
+    }
+
+    useEffect(() => {
         fetchData()
     }, [setLoading, setData, handleError]);
 
-    return <AdminGraph data={data} title={props.chartTitle}/>
+    const onChangeDate = date => {
+        setSelectedDate(date);
+        fetchData(date);
+    }
+
+    return (
+        <AdminGraph 
+            data={data} 
+            title={props.chartTitle} 
+            selectedDate={selectedDate} 
+            onChangeDate={onChangeDate}
+        />
+    );
 }
 
 StatisticsContainer.propTypes = {

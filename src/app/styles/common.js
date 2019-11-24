@@ -28,6 +28,16 @@ export const styles = {
         }
     },
 
+    adminGraphDatePicker: {
+        textAlign: "center",
+        marginRight: 90,
+        paddingBottom: 10
+    },
+
+    chartLegend: {
+        marginLeft: 50
+    },
+
     flex_grow: {
         flexGrow: 1
     },

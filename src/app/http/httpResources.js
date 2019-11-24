@@ -10,6 +10,10 @@ const REGISTRATIONS_URL = "/statistics/registrations";
 const COMPLETED_ORDERS_URL = "/statistics/completed_orders";
 const CANCELLED_ORDERS_URL = "/statistics/cancelled_orders";
 
+const buildStatisticsUrl = (url, date) => {
+    return `${url}?month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
+}
+
 class HttpResources {
     constructor(client) {
         this.client = client;
@@ -61,16 +65,16 @@ class HttpResources {
         return this.client.get(RULES_URL + ruleId + RULES_HISTORY);
     }
 
-    usersStatistics = () => {
-        return this.client.get(REGISTRATIONS_URL);
+    usersStatistics = (date) => {
+        return this.client.get(buildStatisticsUrl(REGISTRATIONS_URL, date));
     }
 
-    ordersCompletedStatistics = () => {
-        return this.client.get(COMPLETED_ORDERS_URL);
+    ordersCompletedStatistics = (date) => {
+        return this.client.get(buildStatisticsUrl(COMPLETED_ORDERS_URL, date));
     }
 
-    ordersCancelledStatistics = () => {
-        return this.client.get(CANCELLED_ORDERS_URL);
+    ordersCancelledStatistics = (date) => {
+        return this.client.get(buildStatisticsUrl(CANCELLED_ORDERS_URL, date));
     }
 }
 
