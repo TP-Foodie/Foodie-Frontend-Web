@@ -25,7 +25,7 @@ export const StatisticsContainer = props => {
 
     useEffect(() => {
         fetchData()
-    }, [setLoading, setData, handleError]);
+    }, [fetchData]);
 
     const onChangeDate = date => {
         setSelectedDate(date);
