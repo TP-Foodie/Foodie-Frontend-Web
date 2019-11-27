@@ -8,3 +8,7 @@ export function isLoggedIn() {
 export function parseDate(date) {
     return moment(date).format("ddd, DD MMM YYYY HH:mm:ss ZZ")
 }
+
+export function toDate(date) {
+    return moment(date).format("L");
+}

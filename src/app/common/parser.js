@@ -1,3 +1,5 @@
+import {toDate} from './utils';
+
 const VARIABLES_NAMES = {
     "UR": "Reputacion del usuario",
     "DR": "Reputacion del delivery",
@@ -105,13 +107,19 @@ export class Parser {
             },
             active: rule.active,
         }
-    }
+    };
 
     static buildUpdateBalanceRequest = (value) => {
         return {
             balance: value,
         };
-    }
+    };
+
+    static parseDateForChart = data => {
+        return data.filter(value => value.date)
+        .map(value => ({x: toDate(value.date), y: value.count}))
+        .sort((anObj, anotherObj) => new Date(anObj.x) - new Date(anotherObj.x));
+    };
 
     static parseSubscription = subscription => {
         return subscription[0] + subscription.toLowerCase().slice(1)
