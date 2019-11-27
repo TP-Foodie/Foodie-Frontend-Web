@@ -80,6 +80,7 @@ const RuleDetailsContainer = props => {
                     initialRule={rule}
                     successMessage={SUCCESS_MESSAGE}
                     handleDelete={handleDelete}
+                    benefit={props.benefit}
                 />
             </Grid>
         </Grid>
@@ -92,7 +93,8 @@ RuleDetailsContainer.propTypes = {
     setLoading: PropTypes.func.isRequired,
     handleSuccess: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
-    handleError: PropTypes.func.isRequired
+    handleError: PropTypes.func.isRequired,
+    benefit: PropTypes.bool,
 }
 
 const mapStateToProps = state => {

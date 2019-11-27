@@ -95,30 +95,35 @@ export const RuleFormView = props => {
                         <Switch
                         checked={active}
                         onChange={() => setActive(!active)}
-                        value="Activa"
+                        value={"Activa"}
                     />
                     }
-                    label="Activa"
+                    label={props.benefit ? "Activo" : "Activa"}
                 />
                 </Grid>
-                {renderDivider("Condiciones")}
-                {
-                    errors.conditions && 
-                    <Grid item style={styles.pd_left}>
-                        <FormHelperText style={styles.error}>{errors.conditions}</FormHelperText>
-                    </Grid>
-                }
-                <RuleConditionForm 
-                    errors={errors} 
-                    operators={operators} 
-                    variables={variables}
-                    onEdit={editCondition}
-                    onAdd={addCondition}
-                    onRemove={removeCondition}
-                    conditions={conditions}
-                />
-                {renderDivider("Consecuencia")}
+                <React.Fragment>
+                    {renderDivider("Condiciones")}
+
+                    {
+                        errors.conditions && 
+                        <Grid item style={styles.pd_left}>
+                            <FormHelperText style={styles.error}>{errors.conditions}</FormHelperText>
+                        </Grid>
+                    }
+
+                    <RuleConditionForm 
+                        errors={errors} 
+                        operators={operators} 
+                        variables={variables}
+                        onEdit={editCondition}
+                        onAdd={addCondition}
+                        onRemove={removeCondition}
+                        conditions={conditions}
+                    />
+                </React.Fragment>
+                {props.benefit ? renderDivider("Beneficio") : renderDivider("Consecuencia")}
                 <RuleConsequenceForm
+                    benefit={props.benefit}
                     consequence={consequence}
                     errors={errors}
                     onEditField={editConsequence}
@@ -139,7 +144,8 @@ RuleFormView.propTypes = {
     operators: PropTypes.array.isRequired,
     consequenceTypes: PropTypes.array.isRequired,
     errors: PropTypes.object,
-    initialData: PropTypes.object
+    initialData: PropTypes.object,
+    benefit: PropTypes.bool,
 };
 
 export default withRouter(RuleFormView);

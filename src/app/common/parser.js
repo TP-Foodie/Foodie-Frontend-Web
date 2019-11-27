@@ -55,6 +55,7 @@ export class Parser {
             },
             name: values.name,
             active: values.active,
+            benefit: values.benefit,
         }
     };
 
@@ -104,7 +105,7 @@ export class Parser {
                 type: rule.consequence.consequence_type,
                 value: rule.consequence.value
             },
-            active: rule.active
+            active: rule.active,
         }
     };
 
@@ -119,4 +120,16 @@ export class Parser {
         .map(value => ({x: toDate(value.date), y: value.count}))
         .sort((anObj, anotherObj) => new Date(anObj.x) - new Date(anotherObj.x));
     };
+
+    static parseSubscription = subscription => {
+        return subscription[0] + subscription.toLowerCase().slice(1)
+    }
+
+    static parseUsers = users => {
+        return users.users;
+    }
+
+    static buildSubscriptionObj = subscription => ({
+        subscription
+    })
 }
