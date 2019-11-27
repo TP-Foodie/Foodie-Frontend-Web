@@ -58,3 +58,15 @@ export const RULE_RULES = {
         }
     }
 }
+
+export const BENEFIT_RULES = {
+    name: {
+        presence: {
+            message: "^Por favor ingrese un nombre",
+        },
+        length: {
+            minimum: 1,
+            message: "^Por favor ingrese un nombre"
+        }
+    },
+}

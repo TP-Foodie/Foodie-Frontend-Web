@@ -2,7 +2,10 @@ import React from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import {LoginContainer} from "./auth/LoginContainer";
 import {AuthLoadingContainer} from "./auth/AuthLoadingContainer";
-import {LOGIN, PLACES, WELCOME, USERS, RULES, RULE_CREATE, RULE_EDIT, BALANCES} from "../navigation/routes";
+import {
+  LOGIN, PLACES, WELCOME, USERS, RULES, RULE_CREATE, 
+  RULE_EDIT, BALANCES, SUBSCRIPTIONS, BENEFITS, BENEFIT_CREATE, BENEFIT_EDIT
+} from "../navigation/routes";
 import {WelcomeView} from "./welcome/WelcomeView";
 import PlacesContainer from "./places/PlacesContainer";
 import UsersContainer from "./users/UsersContainer";
@@ -14,6 +17,10 @@ import RulesListContainer from './rules/RulesListContainer';
 import RuleFormContainer from './rules/RuleFormContainer';
 import RuleDetailsContainer from './rules/RuleDetailsContainer';
 import BalanceListContainer from "./balance/BalanceListContainer";
+import SubscriptionListContainer from './subscriptions/ListContainer';
+import BenefitsListContainer from '../components/benefits/ListContainer';
+import BenefitsFormContainer from './benefits/FormContainer.js';
+import BenefitsDetailsContainer from './benefits/DetailsContainer.js';
 
 function App() {
   return (
@@ -31,6 +38,10 @@ function App() {
                     <PrivateRoute path={RULE_CREATE} component={RuleFormContainer} exact/>
                     <PrivateRoute path={`${RULE_EDIT}/:ruleId`} component={RuleDetailsContainer} exact/>
                     <PrivateRoute path={BALANCES} component={BalanceListContainer} exact/>
+                    <PrivateRoute path={SUBSCRIPTIONS} component={SubscriptionListContainer} exact/>
+                    <PrivateRoute path={BENEFITS} component={BenefitsListContainer} exact/>
+                    <PrivateRoute path={BENEFIT_CREATE} component={BenefitsFormContainer} exact/>
+                    <PrivateRoute path={`${BENEFIT_EDIT}/:ruleId`} component={BenefitsDetailsContainer} exact/>
                 </GeneralLayout>
             </Switch>
         </Router>
