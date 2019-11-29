@@ -18,6 +18,7 @@ export const RuleFormView = props => {
     const [conditions, setConditions] = useState([]);
     const [active, setActive] = useState(true);
     const [name, setName] = useState("");
+    const [cost, setCost] = useState(0);
     const [redeemable, setRedeemable] = useState(false);
     const {initialData} = props;
     
@@ -28,6 +29,7 @@ export const RuleFormView = props => {
             setConsequence(initialData.consequence);
             setActive(initialData.active);
             setRedeemable(initialData.redeemable || false);
+            setCost(initialData.cost);
         }
         if (initialData) initialize();
     }, [initialData, setName, setConsequence, setConditions]);
@@ -56,7 +58,8 @@ export const RuleFormView = props => {
             consequence,
             name,
             active,
-            redeemable
+            redeemable,
+            cost
         });
     }
 
@@ -134,21 +137,34 @@ export const RuleFormView = props => {
                     types={props.consequenceTypes}
                     variables={variables.filter(variable => conditions.some(condition => condition.variable === variable.value))}
                 />
-                {
-                    props.benefit && 
-                    <Grid item>
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={redeemable}
-                                onChange={() => setRedeemable(!redeemable)}
-                                color="secondary"
+                <Grid container direction="row">
+                    {
+                        props.benefit && 
+                        <Grid item>
+                            <FormControlLabel
+                                control={
+                                <Checkbox
+                                    checked={redeemable}
+                                    onChange={() => setRedeemable(!redeemable)}
+                                    color="secondary"
+                                />
+                                }
+                                label="Beneficio Canjeable"
                             />
-                            }
-                            label="Beneficio Canjeable"
+                        </Grid>
+                    }
+                    {
+                        props.benefit && redeemable &&
+                        <TextField 
+                            label={"Costo"}
+                            fullWidth
+                            variant="outlined"
+                            value={cost}
+                            onChange={event => setCost(event.target.value)}
+                            type="number"
                         />
-                    </Grid>
-                }
+                    }
+                </Grid>
             </Grid>
             <AdminButtonBar handleBack={handleBack} handleSubmit={handleSubmit} handleDelete={props.handleDelete}/>
         </Paper>
