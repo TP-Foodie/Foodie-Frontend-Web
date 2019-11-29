@@ -18,6 +18,15 @@ export class UsersView extends React.Component {
         users: PropTypes.array.isRequired
     };
 
+    userTypePretty = (type) => {
+        const types = {
+            BACK_OFFICE: "Administrador",
+            CUSTOMER: "Cliente",
+            DELIVERY: "Delivery",
+        }
+        return types[type];
+    }
+
     render() {
         const {users} = this.props;
         return(
@@ -46,7 +55,7 @@ export class UsersView extends React.Component {
                                         {user.id}
                                         </TableCell>
                                         <TableCell align="center">{user.name}</TableCell>
-                                        <TableCell align="center">{user.type}</TableCell>
+                                        <TableCell align="center">{this.userTypePretty(user.type)}</TableCell>
                                         <TableCell align="center">
                                             <Link
                                                 component={Button}
