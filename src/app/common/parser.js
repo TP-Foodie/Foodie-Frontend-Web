@@ -56,6 +56,7 @@ export class Parser {
             name: values.name,
             active: values.active,
             benefit: values.benefit,
+            redeemable: values.redeemable
         }
     };
 
@@ -106,6 +107,7 @@ export class Parser {
                 value: rule.consequence.value
             },
             active: rule.active,
+            redeemable: rule.redeemable
         }
     };
 

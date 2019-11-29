@@ -11,12 +11,14 @@ import { RuleConsequenceForm } from "./RuleConsequenceForm";
 import {AdminButtonBar} from "../utils/AdminButtonBar"
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export const RuleFormView = props => {
     const [consequence, setConsequence] = useState({type: "V", value: 0});
     const [conditions, setConditions] = useState([]);
     const [active, setActive] = useState(true);
     const [name, setName] = useState("");
+    const [redeemable, setRedeemable] = useState(false);
     const {initialData} = props;
     
     useEffect(() => {
@@ -25,6 +27,7 @@ export const RuleFormView = props => {
             setConditions(initialData.conditions);
             setConsequence(initialData.consequence);
             setActive(initialData.active);
+            setRedeemable(initialData.redeemable || false);
         }
         if (initialData) initialize();
     }, [initialData, setName, setConsequence, setConditions]);
@@ -52,7 +55,8 @@ export const RuleFormView = props => {
             conditions: conditions,
             consequence,
             name,
-            active
+            active,
+            redeemable
         });
     }
 
@@ -130,6 +134,21 @@ export const RuleFormView = props => {
                     types={props.consequenceTypes}
                     variables={variables.filter(variable => conditions.some(condition => condition.variable === variable.value))}
                 />
+                {
+                    props.benefit && 
+                    <Grid item>
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={redeemable}
+                                onChange={() => setRedeemable(!redeemable)}
+                                color="secondary"
+                            />
+                            }
+                            label="Beneficio Canjeable"
+                        />
+                    </Grid>
+                }
             </Grid>
             <AdminButtonBar handleBack={handleBack} handleSubmit={handleSubmit} handleDelete={props.handleDelete}/>
         </Paper>
