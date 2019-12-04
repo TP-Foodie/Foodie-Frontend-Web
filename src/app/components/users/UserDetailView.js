@@ -11,9 +11,8 @@ import {withRouter} from "react-router-dom";
 const FIELDS = {
     "name": "Nombre",
     "last_name": "Apellido",
-     "type": "Tipo",
-     "email": "Email",
-     "phone": "Telefono"
+    "email": "Email",
+    "phone": "Telefono"
 };
 
 export class UserDetailView extends React.Component{

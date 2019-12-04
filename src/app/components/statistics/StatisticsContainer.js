@@ -29,7 +29,7 @@ export const StatisticsContainer = props => {
 
     const onChangeDate = date => {
         setSelectedDate(date);
-        fetchData(date);
+        memoizedFetchData(date);
     }
 
     return (
