@@ -160,7 +160,7 @@ export const RuleFormView = props => {
                             fullWidth
                             variant="outlined"
                             value={cost}
-                            onChange={event => setCost(event.target.value)}
+                            onChange={event => setCost(event.target.value.toString())}
                             type="number"
                         />
                     }
